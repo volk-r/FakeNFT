@@ -7,15 +7,14 @@
 
 import Foundation
 
-@MainActor
-final class WebViewModel: ObservableObject {
+@Observable
+final class WebViewModel {
     
     // MARK: - Properties
     
-    @Published var isLoadingError = false
-    
-    @Published var isLoading = true
-    @Published var loadingProgress: Double = 0.0
+    var isLoadingError = false
+    var isLoading = true
+    var loadingProgress: Double = 0.0
     
     // MARK: - init
     

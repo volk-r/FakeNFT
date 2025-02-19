@@ -12,7 +12,7 @@ struct WebViewView: View {
     // MARK: - Properties
 
     let navigationURL: String
-    @StateObject private var model: WebViewModel = WebViewModel()
+    @State private var model = WebViewModel()
 
     var body: some View {
         VStack {
@@ -37,7 +37,7 @@ struct WebViewView: View {
                     }
                 } else {
                     WebViewBridge(url: navigationURL)
-                        .environmentObject(model)
+                        .environment(model)
                     
                     if model.isLoading {
                         ProgressView()
@@ -54,6 +54,6 @@ struct WebViewView: View {
 #Preview {
     NavigationStack {
         WebViewView(navigationURL: GlobalConstants.mockURL)
-            .environmentObject(WebViewModel())
+            .environment(WebViewModel())
     }
 }

@@ -12,7 +12,7 @@ struct WebViewBridge: UIViewRepresentable {
     
     // MARK: - Properties
     
-    @EnvironmentObject var model: WebViewModel
+    @Environment(WebViewModel.self) var model: WebViewModel
     
     let url: String
     
