@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "About" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "О разработчике"
+          }
+        }
+      }
+    },
     "Cart" : {
       "comment" : "Название tabItem \"Корзина\"",
       "localizations" : {
@@ -41,8 +61,41 @@
     "Catalog View" : {
       "shouldTranslate" : false
     },
+    "Favorite NFTs (%lld)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранные NFT (%lld)"
+          }
+        }
+      }
+    },
+    "My NFTs (%lld)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мои NFT (%lld)"
+          }
+        }
+      }
+    },
     "No internet" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет интернета"
+          }
+        }
+      }
     },
     "Profile" : {
       "comment" : "Название tabItem \"Профиль\"",
@@ -60,9 +113,6 @@
           }
         }
       }
-    },
-    "Profile View" : {
-      "shouldTranslate" : false
     },
     "Statistic" : {
       "comment" : "Название tabItem \"Статистика\"",
