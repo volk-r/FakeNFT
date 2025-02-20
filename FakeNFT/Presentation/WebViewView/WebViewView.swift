@@ -46,7 +46,7 @@ struct WebViewView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
+        .navigationTitle(URL(string: navigationURL)?.host(percentEncoded: true) ?? "")
         .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
     }
 }
@@ -54,6 +54,5 @@ struct WebViewView: View {
 #Preview {
     NavigationStack {
         WebViewView(navigationURL: GlobalConstants.mockURL)
-            .environment(WebViewModel())
     }
 }
