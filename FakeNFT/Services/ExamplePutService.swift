@@ -6,7 +6,7 @@
 //
 import Foundation
 
-typealias ExamplePutCompletion = (Result<ExamplePutResponse, Error>) -> Void
+typealias ExamplePutCompletion = @Sendable (Result<ExamplePutResponse, Error>) -> Void
 
 protocol ExamplePutService {
     func sendExamplePutRequest(
@@ -26,7 +26,7 @@ final class ExamplePutServiceImpl: ExamplePutService {
     func sendExamplePutRequest(
         param1: String,
         param2: String,
-        completion: @escaping ExamplePutCompletion
+        completion: @escaping @Sendable ExamplePutCompletion
     ) {
         let dto = ExampleDtoObject(param1: param1, param2: param2)
         let request = ExamplePutRequest(dto: dto)

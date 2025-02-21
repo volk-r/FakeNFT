@@ -30,12 +30,14 @@ struct MainView: View {
                     Text("Cart")
                 }
                 .tag(2)
-            StatisticView()
-                .tabItem {
-                    Image(selectedTabIndex == 3 ? "statisticActive" : "statisticNoActive")
-                    Text("Statistic")
-                }
-                .tag(3)
+            NavigationStack {
+                StatisticView()
+            }
+            .tabItem {
+                Image(selectedTabIndex == 3 ? "statisticActive" : "statisticNoActive")
+                Text("Statistic")
+            }
+            .tag(3)
         }
     }
 

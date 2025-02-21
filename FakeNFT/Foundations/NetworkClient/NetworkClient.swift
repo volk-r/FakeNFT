@@ -17,27 +17,27 @@ protocol NetworkClient: Sendable {
     @discardableResult
     func send(request: NetworkRequest,
               completionQueue: DispatchQueue,
-              onResponse: @escaping (Result<Data, Error>) -> Void) -> NetworkTask?
+              onResponse: @escaping @Sendable (Result<Data, Error>) -> Void) -> NetworkTask?
 
     @discardableResult
     func send<T: Decodable>(request: NetworkRequest,
                             type: T.Type,
                             completionQueue: DispatchQueue,
-                            onResponse: @escaping (Result<T, Error>) -> Void) -> NetworkTask?
+                            onResponse: @escaping @Sendable (Result<T, Error>) -> Void) -> NetworkTask?
 }
 
 extension NetworkClient {
 
     @discardableResult
     func send(request: NetworkRequest,
-              onResponse: @escaping (Result<Data, Error>) -> Void) -> NetworkTask? {
+              onResponse: @escaping @Sendable (Result<Data, Error>) -> Void) -> NetworkTask? {
         send(request: request, completionQueue: .main, onResponse: onResponse)
     }
 
     @discardableResult
     func send<T: Decodable>(request: NetworkRequest,
                             type: T.Type,
-                            onResponse: @escaping (Result<T, Error>) -> Void) -> NetworkTask? {
+                            onResponse: @escaping @Sendable (Result<T, Error>) -> Void) -> NetworkTask? {
         send(request: request, type: type, completionQueue: .main, onResponse: onResponse)
     }
 }
@@ -59,9 +59,9 @@ struct DefaultNetworkClient: NetworkClient {
     func send(
         request: NetworkRequest,
         completionQueue: DispatchQueue,
-        onResponse: @escaping (Result<Data, Error>) -> Void
+        onResponse: @escaping @Sendable (Result<Data, Error>) -> Void
     ) -> NetworkTask? {
-        let onResponse: (Result<Data, Error>) -> Void = { result in
+        let onResponse: @Sendable (Result<Data, Error>) -> Void = { result in
             completionQueue.async {
                 onResponse(result)
             }
@@ -101,7 +101,7 @@ struct DefaultNetworkClient: NetworkClient {
         request: NetworkRequest,
         type: T.Type,
         completionQueue: DispatchQueue,
-        onResponse: @escaping (Result<T, Error>) -> Void
+        onResponse: @escaping @Sendable (Result<T, Error>) -> Void
     ) -> NetworkTask? {
         return send(request: request, completionQueue: completionQueue) { result in
             switch result {
