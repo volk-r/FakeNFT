@@ -80,9 +80,6 @@
           }
         }
       }
-    },
-    "Statistic View" : {
-      "shouldTranslate" : false
     }
   },
   "version" : "1.0"
