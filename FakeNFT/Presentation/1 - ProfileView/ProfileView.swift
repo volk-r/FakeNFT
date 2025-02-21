@@ -30,12 +30,15 @@ struct ProfileView: View {
         }
         .tint(.appGreenUniversal)
         .navigationDestination(isPresented: $viewModel.isAboutPresented) {
-            WebViewView(navigationURL: viewModel.userWebsiteURL)
+            WebViewView(navigationURL: viewModel.profile?.website ?? "")
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 editButton
             }
+        }
+        .onAppear {
+            viewModel.loadProfile()
         }
     }
 }
@@ -67,8 +70,10 @@ private extension ProfileView {
         HStack(alignment: .center) {
             Image(.profile)
                 .resizable()
+                .scaledToFit()
+                .cornerRadius(70)
                 .frame(width: 70, height: 70)
-            Text(verbatim: viewModel.name)
+            Text(verbatim: viewModel.profile?.name ?? "")
                 .appTextStyleHeadline3()
                 .padding(.leading, 16)
             Spacer()
@@ -79,11 +84,11 @@ private extension ProfileView {
     
     private var userInfo: some View {
         Group {
-            Text(verbatim: viewModel.useInfo)
+            Text(verbatim: viewModel.profile?.description ?? "")
                 .appTextStyleCaption2()
                 .padding(.top, 20)
             HStack {
-                Text(verbatim: viewModel.userWebsite)
+                Text(verbatim: URL(string: viewModel.profile?.website ?? "")?.host(percentEncoded: true) ?? "")
                     .foregroundStyle(.appBlueUniversal)
                     .appTextStyleCaption1()
                     .onTapGesture {
@@ -100,8 +105,8 @@ private extension ProfileView {
     private var optionList: some View {
         List {
             Section {
-                ProfileListItemView(listItem: String(localized: "My NFTs (\(viewModel.nftCount))"))
-                ProfileListItemView(listItem: String(localized: "Favorite NFTs (\(viewModel.nftFavoriteCount))"))
+                ProfileListItemView(listItem: String(localized: "My NFTs (\(viewModel.profile?.nfts?.count ?? 0))"))
+                ProfileListItemView(listItem: String(localized: "Favorite NFTs (\(viewModel.profile?.likes?.count ?? 0))"))
                 ProfileListItemView(listItem: String(localized: "About"))
                     .onTapGesture {
                     viewModel.isAboutPresented = true
