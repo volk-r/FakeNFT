@@ -27,16 +27,16 @@ struct ProfileView: View {
                 optionList
             }
             .padding(.top, 20)
-        }
-        .tint(.appGreenUniversal)
-        .navigationDestination(isPresented: $viewModel.isAboutPresented) {
-            WebViewView(navigationURL: viewModel.profile?.website ?? "")
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                editButton
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    editButton
+                }
+            }
+            .navigationDestination(isPresented: $viewModel.isAboutPresented) {
+                WebViewView(navigationURL: viewModel.profile?.website ?? "")
             }
         }
+        .accentColor(.appBlack)
         .onAppear {
             viewModel.loadProfile()
         }
