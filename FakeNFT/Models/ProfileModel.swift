@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProfileModel: Codable {
+struct ProfileModel: Codable, Sendable {
     let id: String?
     let name: String?
     let avatar: String?
