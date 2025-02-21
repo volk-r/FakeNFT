@@ -41,6 +41,9 @@
     "Catalog View" : {
       "shouldTranslate" : false
     },
+    "No internet" : {
+
+    },
     "Profile" : {
       "comment" : "Название tabItem \"Профиль\"",
       "localizations" : {

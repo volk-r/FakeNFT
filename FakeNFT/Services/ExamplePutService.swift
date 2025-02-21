@@ -12,7 +12,7 @@ protocol ExamplePutService {
     func sendExamplePutRequest(
         param1: String,
         param2: String,
-        completion: @escaping ExamplePutCompletion
+        completion: @escaping @Sendable ExamplePutCompletion
     )
 }
 
