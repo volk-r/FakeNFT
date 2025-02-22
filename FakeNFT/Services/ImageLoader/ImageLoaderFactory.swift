@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct ImageLoaderFactory: View {
+    // MARK: - Constants
 
     let url: String
+
+    // MARK: - Public Properties
+
     var contentMode: ContentMode = .fit
     var placeholder = Image(systemName: "photo.badge.exclamationmark.fill")
     var isShowActivityIndicator: Bool = true
+
+    // MARK: - View
 
     var body: some View {
         SDWebImageLoader(

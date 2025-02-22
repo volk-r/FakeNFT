@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct SDWebImageLoader: View {
     // MARK: - Constants
+
     let url: String
     let placeholder: Image
 
