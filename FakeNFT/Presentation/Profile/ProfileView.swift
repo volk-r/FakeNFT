@@ -125,6 +125,6 @@ private extension ProfileView {
 
 #Preview {
     NavigationStack {
-        MainView()
+        AppTabView()
     }
 }
