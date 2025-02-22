@@ -80,6 +80,74 @@
           }
         }
       }
+    },
+    "StatisticViewCloseButton" : {
+      "comment" : "Название кнопки \"Закрыть\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingByName" : {
+      "comment" : "Название элемента \"По имени\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По имени"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingByRating" : {
+      "comment" : "Название элемента \"По рейтингу\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By rating"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По рейтингу"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingDialogTitle" : {
+      "comment" : "Заголовок диалогового окна выбора типа сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorting"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировка"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

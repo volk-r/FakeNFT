@@ -13,8 +13,18 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     // MARK: - Public Properties
 
     var loadingState: LoadingState = .default
-    
     var users: [User] = []
+    var showingSortDialog: Bool = false
+    var sortType: StatisticSortTypes = .byRating {
+        didSet {
+            switch sortType {
+            case .byRating:
+                print("Сортировка по рейтингу")
+            case .byName:
+                print("Сортировка по имени")
+            }
+        }
+    }
 
     // MARK: - Public Methods
 
@@ -26,6 +36,6 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     }
 
     func sortList() {
-        print("Sort button pressed")
+        showingSortDialog = true
     }
 }

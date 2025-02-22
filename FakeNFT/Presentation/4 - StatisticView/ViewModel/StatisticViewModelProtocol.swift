@@ -11,6 +11,8 @@ import Foundation
 protocol StatisticViewModelProtocol: AnyObject, Sendable, Observable {
     var loadingState: LoadingState { get set }
     var users: [User] { get }
+    var showingSortDialog: Bool { get set }
+    var sortType: StatisticSortTypes { get set }
     func loadData() async throws
     func fetchNextData() async throws
     func sortList()

@@ -58,6 +58,19 @@ struct StatisticView: View {
                 )
             }
         }
+        .confirmationDialog(
+            "StatisticViewSortingDialogTitle",
+            isPresented: $viewModel.showingSortDialog,
+            titleVisibility: .visible
+        ) {
+            Button("StatisticViewSortingByName") {
+                viewModel.sortType = .byName
+            }
+            Button("StatisticViewSortingByRating") {
+                viewModel.sortType = .byRating
+            }
+            Button("StatisticViewCloseButton", role: .cancel) { }
+        }
         .task {
             try? await viewModel.loadData()
         }
