@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  AppTabView.swift
 //  FakeNFT
 //
 //  Created by Сергей Кухарев on 18.02.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct AppTabView: View {
     // MARK: - View
 
     var body: some View {
@@ -41,9 +41,9 @@ struct MainView: View {
 
     // MARK: - Bindings
 
-    @AppStorage("mainViewSelectedTabIndex") var selectedTabIndex: Int = 0
+    @AppStorage("appTabViewSelectedTabIndex") var selectedTabIndex: Int = 0
 }
 
 #Preview {
-    MainView()
+    AppTabView()
 }
