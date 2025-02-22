@@ -8,6 +8,25 @@
 import SwiftUI
 
 struct StatisticView: View {
+    // MARK: - Types
+
+    private enum Constants {
+        static let listEdgeInsets = EdgeInsets(
+            top: 20,
+            leading: 16,
+            bottom: 0,
+            trailing: 16
+        )
+        static let listRowEdgeInsets = EdgeInsets(
+            top: 0,
+            leading: 0,
+            bottom: 8,
+            trailing: 0
+        )
+        static let sortButtonImage: UIImage = .appSortButton
+        static let sortButtonColor: Color = .appBlack
+    }
+
     // MARK: - State
 
     @State private var viewModel: StatisticViewModelProtocol
@@ -16,21 +35,32 @@ struct StatisticView: View {
 
     var body: some View {
         List(viewModel.users) { user in
-            
+            StatisticRowView(user: user)
+                .listRowSeparator(.hidden)
+                .listRowInsets(Constants.listRowEdgeInsets)
         }
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Button(
-                        action: {
-                            viewModel.sortList()
-                        },
-                        label: {
-                            Image(uiImage: .appSortButton)
-                                .foregroundStyle(.appBlack)
-                        }
-                    )
-                }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .padding(Constants.listEdgeInsets)
+        .refreshable {
+            try? await viewModel.loadData()
+        }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button(
+                    action: {
+                        viewModel.sortList()
+                    },
+                    label: {
+                        Image(uiImage: Constants.sortButtonImage)
+                            .foregroundStyle(Constants.sortButtonColor)
+                    }
+                )
             }
+        }
+        .task {
+            try? await viewModel.loadData()
+        }
     }
 
     // MARK: - Initializers

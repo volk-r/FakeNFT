@@ -10,9 +10,16 @@ import Foundation
 @Observable
 @MainActor
 final class StatisticViewModel: StatisticViewModelProtocol {
+    // MARK: - Public Properties
+
+    var loadingState: LoadingState = .default
+    
     var users: [User] = []
 
+    // MARK: - Public Methods
+
     func loadData() async throws {
+        users = User.getMockData()
     }
 
     func fetchNextData() async throws {
