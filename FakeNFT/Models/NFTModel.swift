@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NFTModel: Codable, Equatable {
+struct NFTModel: Codable, Equatable, Identifiable {
     let createdAt: String
     let name: String
     let images: [String]
