@@ -33,7 +33,7 @@ struct ProfileView: View {
                 }
             }
             .navigationDestination(isPresented: $viewModel.isAboutPresented) {
-                WebViewView(navigationURL: viewModel.profile?.website ?? "")
+                WebView(navigationURL: viewModel.profile?.website ?? "")
             }
         }
         .accentColor(.appBlack)
