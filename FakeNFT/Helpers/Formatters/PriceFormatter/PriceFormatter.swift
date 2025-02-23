@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PriceFormatter: Sendable {
+final class PriceFormatter: Formatter {
     private let formatter: NumberFormatter
     private let currencySymbol: String
     
@@ -28,9 +28,17 @@ struct PriceFormatter: Sendable {
         
         self.currencySymbol = currencySymbol
         self.formatter = formatter
+        
+        super.init()
     }
     
-    func string(from price: Double) -> String {
-        "\(formatter.string(from: NSNumber(value: price)) ?? String(price)) \(currencySymbol)"
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func string(for obj: Any?) -> String? {
+        guard let price = obj as? Double else { return nil }
+        
+        return "\(formatter.string(from: NSNumber(value: price)) ?? String(price)) \(currencySymbol)"
     }
 }

@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct PriceView: View {
-    let price: String
+    var formatter: Formatter = PriceFormatter
+        .defaultEthPriceFormatter
+    let price: Double
     
     var body: some View {
-        Text(price)
-            .appTextStyleBodyBold()
+        Text(
+            formatter.string(for: price) ?? ""
+        )
+        .appTextStyleBodyBold()
     }
 }
 
 #Preview {
+    PriceView(price: 1.78)
     PriceView(
-        price: PriceFormatter(
-            currencySymbol: "ETH"
-        ).string(from: 1.78)
+        formatter: PriceFormatter(
+            currencySymbol: "BTC"
+        ),
+        price: 1.78
     )
 }
