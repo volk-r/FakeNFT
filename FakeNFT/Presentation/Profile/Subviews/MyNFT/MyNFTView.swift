@@ -19,7 +19,7 @@ struct MyNFTView: View {
     var body: some View {
         VStack {
             if nfts.isEmpty {
-                Text("You don't have any featured NFTs yet")
+                Text("You don't have NFT yet")
                     .appTextStyleBodyBold()
             } else {
                 List(nfts, id: \.self) { nft in
