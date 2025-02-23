@@ -11,7 +11,7 @@ struct NFTCard: View {
     
     // MARK: - Properties
     
-    let image: Image
+    let imageUrl: String
     var isLiked: Bool
     var сardType: NFTCardType = .normal
     let action: () -> Void
@@ -25,14 +25,16 @@ struct NFTCard: View {
                 height: сardType.cardSize
             )
             .background {
-                image
-                    .resizable()
-                    .frame(
-                        maxWidth: сardType.cardSize,
-                        maxHeight: сardType.cardSize
-                    )
-                    .scaledToFit()
-                    .cornerRadius(12)
+                ImageLoaderFactory(
+                    url: imageUrl,
+                    contentMode: .fit
+                )
+                .frame(
+                    maxWidth: сardType.cardSize,
+                    maxHeight: сardType.cardSize
+                )
+                .scaledToFit()
+                .cornerRadius(12)
             }
     }
 }
@@ -77,39 +79,39 @@ extension NFTCard {
             .ignoresSafeArea()
         VStack {
             NFTCard(
-                image: Image(.nftCard),
+                imageUrl: GlobalConstants.mockPreviewImageUrl,
                 isLiked: false,
                 action: { print("print 1") }
             )
             
             NFTCard(
-                image: Image(.nftCard),
+                imageUrl: GlobalConstants.mockPreviewImageUrl,
                 isLiked: true,
                 action: { print("print 2") }
             )
             
             NFTCard(
-                image: Image(systemName: "questionmark"),
+                imageUrl: "http://",
                 isLiked: false,
                 action: { print("print 1") }
             )
             
             NFTCard(
-                image: Image(.nftCard),
+                imageUrl: GlobalConstants.mockPreviewImageUrl,
                 isLiked: false,
                 сardType: .mini,
                 action: { print("print 3") }
             )
             
             NFTCard(
-                image: Image(.nftCard),
+                imageUrl: GlobalConstants.mockPreviewImageUrl,
                 isLiked: true,
                 сardType: .mini,
                 action: { print("print 4") }
             )
             
             NFTCard(
-                image: Image(systemName: "questionmark"),
+                imageUrl: "http://",
                 isLiked: false,
                 сardType: .mini,
                 action: { print("print 1") }
