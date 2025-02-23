@@ -13,14 +13,23 @@ struct CatalogView: View {
     var body: some View {
         NavigationStack {
             LoadingSwitcher(viewModel.loadingState) {
-                List(viewModel.collections) { collection in
-                    Text(collection.name)
-                        .font(.headline)
-                }
+                collectionList
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 20)
         }
         .task {
             await viewModel.loadCollections()
+        }
+    }
+    
+    private var collectionList: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 20) {
+                ForEach(viewModel.collections) { collection in
+                    CatalogRow(collection: collection)
+                }
+            }
         }
     }
 }

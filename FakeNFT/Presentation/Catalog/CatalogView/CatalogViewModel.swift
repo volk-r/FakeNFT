@@ -13,7 +13,7 @@ final class CatalogViewModel: ObservableObject {
     var collections: [NFTCollection] = []
     var loadingState: LoadingState = .default
     
-    nonisolated let networkService: NFTCollectionsServiceProtocol
+    nonisolated private let networkService: NFTCollectionsServiceProtocol
     
     init(networkService: NFTCollectionsServiceProtocol) {
         self.networkService = networkService
