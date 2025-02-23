@@ -15,15 +15,19 @@ struct CatalogRow: View {
     }
     
     var body: some View {
-        Text(verbatim: title)
-            .appTextStyleBodyBold()
+        VStack(alignment: .leading, spacing: 4) {
+            ImageLoaderFactory(url: collection.cover, contentMode: .fill)
+                .frame(maxWidth: .infinity)
+                .frame(height: 140)
+                .cornerRadius(12)
+            
+            Text(verbatim: title)
+                .appTextStyleBodyBold()
+        }
     }
 }
 
 #Preview {
-    HStack {
-        CatalogRow(collection: NFTCollection.mock1)
-        Spacer()
-    }
-    .padding(.horizontal, 16)
+    CatalogRow(collection: NFTCollection.mock1)
+        .padding(.horizontal, 16)
 }
