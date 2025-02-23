@@ -46,6 +46,24 @@ struct MyNFTView: View {
         .onAppear {
             model.fetchNFTData(nftIDs: profileModel.profile?.nfts)
         }
+        .confirmationDialog(
+            NFTSortingType.description,
+            isPresented: $model.showingSortingDialog,
+            titleVisibility: .visible
+        ) {
+            Button(NFTSortingType.byPrice.title) {
+                model.sortType = .byPrice
+            }
+            Button(NFTSortingType.byRating.title) {
+                model.sortType = .byRating
+            }
+            Button(NFTSortingType.byName.title) {
+                model.sortType = .byName
+            }
+            Button("Close", role: .cancel, action: {
+                model.showingSortingDialog = false
+            })
+        }
     }
 }
 
@@ -56,8 +74,7 @@ extension MyNFTView {
     private var sortButton: some View {
         Button(
             action: {
-                // TODO: - open edit view
-                print("Sort called")
+                model.showingSortingDialog = true
             },
             label: {
                 Image(.appSortButton)

@@ -14,6 +14,20 @@ final class MyNFTViewModel {
     
     var nftsData: [NFTModel] = []
     
+    var showingSortingDialog: Bool = false
+    var sortType: NFTSortingType = .byPrice {
+        didSet {
+            switch sortType {
+            case .byPrice:
+                print("Сортировка по прайсу")
+            case .byRating:
+                print("Сортировка по рейтингу")
+            case .byName:
+                print("Сортировка по имени")
+            }
+        }
+    }
+    
     // MARK: - fetchNFTData
     
     func fetchNFTData(nftIDs: [String]?) {
