@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+@Observable
 @MainActor
 final class CatalogViewModel: ObservableObject {
-    @Published var collections: [NFTCollection] = []
+    var collections: [NFTCollection] = []
+    var loadingState: LoadingState = .default
     
     nonisolated let networkService: NFTCollectionsServiceProtocol
     
@@ -17,14 +19,15 @@ final class CatalogViewModel: ObservableObject {
         self.networkService = networkService
     }
     
-    func loadCollections() {
-        Task {
-            do {
-                let collections = try await networkService.loadCollections()
-                self.collections = collections
-            } catch {
-                print("Error loading collections: \(error)")
-            }
+    func loadCollections() async {
+        loadingState = .loading
+        
+        do {
+            collections = try await networkService.loadCollections()
+            loadingState = .success
+        } catch {
+            loadingState = .failure
+            print("Error loading collections: \(error)")
         }
     }
 }

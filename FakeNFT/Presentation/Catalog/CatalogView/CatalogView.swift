@@ -11,12 +11,16 @@ struct CatalogView: View {
     @ObservedObject var viewModel: CatalogViewModel
     
     var body: some View {
-        List(viewModel.collections) { collection in
-            Text(collection.name)
-                .font(.headline)
+        NavigationStack {
+            LoadingSwitcher(viewModel.loadingState) {
+                List(viewModel.collections) { collection in
+                    Text(collection.name)
+                        .font(.headline)
+                }
+            }
         }
-        .onAppear {
-            viewModel.loadCollections()
+        .task {
+            await viewModel.loadCollections()
         }
     }
 }
