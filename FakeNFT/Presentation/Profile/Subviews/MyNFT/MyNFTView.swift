@@ -11,8 +11,8 @@ struct MyNFTView: View {
     
     // MARK: - Properties
     
-    let nfts: [Int]
-    let likes: [Int]
+    let nfts: [String]
+    let likes: [String]
     
     // MARK: - body
     
@@ -24,7 +24,13 @@ struct MyNFTView: View {
             } else {
                 List(nfts, id: \.self) { nft in
                     Section {
-                        NFTCardView(id: nft, isLiked: likes.contains(nft))
+                        NFTCardView(
+                            id: nft,
+                            isLiked: Binding(
+                                get: { likes.contains(nft) },
+                                set: {_ in }
+                            )
+                        )
                     }
                     .listRowSeparator(.hidden)
                 }
@@ -66,7 +72,7 @@ extension MyNFTView {
 #Preview("NFT") {
     Group {
         NavigationStack {
-            MyNFTView(nfts: [1, 2, 3, 4, 5], likes: [1, 4])
+            MyNFTView(nfts: ["1", "2", "3", "4", "5"], likes: ["1", "4"])
         }
     }
 }

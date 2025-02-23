@@ -13,36 +13,26 @@ final class NFTCardViewModel {
     
     // MARK: - Properties
     
-    var cardData: NFTModelMock = NFTModelMock(
-        createdAt: "2023-04-20T02:22:27Z",
-        name: "Lilo",
-        images: [.nftCard1],
+    var cardData: NFTModel = NFTModel(
+        createdAt: "2023-10-08T07:43:22.944Z[GMT]",
+        name: "Rosario Dejesus",
+        images: [
+            "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Finn/1.png",
+            "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Finn/2.png",
+            "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Finn/3.png"
+        ],
         rating: 3,
-        description: "example: A 3D model of a mythical creature.",
-        price: "8.81",
-        author: "John Doe",
-        id: "1"
+        description: "explicari lobortis rutrum evertitur fugit convenire ligula",
+        price: 28.27,
+        author: "https://unruffled_cohen.fakenfts.org/",
+        id: "7773e33c-ec15-4230-a102-92426a3a6d5a"
     )
     
     // MARK: - Properties
     
-    func likeAction(_ isLiked: Bool, for id: Int) {
+    func likeAction(_ isLiked: Binding<Bool>, for id: String) {
         // TODO: - send put request
-        var newLikeValue = isLiked
-        newLikeValue.toggle()
-        print("put request with \(newLikeValue.description) for id: \(id)")
+        isLiked.wrappedValue.toggle()
+        print("put request with \(isLiked.wrappedValue) for id: \(id)")
     }
-}
-
-// TODO: - temporarily gag
-
-struct NFTModelMock: Equatable, Identifiable {
-    let createdAt: String
-    let name: String
-    let images: [ImageResource]
-    let rating: Int
-    let description: String
-    let price: String
-    let author: String
-    let id: String
 }

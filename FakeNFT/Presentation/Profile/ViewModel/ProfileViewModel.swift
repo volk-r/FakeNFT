@@ -25,8 +25,8 @@ final class ProfileViewModel {
             avatar: "",
             description: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
             website: "http://JoaquinPhoenix.com",
-            nfts: Array(1...5),
-            likes: Array(1...15)
+            nfts: Array(1...5).map( { String($0) } ),
+            likes: Array(1...15).map( { String($0) } )
         )
     }
 }

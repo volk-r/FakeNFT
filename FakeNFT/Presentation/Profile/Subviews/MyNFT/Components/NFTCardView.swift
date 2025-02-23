@@ -11,8 +11,8 @@ struct NFTCardView: View {
     
     // MARK: - Properties
     
-    let id: Int
-    let isLiked: Bool
+    let id: String
+    @Binding var isLiked: Bool
     @State private var model: NFTCardViewModel = NFTCardViewModel()
     
     // MARK: - body
@@ -20,11 +20,11 @@ struct NFTCardView: View {
     var body: some View {
         HStack {
             NFTCard(
-                image: getImage(),
+                imageUrl: model.cardData.images.first ?? "",
                 isLiked: isLiked,
                 сardType: .normal
             ) {
-                model.likeAction(isLiked, for: id)
+                model.likeAction($isLiked, for: id)
             }
             description
             price
@@ -69,22 +69,12 @@ extension NFTCardView {
         }
         .padding(.leading, 28)
     }
-    
-    // MARK: - getImage
-    
-    func getImage() -> Image {
-        guard let image = model.cardData.images.first else {
-            return Image(systemName: "questionmark")
-        }
-        
-        return Image(image)
-    }
 }
 
 #Preview {
-    NFTCardView(id: 1, isLiked: true)
+    NFTCardView(id: "1", isLiked: .constant(true))
         .padding(.horizontal)
     
-    NFTCardView(id: 2, isLiked: false)
+    NFTCardView(id: "2", isLiked: .constant(false))
         .padding(.horizontal)
 }
