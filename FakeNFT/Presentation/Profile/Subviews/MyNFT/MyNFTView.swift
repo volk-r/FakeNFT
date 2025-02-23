@@ -63,9 +63,16 @@ extension MyNFTView {
     }
 }
 
-#Preview {
+#Preview("NFT") {
+    Group {
+        NavigationStack {
+            MyNFTView(nfts: [1, 2, 3, 4, 5], likes: [1, 4])
+        }
+    }
+}
+
+#Preview("No NFT") {
     NavigationStack {
-        MyNFTView(nfts: [], likes: [1, 4])
-//        MyNFTView(nfts: [1, 2, 3, 4, 5], likes: [1, 4])
+        MyNFTView(nfts: [], likes: [])
     }
 }

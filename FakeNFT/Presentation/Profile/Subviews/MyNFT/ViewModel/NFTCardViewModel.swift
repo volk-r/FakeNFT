@@ -16,7 +16,7 @@ final class NFTCardViewModel {
     var cardData: NFTModelMock = NFTModelMock(
         createdAt: "2023-04-20T02:22:27Z",
         name: "Lilo",
-        images: [.nftCard],
+        images: [.nftCard1],
         rating: 3,
         description: "example: A 3D model of a mythical creature.",
         price: "8.81",
