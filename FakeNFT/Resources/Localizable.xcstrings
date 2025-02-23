@@ -11,7 +11,7 @@
         }
       }
     },
-    "%lf ETH" : {
+    "%@ ETH" : {
 
     },
     "About" : {
@@ -166,6 +166,16 @@
     },
     "Statistic View" : {
       "shouldTranslate" : false
+    },
+    "You don't have any featured NFTs yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У Вас ещё нет избранных NFT"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

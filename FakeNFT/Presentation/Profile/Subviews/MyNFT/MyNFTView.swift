@@ -18,14 +18,19 @@ struct MyNFTView: View {
     
     var body: some View {
         VStack {
-            List(nfts, id: \.self) { nft in
-                Section {
-                    NFTCardView(id: nft, isLiked: likes.contains(nft))
+            if nfts.isEmpty {
+                Text("You don't have any featured NFTs yet")
+                    .appTextStyleBodyBold()
+            } else {
+                List(nfts, id: \.self) { nft in
+                    Section {
+                        NFTCardView(id: nft, isLiked: likes.contains(nft))
+                    }
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
+                .listStyle(.plain)
+                .padding(.top)
             }
-            .listStyle(.plain)
-            .padding(.top)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -60,6 +65,7 @@ extension MyNFTView {
 
 #Preview {
     NavigationStack {
-        MyNFTView(nfts: [1, 2, 3, 4, 5], likes: [1, 4])
+        MyNFTView(nfts: [], likes: [1, 4])
+//        MyNFTView(nfts: [1, 2, 3, 4, 5], likes: [1, 4])
     }
 }
