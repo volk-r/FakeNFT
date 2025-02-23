@@ -10,7 +10,6 @@ actor UsersService: UsersServiceProtocol {
     // MARK: - Constants
 
     private let urlSession: URLSession
-    private let syncQueue = DispatchQueue(label: "UsersService", attributes: .concurrent)
 
     // MARK: - Initializers
 
@@ -33,21 +32,21 @@ actor UsersService: UsersServiceProtocol {
         guard let url = components.url else {
             throw NetworkServiceError.urlRequestError
         }
-        
+
         var request = URLRequest(url: url)
         request.addValue(GlobalConstants.token, forHTTPHeaderField: "X-Practicum-Mobile-Token")
-        
+
         do {
             let (data, response) = try await urlSession.data(for: request)
-            
+
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                throw NetworkServiceError.unknown
+                throw NetworkServiceError.invalidResponse
             }
-            
+
             guard 200 ..< 300 ~= statusCode else {
                 throw NetworkServiceError.httpStatusCode(statusCode)
             }
-            
+
             return try JSONDecoder().decode([User].self, from: data)
         } catch {
             if let urlError = error as? URLError {

@@ -14,7 +14,12 @@ final class StatisticViewModel: StatisticViewModelProtocol {
 
     private enum Constants {
         static let batchSize: Int = 20
+        static let prefetchCount: Int = 10
     }
+
+    // MARK: - Constants
+
+    private let usersService = UsersService()
 
     // MARK: - Public Properties
 
@@ -34,7 +39,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
 
     private var loadingDataMode: LoadingDataMode = .default
     private var currentPage: Int = 0
-    private let usersService = UsersService()
+    private var isNoMoreDataInTheUsersList: Bool = false
 
     // MARK: - Public Methods
 
@@ -43,13 +48,15 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             if loadingState == .loading {
                 return
             }
+            loadingState = .loading
             loadingDataMode = .loadData
+            isNoMoreDataInTheUsersList = false
+            currentPage = 0
             users = try await usersService.loadUsers(
                 fromPage: currentPage,
                 count: Constants.batchSize,
                 sortBy: sortType
             )
-            currentPage += 1
             loadingState = .success
         } catch {
             showingErrorAlert = true
@@ -57,25 +64,9 @@ final class StatisticViewModel: StatisticViewModelProtocol {
         }
     }
 
-    func fetchNextData() async {
-        do {
-            loadingDataMode = .fetchMoreData
-            print("Fetch more data...")
-        } catch {
-            showingErrorAlert = true
-        }
-    }
-
-    func reloadData() async {
-        do {
-            loadingDataMode = .reloadData
-            print("Reload data...")
-            users = try User.getMockData()
-            throw URLError(.badServerResponse)
-        } catch {
-            print("throwed error")
-            showingErrorAlert = true
-        }
+    func fetchNextDataIfNeeded(currentRowIndex: Int) async {
+        guard currentRowIndex >= users.count - Constants.prefetchCount else { return }
+        await fetchNextData()
     }
 
     func retryLoadingData() async {
@@ -84,14 +75,38 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             break
         case .loadData:
             await loadData()
-        case .fetchMoreData:
+        case .fetchNextData:
             await fetchNextData()
-        case .reloadData:
-            await reloadData()
         }
     }
 
     func sortList() {
         showingSortDialog = true
+    }
+
+    // MARK: - Private Methods
+
+    private func fetchNextData() async {
+        do {
+            if loadingState == .loading || isNoMoreDataInTheUsersList {
+                return
+            }
+            loadingState = .loading
+            loadingDataMode = .fetchNextData
+            currentPage += 1
+            let newUsers = try await usersService.loadUsers(
+                fromPage: currentPage,
+                count: Constants.batchSize,
+                sortBy: sortType
+            )
+            if newUsers.isEmpty {
+                isNoMoreDataInTheUsersList = true
+            }
+            users.append(contentsOf: newUsers)
+            loadingState = .success
+        } catch {
+            showingErrorAlert = true
+            loadingState = .failure
+        }
     }
 }

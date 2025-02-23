@@ -34,16 +34,21 @@ struct StatisticView: View {
     // MARK: - View
 
     var body: some View {
-        List(viewModel.users) { user in
+        List(Array(viewModel.users.enumerated()), id: \.element.id) { index, user in
             StatisticRowView(user: user)
                 .listRowSeparator(.hidden)
                 .listRowInsets(Constants.listRowEdgeInsets)
+                .onAppear {
+                    Task {
+                        await viewModel.fetchNextDataIfNeeded(currentRowIndex: index)
+                    }
+                }
         }
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .padding(Constants.listEdgeInsets)
         .refreshable {
-            await viewModel.reloadData()
+            await viewModel.loadData()
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {

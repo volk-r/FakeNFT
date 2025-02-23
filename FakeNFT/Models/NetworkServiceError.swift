@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkServiceError: Error {
     case urlRequestError
+    case invalidResponse
     case httpStatusCode(Int)
     case urlSessionError(Error)
     case decodingError(Error)

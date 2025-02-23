@@ -8,6 +8,5 @@
 enum LoadingDataMode {
     case `default`
     case loadData
-    case reloadData
-    case fetchMoreData
+    case fetchNextData
 }
