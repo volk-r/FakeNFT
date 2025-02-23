@@ -13,6 +13,6 @@ struct ProfileModel: Codable, Sendable {
     let avatar: String?
     let description: String?
     let website: String?
-    let nfts: [String]?
-    var likes: [String]?
+    let nfts: [Int]?
+    var likes: [Int]?
 }

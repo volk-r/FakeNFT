@@ -27,7 +27,11 @@ struct NFTCard: View {
             .background {
                 image
                     .resizable()
-                    .scaledToFill()
+                    .frame(
+                        maxWidth: сardType.cardSize,
+                        maxHeight: сardType.cardSize
+                    )
+                    .scaledToFit()
                     .cornerRadius(12)
             }
     }
@@ -68,29 +72,48 @@ extension NFTCard {
 // MARK: - Preview
 
 #Preview {
-    NFTCard(
-        image: Image(.nftCard),
-        isLiked: false,
-        action: { print("print 1") }
-    )
-    
-    NFTCard(
-        image: Image(.nftCard),
-        isLiked: true,
-        action: { print("print 2") }
-    )
-    
-    NFTCard(
-        image: Image(.nftCard),
-        isLiked: false,
-        сardType: .mini,
-        action: { print("print 3") }
-    )
-    
-    NFTCard(
-        image: Image(.nftCard),
-        isLiked: true,
-        сardType: .mini,
-        action: { print("print 4") }
-    )
+    ZStack {
+        Color.gray.opacity(0.7)
+            .ignoresSafeArea()
+        VStack {
+            NFTCard(
+                image: Image(.nftCard),
+                isLiked: false,
+                action: { print("print 1") }
+            )
+            
+            NFTCard(
+                image: Image(.nftCard),
+                isLiked: true,
+                action: { print("print 2") }
+            )
+            
+            NFTCard(
+                image: Image(systemName: "questionmark"),
+                isLiked: false,
+                action: { print("print 1") }
+            )
+            
+            NFTCard(
+                image: Image(.nftCard),
+                isLiked: false,
+                сardType: .mini,
+                action: { print("print 3") }
+            )
+            
+            NFTCard(
+                image: Image(.nftCard),
+                isLiked: true,
+                сardType: .mini,
+                action: { print("print 4") }
+            )
+            
+            NFTCard(
+                image: Image(systemName: "questionmark"),
+                isLiked: false,
+                сardType: .mini,
+                action: { print("print 1") }
+            )
+        }
+    }
 }
