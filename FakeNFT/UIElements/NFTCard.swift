@@ -45,15 +45,20 @@ extension NFTCard {
                         ? .appRedUniversal
                         : .appWhiteUniversal
                     )
-                    .onTapGesture {
-                        action()
-                    }
                     .frame(
                         width: сardType.likeWidth,
                         height: сardType.likeHeight
                     )
                     .padding(.trailing, сardType.likeTrailingPadding)
                     .padding(.top, сardType.likeTopPadding)
+                    .background(
+                        Color.clear
+                            .frame(width: 44, height: 44)
+                            .contentShape(Rectangle())
+                    )
+                    .onTapGesture {
+                        action()
+                    }
             }
             Spacer()
         }
