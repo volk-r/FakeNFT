@@ -36,10 +36,8 @@ struct ProfileView: View {
                 WebView(navigationURL: viewModel.profile?.website ?? "")
             }
             .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
-                MyNFTView(
-                    nfts: viewModel.profile?.nfts ?? [],
-                    likes: viewModel.profile?.likes ?? []
-                )
+                MyNFTView()
+                    .environment(viewModel)
             }
         }
         .accentColor(.appBlack)

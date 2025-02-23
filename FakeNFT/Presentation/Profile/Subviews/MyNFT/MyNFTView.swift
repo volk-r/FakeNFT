@@ -11,25 +11,22 @@ struct MyNFTView: View {
     
     // MARK: - Properties
     
-    let nfts: [String]
-    let likes: [String]
+    @Environment(ProfileViewModel.self) var profileModel
+    @State var model: MyNFTViewModel = MyNFTViewModel()
     
     // MARK: - body
     
     var body: some View {
         VStack {
-            if nfts.isEmpty {
+            if profileModel.profile?.nfts == nil {
                 Text("You don't have NFT yet")
                     .appTextStyleBodyBold()
             } else {
-                List(nfts, id: \.self) { nft in
+                List(model.nftsData, id: \.id) { data in
                     Section {
                         NFTCardView(
-                            id: nft,
-                            isLiked: Binding(
-                                get: { likes.contains(nft) },
-                                set: {_ in }
-                            )
+                            nftData: data,
+                            isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
                         )
                     }
                     .listRowSeparator(.hidden)
@@ -46,6 +43,9 @@ struct MyNFTView: View {
         .navigationTitle("My NFT")
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            model.fetchNFTData(nftIDs: profileModel.profile?.nfts)
+        }
     }
 }
 
@@ -70,15 +70,18 @@ extension MyNFTView {
 }
 
 #Preview("NFT") {
-    Group {
-        NavigationStack {
-            MyNFTView(nfts: ["1", "2", "3", "4", "5"], likes: ["1", "4"])
-        }
+    let model = ProfileViewModel()
+    NavigationStack {
+        MyNFTView()
+            .environment(model)
+    }.onAppear {
+        model.loadMockProfile()
     }
 }
 
 #Preview("No NFT") {
     NavigationStack {
-        MyNFTView(nfts: [], likes: [])
+        MyNFTView()
+            .environment(ProfileViewModel())
     }
 }

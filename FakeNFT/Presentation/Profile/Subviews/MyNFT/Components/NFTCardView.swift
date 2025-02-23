@@ -11,8 +11,8 @@ struct NFTCardView: View {
     
     // MARK: - Properties
     
-    let id: String
-    @Binding var isLiked: Bool
+    let nftData: NFTModel
+    let isLiked: Bool
     @State private var model: NFTCardViewModel = NFTCardViewModel()
     
     // MARK: - body
@@ -20,17 +20,17 @@ struct NFTCardView: View {
     var body: some View {
         HStack {
             NFTCard(
-                imageUrl: model.cardData.images.first ?? "",
-                isLiked: isLiked,
+                imageUrl: nftData.images.first ?? "",
+                isLiked: model.isLiked,
                 сardType: .normal
             ) {
-                model.likeAction($isLiked, for: id)
+                model.likeToggle(for: nftData.id)
             }
             description
             price
         }
-        .task {
-            
+        .onAppear {
+            model.setIsLiked(isLiked)
         }
     }
 }
@@ -43,14 +43,14 @@ extension NFTCardView {
         VStack(alignment: .leading) {
             NFTCardDescription(
                 descriptionType: .aboveRating,
-                rating: model.cardData.rating,
-                title: model.cardData.name
+                rating: nftData.rating,
+                title: nftData.name
             )
                 
             HStack(alignment: .bottom) {
                 Text("from")
                     .appTextStyleCaption1()
-                Text(model.cardData.author)
+                Text(nftData.author)
                     .appTextStyleCaption2()
             }
             .padding(.top, 4)
@@ -61,10 +61,11 @@ extension NFTCardView {
     // MARK: - price
     
     private var price: some View {
+        // TODO: replace it to PriceView in the future
         VStack(alignment: .leading) {
             Text("Price")
                 .appTextStyleCaption2()
-            Text("\(model.cardData.price) ETH")
+            Text("\(nftData.price) ETH")
                 .appTextStyleBodyBold()
         }
         .padding(.leading, 28)
@@ -72,9 +73,20 @@ extension NFTCardView {
 }
 
 #Preview {
-    NFTCardView(id: "1", isLiked: .constant(true))
-        .padding(.horizontal)
+    let model = MyNFTViewModel()
+    model.fetchMockNFTData()
     
-    NFTCardView(id: "2", isLiked: .constant(false))
+    return VStack {
+        NFTCardView(
+            nftData: model.nftsData.first!,
+            isLiked: true
+        )
         .padding(.horizontal)
+        
+        NFTCardView(
+            nftData: model.nftsData.last!,
+            isLiked: false
+        )
+        .padding(.horizontal)
+    }
 }
