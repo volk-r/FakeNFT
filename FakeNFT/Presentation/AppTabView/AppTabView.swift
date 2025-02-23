@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @StateObject private var catalogViewModel: CatalogViewModel
+    
+    init(servicesAssembly: ServicesAssembly) {
+        _catalogViewModel = StateObject(
+            wrappedValue: CatalogViewModel(networkService: servicesAssembly.nftCollectionService))
+    }
     // MARK: - View
 
     var body: some View {
@@ -18,7 +24,7 @@ struct AppTabView: View {
                     Text("Profile")
                 }
                 .tag(0)
-            CatalogView()
+            CatalogView(viewModel: catalogViewModel)
                 .tabItem {
                     Image(selectedTabIndex == 1 ? "catalogActive" : "catalogNoActive")
                     Text("Catalog")
@@ -45,5 +51,10 @@ struct AppTabView: View {
 }
 
 #Preview {
-    AppTabView()
+    let servicesAssembly = ServicesAssembly(
+        networkClient: DefaultNetworkClient(),
+        nftStorage: NftStorageImpl()
+    )
+    
+    AppTabView(servicesAssembly: servicesAssembly)
 }

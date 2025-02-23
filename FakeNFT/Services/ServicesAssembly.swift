@@ -25,4 +25,8 @@ final class ServicesAssembly: Sendable, Observable {
             storage: nftStorage
         )
     }
+    
+    var nftCollectionService: NFTCollectionsServiceProtocol {
+        NFTCollectionsService(networkClient: networkClient)
+    }
 }
