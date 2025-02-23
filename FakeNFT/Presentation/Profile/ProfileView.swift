@@ -35,6 +35,12 @@ struct ProfileView: View {
             .navigationDestination(isPresented: $viewModel.isAboutPresented) {
                 WebView(navigationURL: viewModel.profile?.website ?? "")
             }
+            .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
+                MyNFTView(
+                    nfts: viewModel.profile?.nfts ?? [],
+                    likes: viewModel.profile?.likes ?? []
+                )
+            }
         }
         .accentColor(.appBlack)
         .onAppear {
@@ -106,6 +112,9 @@ private extension ProfileView {
         List {
             Section {
                 ProfileListItemView(listItem: String(localized: "My NFTs (\(viewModel.profile?.nfts?.count ?? 0))"))
+                    .onTapGesture {
+                        viewModel.isMyNFTPresented = true
+                    }
                 ProfileListItemView(listItem: String(localized: "Favorite NFTs (\(viewModel.profile?.likes?.count ?? 0))"))
                 ProfileListItemView(listItem: String(localized: "About"))
                     .onTapGesture {

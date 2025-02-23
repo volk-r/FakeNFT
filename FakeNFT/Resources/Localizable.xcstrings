@@ -11,6 +11,9 @@
         }
       }
     },
+    "%lf ETH" : {
+
+    },
     "About" : {
       "localizations" : {
         "ru" : {
@@ -71,6 +74,26 @@
         }
       }
     },
+    "from" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "от"
+          }
+        }
+      }
+    },
+    "My NFT" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мои NFT"
+          }
+        }
+      }
+    },
     "My NFTs (%lld)" : {
       "localizations" : {
         "ru" : {
@@ -93,6 +116,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет интернета"
+          }
+        }
+      }
+    },
+    "Price" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цена"
           }
         }
       }
