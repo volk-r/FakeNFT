@@ -77,13 +77,13 @@ extension NFTCard {
             .ignoresSafeArea()
         VStack {
             NFTCard(
-                image: Image(.nftCard),
+                image: Image(.nftCard1),
                 isLiked: false,
                 action: { print("print 1") }
             )
             
             NFTCard(
-                image: Image(.nftCard),
+                image: Image(.nftCard1),
                 isLiked: true,
                 action: { print("print 2") }
             )
@@ -95,14 +95,14 @@ extension NFTCard {
             )
             
             NFTCard(
-                image: Image(.nftCard),
+                image: Image(.nftCard1),
                 isLiked: false,
                 сardType: .mini,
                 action: { print("print 3") }
             )
             
             NFTCard(
-                image: Image(.nftCard),
+                image: Image(.nftCard1),
                 isLiked: true,
                 сardType: .mini,
                 action: { print("print 4") }
