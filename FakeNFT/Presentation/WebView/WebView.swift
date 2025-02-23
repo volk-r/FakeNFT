@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WebViewView: View {
+struct WebView: View {
     
     // MARK: - Properties
 
@@ -54,6 +54,6 @@ struct WebViewView: View {
 
 #Preview {
     NavigationStack {
-        WebViewView(navigationURL: GlobalConstants.mockURL)
+        WebView(navigationURL: GlobalConstants.mockURL)
     }
 }
