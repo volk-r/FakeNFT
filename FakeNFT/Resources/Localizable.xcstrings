@@ -24,36 +24,6 @@
         }
       }
     },
-    "By name" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По имени"
-          }
-        }
-      }
-    },
-    "By price" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По цене"
-          }
-        }
-      }
-    },
-    "By rating" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "По рейтингу"
-          }
-        }
-      }
-    },
     "Cart" : {
       "comment" : "Название tabItem \"Корзина\"",
       "localizations" : {
@@ -93,16 +63,6 @@
     },
     "Catalog View" : {
       "shouldTranslate" : false
-    },
-    "Close" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Закрыть"
-          }
-        }
-      }
     },
     "Favorite NFTs (%lld)" : {
       "localizations" : {
@@ -183,16 +143,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Профиль"
-          }
-        }
-      }
-    },
-    "Sorting" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сортировка"
           }
         }
       }
