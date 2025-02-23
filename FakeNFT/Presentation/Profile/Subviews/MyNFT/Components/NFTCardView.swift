@@ -70,6 +70,8 @@ extension NFTCardView {
         .padding(.leading, 28)
     }
     
+    // MARK: - getImage
+    
     func getImage() -> Image {
         guard let image = model.cardData.images.first else {
             return Image(systemName: "questionmark")
