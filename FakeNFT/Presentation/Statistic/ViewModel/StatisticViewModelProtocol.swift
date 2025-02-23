@@ -12,8 +12,11 @@ protocol StatisticViewModelProtocol: AnyObject, Sendable, Observable {
     var loadingState: LoadingState { get set }
     var users: [User] { get }
     var showingSortDialog: Bool { get set }
-    var sortType: StatisticSortTypes { get set }
-    func loadData() async throws
-    func fetchNextData() async throws
+    var showingErrorAlert: Bool { get set }
+    var sortType: UsersSortType { get set }
+    func fetchNextData() async
+    func loadData() async
+    func reloadData() async
+    func retryLoadingData() async
     func sortList()
 }

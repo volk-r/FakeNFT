@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Identifiable, Sendable {
+struct User: Codable, Identifiable, Sendable {
     let id: String
     let name: String
     let avatar: String
@@ -16,7 +16,7 @@ struct User: Identifiable, Sendable {
     let nfts: [String]
     let rating: String
 
-    static func getMockData() -> [User] { // swiftlint:disable:this function_body_length
+    static func getMockData() throws -> [User] { // swiftlint:disable:this function_body_length
         return [
             User(
                 id: "6d78ae9c-874d-440d-b7c5-db8eb571db2e",

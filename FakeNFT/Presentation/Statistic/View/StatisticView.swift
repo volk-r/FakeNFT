@@ -43,7 +43,7 @@ struct StatisticView: View {
         .scrollContentBackground(.hidden)
         .padding(Constants.listEdgeInsets)
         .refreshable {
-            try? await viewModel.loadData()
+            await viewModel.reloadData()
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -58,6 +58,22 @@ struct StatisticView: View {
                 )
             }
         }
+        .alert(
+            "",
+            isPresented: $viewModel.showingErrorAlert,
+            actions: {
+                Button("StatisticViewCancelButton", role: .cancel) {}
+                Button("StatisticViewRetryButton") {
+                    Task {
+                        await viewModel.retryLoadingData()
+                    }
+                }
+                .keyboardShortcut(.defaultAction)
+            },
+            message: {
+                Text("StatisticViewErrorText")
+            }
+        )
         .confirmationDialog(
             "StatisticViewSortingDialogTitle",
             isPresented: $viewModel.showingSortDialog,
@@ -72,7 +88,7 @@ struct StatisticView: View {
             Button("StatisticViewCloseButton", role: .cancel) { }
         }
         .task {
-            try? await viewModel.loadData()
+            await viewModel.loadData()
         }
     }
 

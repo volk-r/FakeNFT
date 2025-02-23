@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "shouldTranslate" : false
+    },
     "Cart" : {
       "comment" : "Название tabItem \"Корзина\"",
       "localizations" : {
@@ -81,6 +84,23 @@
         }
       }
     },
+    "StatisticViewCancelButton" : {
+      "comment" : "Название кнопки \"Отмена\" в диалоговом окне с ошибкой",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
     "StatisticViewCloseButton" : {
       "comment" : "Название кнопки \"Закрыть\" в диалоговом окне сортировки списка",
       "localizations" : {
@@ -94,6 +114,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "StatisticViewErrorText" : {
+      "comment" : "Текст ошибки при загрузке данных из Сети",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to get data"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить данные"
+          }
+        }
+      }
+    },
+    "StatisticViewRetryButton" : {
+      "comment" : "Название кнопки \"Повторить\" в диалоговом окне с ошибкой",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
           }
         }
       }
