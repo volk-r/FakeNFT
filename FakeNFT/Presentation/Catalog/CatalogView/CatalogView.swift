@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CatalogView: View {
-    @ObservedObject var viewModel: CatalogViewModel
+struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
     @State private var isSortDialogPresented = false
     
     var body: some View {

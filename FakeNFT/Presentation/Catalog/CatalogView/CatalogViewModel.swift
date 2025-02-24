@@ -9,7 +9,7 @@ import SwiftUI
 
 @Observable
 @MainActor
-final class CatalogViewModel: ObservableObject {
+final class CatalogViewModel: CatalogViewModelProtocol {
     @ObservationIgnored
     @AppStorage("collectionsSortOrder") private var storedSortOrder: String = SortOrder.nftCount.rawValue
     
