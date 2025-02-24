@@ -61,12 +61,10 @@ extension NFTCardView {
     // MARK: - price
     
     private var price: some View {
-        // TODO: replace it to PriceView in the future
         VStack(alignment: .leading) {
             Text("Price")
                 .appTextStyleCaption2()
-            Text("\(nftData.price) ETH")
-                .appTextStyleBodyBold()
+            PriceView(price: nftData.price)
         }
         .padding(.leading, 28)
     }
