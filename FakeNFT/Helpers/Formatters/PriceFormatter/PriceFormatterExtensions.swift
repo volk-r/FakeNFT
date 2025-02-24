@@ -6,5 +6,5 @@
 //
 
 extension PriceFormatter {
-    static let defaultEthPriceFormatter = PriceFormatter(currencySymbol: "ETH")
+    @MainActor static let defaultEthPriceFormatter = PriceFormatter(currencySymbol: "ETH")
 }
