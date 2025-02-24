@@ -47,6 +47,12 @@ struct StatisticView: View {
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .padding(Constants.listEdgeInsets)
+        .overlay {
+            if viewModel.loadingState == .loading {
+                ProgressView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+        }
         .refreshable {
             await viewModel.loadData()
         }
