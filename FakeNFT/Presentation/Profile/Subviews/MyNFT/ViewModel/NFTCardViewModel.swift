@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-final class NFTCardViewModel {
+final class NFTCardViewModel: NFTCardViewModelProtocol {
     
     // MARK: - Properties
     

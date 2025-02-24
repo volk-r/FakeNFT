@@ -13,7 +13,7 @@ struct NFTCardView: View {
     
     let nftData: NFTModel
     let isLiked: Bool
-    @State private var model: NFTCardViewModel = NFTCardViewModel()
+    @State private var model: NFTCardViewModelProtocol = NFTCardViewModel()
     
     // MARK: - body
     
