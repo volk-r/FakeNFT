@@ -15,6 +15,8 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
         NavigationStack {
             LoadingSwitcher(viewModel.loadingState) {
                 collectionList
+            } error: {
+                Text("Failed to retrieve data")
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 20)

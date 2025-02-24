@@ -68,6 +68,16 @@
         }
       }
     },
+    "Failed to retrieve data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить данные"
+          }
+        }
+      }
+    },
     "No internet" : {
 
     },
