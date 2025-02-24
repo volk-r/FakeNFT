@@ -10,8 +10,29 @@ import SwiftUI
 @Observable
 @MainActor
 final class CatalogViewModel: ObservableObject {
+    @ObservationIgnored
+    @AppStorage("collectionsSortOrder") private var storedSortOrder: String = SortOrder.nftCount.rawValue
+    
     var collections: [NFTCollection] = []
     var loadingState: LoadingState = .default
+    
+    var sortOrder: SortOrder {
+        get { SortOrder(rawValue: storedSortOrder) ?? .nftCount }
+        set { storedSortOrder = newValue.rawValue }
+    }
+    
+    var sortedCollections: [NFTCollection] {
+        switch sortOrder {
+        case .name:
+            return collections.sorted {
+                $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+            }
+        case .nftCount:
+            return collections.sorted {
+                $0.nfts.count < $1.nfts.count
+            }
+        }
+    }
     
     nonisolated private let networkService: NFTCollectionsServiceProtocol
     
@@ -29,5 +50,10 @@ final class CatalogViewModel: ObservableObject {
             loadingState = .failure
             print("Error loading collections: \(error)")
         }
+    }
+    
+    enum SortOrder: String {
+        case name
+        case nftCount
     }
 }

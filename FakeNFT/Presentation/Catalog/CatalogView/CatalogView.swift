@@ -31,7 +31,7 @@ struct CatalogView: View {
     private var collectionList: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 20) {
-                ForEach(viewModel.collections) { collection in
+                ForEach(viewModel.sortedCollections) { collection in
                     CatalogRow(collection: collection)
                 }
             }
@@ -57,10 +57,10 @@ struct CatalogView: View {
                 titleVisibility: .visible
             ) {
                 Button("By Name") {
-                    
+                    viewModel.sortOrder = .name
                 }
                 Button("By NFT Count") {
-                    
+                    viewModel.sortOrder = .nftCount
                 }
                 Button("Close", role: .cancel) { }
             }
