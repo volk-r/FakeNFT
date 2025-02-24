@@ -19,11 +19,11 @@ final class MyNFTViewModel {
         didSet {
             switch sortType {
             case .byPrice:
-                print("Сортировка по прайсу")
+                nftsData = nftsData.sorted { $0.price < $1.price }
             case .byRating:
-                print("Сортировка по рейтингу")
+                nftsData = nftsData.sorted { $0.rating > $1.rating }
             case .byName:
-                print("Сортировка по имени")
+                nftsData = nftsData.sorted { $0.name < $1.name }
             }
         }
     }
