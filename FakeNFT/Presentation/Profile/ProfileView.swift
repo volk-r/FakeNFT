@@ -114,7 +114,7 @@ private extension ProfileView {
                         viewModel.isMyNFTPresented = true
                     }
                 ProfileListItemView(listItem: String(localized: "Favorite NFTs (\(viewModel.profile?.likes?.count ?? 0))"))
-                ProfileListItemView(listItem: String(localized: "About"))
+                ProfileListItemView(listItem: String(localized: "About the developer"))
                     .onTapGesture {
                     viewModel.isAboutPresented = true
                 }
