@@ -25,7 +25,21 @@ final class MyNFTViewModel {
             case .byName:
                 nftsData = nftsData.sorted { $0.name < $1.name }
             }
+            
+            Task {
+                await storageManager.save(value: sortType, forKey: .myNFTs)
+            }
         }
+    }
+    
+    private let storageManager: AppStorageManagerProtocol
+    
+    init(storageManager: AppStorageManagerProtocol = AppStorageManager()) {
+        self.storageManager = storageManager
+    }
+    
+    func loadPageSettings() async {
+        sortType = await storageManager.load(forKey: .myNFTs, defaultValue: .byPrice)
     }
     
     // MARK: - fetchNFTData

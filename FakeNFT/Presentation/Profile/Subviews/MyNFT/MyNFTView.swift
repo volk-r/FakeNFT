@@ -46,6 +46,9 @@ struct MyNFTView: View {
         .onAppear {
             model.fetchNFTData(nftIDs: profileModel.profile?.nfts)
         }
+        .task {
+            await model.loadPageSettings()
+        }
         .confirmationDialog(
             NFTSortingType.description,
             isPresented: $model.showingSortingDialog,
