@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NFTSortingType {
+enum NFTSortingType: Codable {
     case byPrice
     case byRating
     case byName
