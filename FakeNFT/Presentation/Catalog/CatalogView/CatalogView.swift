@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
+    // MARK: - Properties
+    
     @ObservedObject var viewModel: ViewModel
     @State private var isSortDialogPresented = false
+    
+    // MARK: - Body
     
     var body: some View {
         NavigationStack {
@@ -29,6 +33,8 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
             await viewModel.loadCollections()
         }
     }
+    
+    // MARK: - Subviews
     
     private var collectionList: some View {
         ScrollView {

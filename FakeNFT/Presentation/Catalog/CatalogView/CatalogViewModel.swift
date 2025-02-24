@@ -10,11 +10,17 @@ import SwiftUI
 @Observable
 @MainActor
 final class CatalogViewModel: CatalogViewModelProtocol {
+    // MARK: - Stored Properties
+    
     @ObservationIgnored
     @AppStorage("collectionsSortOrder") private var storedSortOrder: String = SortOrder.nftCount.rawValue
     
+    // MARK: - Published Properties
+    
     var collections: [NFTCollection] = []
     var loadingState: LoadingState = .default
+    
+    // MARK: - Computed Properties
     
     var sortOrder: SortOrder {
         get { SortOrder(rawValue: storedSortOrder) ?? .nftCount }
@@ -34,11 +40,17 @@ final class CatalogViewModel: CatalogViewModelProtocol {
         }
     }
     
+    // MARK: - Private Properties
+    
     nonisolated private let networkService: NFTCollectionsServiceProtocol
+    
+    // MARK: - Initialization
     
     init(networkService: NFTCollectionsServiceProtocol) {
         self.networkService = networkService
     }
+    
+    // MARK: - Methods
     
     func loadCollections() async {
         loadingState = .loading
@@ -51,6 +63,8 @@ final class CatalogViewModel: CatalogViewModelProtocol {
             print("Error loading collections: \(error)")
         }
     }
+    
+    // MARK: - Nested Types
     
     enum SortOrder: String {
         case name
