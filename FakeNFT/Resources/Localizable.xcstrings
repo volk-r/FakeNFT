@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "By Name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По названию"
+          }
+        }
+      }
+    },
+    "By NFT Count" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По количеству NFT"
+          }
+        }
+      }
+    },
     "Cart" : {
       "comment" : "Название tabItem \"Корзина\"",
       "localizations" : {
@@ -38,6 +58,16 @@
         }
       }
     },
+    "Close" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        }
+      }
+    },
     "No internet" : {
 
     },
@@ -60,6 +90,16 @@
     },
     "Profile View" : {
       "shouldTranslate" : false
+    },
+    "Sort" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировка"
+          }
+        }
+      }
     },
     "Statistic" : {
       "comment" : "Название tabItem \"Статистика\"",

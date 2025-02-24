@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CatalogView: View {
     @ObservedObject var viewModel: CatalogViewModel
+    @State private var isSortDialogPresented = false
     
     var body: some View {
         NavigationStack {
@@ -17,7 +18,11 @@ struct CatalogView: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 20)
+            .toolbar {
+                toolbarItem
+            }
         }
+        .overlay(sortDialog)
         .task {
             await viewModel.loadCollections()
         }
@@ -31,6 +36,34 @@ struct CatalogView: View {
                 }
             }
         }
+    }
+    
+    private var toolbarItem: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button {
+                isSortDialogPresented = true
+            } label: {
+                Image(.appSortButton)
+                    .foregroundStyle(.appBlack)
+            }
+        }
+    }
+    
+    private var sortDialog: some View {
+        EmptyView()
+            .confirmationDialog(
+                "Sort",
+                isPresented: $isSortDialogPresented,
+                titleVisibility: .visible
+            ) {
+                Button("By Name") {
+                    
+                }
+                Button("By NFT Count") {
+                    
+                }
+                Button("Close", role: .cancel) { }
+            }
     }
 }
 
