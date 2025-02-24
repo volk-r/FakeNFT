@@ -12,7 +12,7 @@ struct MyNFTView: View {
     // MARK: - Properties
     
     @Environment(ProfileViewModel.self) var profileModel
-    @State var model: MyNFTViewModel = MyNFTViewModel()
+    @State var model: MyNFTViewModelProtocol = MyNFTViewModel()
     
     // MARK: - body
     
