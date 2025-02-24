@@ -58,7 +58,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
                 sortBy: sortType
             )
             loadingState = .success
-        } catch {
+        } catch { 
             showingErrorAlert = true
             loadingState = .failure
         }
@@ -93,14 +93,15 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             }
             loadingState = .loading
             loadingDataMode = .fetchNextData
-            currentPage += 1
             let newUsers = try await usersService.loadUsers(
-                fromPage: currentPage,
+                fromPage: currentPage+1,
                 count: Constants.batchSize,
                 sortBy: sortType
             )
             if newUsers.isEmpty {
                 isNoMoreDataInTheUsersList = true
+            } else {
+                currentPage += 1
             }
             users.append(contentsOf: newUsers)
             loadingState = .success

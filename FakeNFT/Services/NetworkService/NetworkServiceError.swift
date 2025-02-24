@@ -13,5 +13,5 @@ enum NetworkServiceError: Error {
     case httpStatusCode(Int)
     case urlSessionError(Error)
     case decodingError(Error)
-    case unknown
+    case unknown(Error)
 }
