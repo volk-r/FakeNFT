@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-final class ProfileViewModel {
+final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Properties
     
