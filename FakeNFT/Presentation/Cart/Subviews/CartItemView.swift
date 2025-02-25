@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CartItemView: View {
     let item: CartItem
-    let onDelete: (() -> Void)?
+    let onDelete: () -> Void
     
     var body: some View {
         HStack(spacing: 20) {
@@ -51,9 +51,7 @@ struct CartItemView: View {
     }
     
     var deleteButton: some View {
-        Button(action: {
-            onDelete?()
-        }, label: {
+        Button(action: onDelete, label: {
             Image(.appTrash)
                 .tint(.appBlack)
         })

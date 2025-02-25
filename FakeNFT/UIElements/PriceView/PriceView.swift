@@ -11,17 +11,19 @@ struct PriceView: View {
     var formatter: Formatter = PriceFormatter
         .defaultEthPriceFormatter
     let price: Double
+    var color: Color = .appBlack
     
     var body: some View {
         Text(
             formatter.string(for: price) ?? ""
         )
-        .appTextStyleBodyBold()
+        .appTextStyleBodyBold(withColor: color)
     }
 }
 
 #Preview {
     PriceView(price: 1.78)
+    PriceView(price: 1.78, color: .appGreenUniversal)
     PriceView(
         formatter: PriceFormatter(
             currencySymbol: "BTC"
