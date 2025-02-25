@@ -25,6 +25,10 @@ struct StatisticView: View {
         )
         static let sortButtonImage: UIImage = .appSortButton
         static let sortButtonColor: Color = .appBlack
+        static let loadingProgressViewSize: CGFloat = 80
+        static let loadingProgressViewCornerRadius: CGFloat = 12
+        static let loadingDataBackgroundShading: CGFloat = 0.4
+        static let loadingDataBackgroundColor: Color = .appWhite
     }
 
     // MARK: - State
@@ -40,72 +44,83 @@ struct StatisticView: View {
     // MARK: - View
 
     var body: some View {
-        List(Array(viewModel.users.enumerated()), id: \.element.id) { index, user in
-            StatisticRowView(user: user)
-                .listRowSeparator(.hidden)
-                .listRowInsets(Constants.listRowEdgeInsets)
-                .onAppear {
-                    Task {
-                        await viewModel.fetchNextDataIfNeeded(currentRowIndex: index)
+        ZStack {
+            List(Array(viewModel.users.enumerated()), id: \.element.id) { index, user in
+                StatisticRowView(user: user)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(Constants.listRowEdgeInsets)
+                    .onAppear {
+                        Task {
+                            await viewModel.fetchNextDataIfNeeded(currentRowIndex: index)
+                        }
                     }
+            }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .padding(Constants.listEdgeInsets)
+            .refreshable {
+                await viewModel.loadData()
+            }
+            .alert(
+                "",
+                isPresented: $viewModel.showingErrorAlert,
+                actions: {
+                    Button("StatisticViewCancelButton", role: .cancel) {}
+                    Button("StatisticViewRetryButton") {
+                        Task {
+                            await viewModel.retryLoadingData()
+                        }
+                    }
+                    .keyboardShortcut(.defaultAction)
+                },
+                message: {
+                    Text("StatisticViewErrorText")
                 }
-        }
-        .listStyle(.plain)
-        .scrollContentBackground(.hidden)
-        .padding(Constants.listEdgeInsets)
-        .overlay {
+            )
+            .confirmationDialog(
+                "StatisticViewSortingDialogTitle",
+                isPresented: $viewModel.showingSortDialog,
+                titleVisibility: .visible
+            ) {
+                Button("StatisticViewSortingByName") {
+                    viewModel.sortType = .byName
+                }
+                Button("StatisticViewSortingByRating") {
+                    viewModel.sortType = .byRating
+                }
+                Button("StatisticViewCloseButton", role: .cancel) { }
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(
+                        action: {
+                            viewModel.sortList()
+                        },
+                        label: {
+                            Image(uiImage: Constants.sortButtonImage)
+                                .foregroundStyle(Constants.sortButtonColor)
+                        }
+                    )
+                    .disabled(viewModel.loadingState == .loading)
+                }
+            }
+            .task {
+                await viewModel.loadData()
+            }
+    
             if viewModel.loadingState == .loading {
-                ProgressView()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-        }
-        .refreshable {
-            await viewModel.loadData()
-        }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button(
-                    action: {
-                        viewModel.sortList()
-                    },
-                    label: {
-                        Image(uiImage: Constants.sortButtonImage)
-                            .foregroundStyle(Constants.sortButtonColor)
-                    }
-                )
-            }
-        }
-        .alert(
-            "",
-            isPresented: $viewModel.showingErrorAlert,
-            actions: {
-                Button("StatisticViewCancelButton", role: .cancel) {}
-                Button("StatisticViewRetryButton") {
-                    Task {
-                        await viewModel.retryLoadingData()
-                    }
+                ZStack {
+                    Color.black.opacity(Constants.loadingDataBackgroundShading)
+                    ProgressView()
+                        .frame(
+                            width: Constants.loadingProgressViewSize,
+                            height: Constants.loadingProgressViewSize
+                        )
+                        .background(Constants.loadingDataBackgroundColor)
+                        .cornerRadius(Constants.loadingProgressViewCornerRadius)
                 }
-                .keyboardShortcut(.defaultAction)
-            },
-            message: {
-                Text("StatisticViewErrorText")
+                .allowsHitTesting(true)
             }
-        )
-        .confirmationDialog(
-            "StatisticViewSortingDialogTitle",
-            isPresented: $viewModel.showingSortDialog,
-            titleVisibility: .visible
-        ) {
-            Button("StatisticViewSortingByName") {
-                viewModel.sortType = .byName
-            }
-            Button("StatisticViewSortingByRating") {
-                viewModel.sortType = .byRating
-            }
-            Button("StatisticViewCloseButton", role: .cancel) { }
-        }
-        .task {
-            await viewModel.loadData()
         }
     }
 }

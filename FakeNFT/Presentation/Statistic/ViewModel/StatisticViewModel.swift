@@ -58,8 +58,8 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             )
             loadingState = .success
         } catch { 
-            showingErrorAlert = true
             loadingState = .failure
+            showingErrorAlert = true
         }
     }
 
@@ -103,8 +103,8 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             users.append(contentsOf: newUsers)
             loadingState = .success
         } catch {
-            showingErrorAlert = true
             loadingState = .failure
+            showingErrorAlert = true
         }
     }
 }
