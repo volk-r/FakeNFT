@@ -59,7 +59,7 @@ struct StatisticView: View {
             .scrollContentBackground(.hidden)
             .padding(Constants.listEdgeInsets)
             .refreshable {
-                await viewModel.loadData()
+                await viewModel.reloadData()
             }
             .alert(
                 "",

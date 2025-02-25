@@ -44,6 +44,11 @@ final class StatisticViewModel: StatisticViewModelProtocol {
 
     // MARK: - Public Methods
 
+    func fetchNextDataIfNeeded(currentRowIndex: Int) async {
+        guard currentRowIndex >= users.count - Constants.prefetchCount else { return }
+        await fetchNextData()
+    }
+
     func loadData() async {
         do {
             guard loadingState != .loading else { return }
@@ -63,9 +68,9 @@ final class StatisticViewModel: StatisticViewModelProtocol {
         }
     }
 
-    func fetchNextDataIfNeeded(currentRowIndex: Int) async {
-        guard currentRowIndex >= users.count - Constants.prefetchCount else { return }
-        await fetchNextData()
+    func reloadData() async {
+        await usersService.clearCache()
+        await loadData()
     }
 
     func retryLoadingData() async {

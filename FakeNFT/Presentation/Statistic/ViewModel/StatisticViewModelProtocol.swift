@@ -16,6 +16,7 @@ protocol StatisticViewModelProtocol: AnyObject, Sendable, Observable {
     var sortType: UsersSortType { get set }
     func fetchNextDataIfNeeded(currentRowIndex: Int) async
     func loadData() async
+    func reloadData() async
     func retryLoadingData() async
     func sortList()
 }

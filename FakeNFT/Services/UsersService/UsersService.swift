@@ -11,6 +11,10 @@ actor UsersService: UsersServiceProtocol {
 
     private let networkService: NetworkService
 
+    // MARK: - Private Properties
+
+    private var usersCache: [UsersCache] = []
+
     // MARK: - Initializers
 
     init(networkService: NetworkService = NetworkService()) {
@@ -19,10 +23,29 @@ actor UsersService: UsersServiceProtocol {
 
     // MARK: - Public Methods
 
+    func clearCache() {
+        usersCache = []
+    }
+    
     func loadUsers(fromPage page: Int, count: Int, sortBy: UsersSortType) async throws -> [User] {
+        if let cachedUsers = usersCache.first(
+            where: {
+                    $0.page == page && $0.count == count && $0.sortBy == sortBy
+            }) {
+            return cachedUsers.users
+        }
+        
         let request = UsersRequest(page: page, size: count, sortBy: sortBy)
 
         if let users: [User] = try await networkService.send(request: request) {
+            usersCache.append(
+                UsersCache(
+                    page: page,
+                    count: count,
+                    sortBy: sortBy,
+                    users: users
+                )
+            )
             return users
         } else {
             throw NetworkServiceError.invalidResponse
