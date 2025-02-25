@@ -17,7 +17,7 @@ struct User: Codable, Identifiable, Sendable {
     let rating: String
 
     static func getMockData() throws -> [User] { // swiftlint:disable:this function_body_length
-        return [
+        [
             User(
                 id: "6d78ae9c-874d-440d-b7c5-db8eb571db2e",
                 name: "Студентус Практикумс",
