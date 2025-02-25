@@ -30,8 +30,10 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     @ObservationIgnored
     @AppStorage("statisticViewUsersSortType") var sortType: UsersSortType = .byRating {
         didSet {
-            Task {
-                await loadData()
+            if sortType != oldValue {
+                Task {
+                    await loadData()
+                }
             }
         }
     }
