@@ -31,6 +31,12 @@ struct StatisticView: View {
 
     @State private var viewModel: StatisticViewModelProtocol
 
+    // MARK: - Initializers
+
+    init(viewModel: StatisticViewModelProtocol = StatisticViewModel()) {
+        self.viewModel = viewModel
+    }
+
     // MARK: - View
 
     var body: some View {
@@ -101,12 +107,6 @@ struct StatisticView: View {
         .task {
             await viewModel.loadData()
         }
-    }
-
-    // MARK: - Initializers
-
-    init(viewModel: StatisticViewModelProtocol = StatisticViewModel()) {
-        self.viewModel = viewModel
     }
 }
 
