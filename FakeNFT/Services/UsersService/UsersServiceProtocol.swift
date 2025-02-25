@@ -7,5 +7,6 @@
 import Foundation
 
 protocol UsersServiceProtocol: Sendable {
+    func clearCache() async
     func loadUsers(fromPage page: Int, count: Int, sortBy: UsersSortType) async throws -> [User]
 }

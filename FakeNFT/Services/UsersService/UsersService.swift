@@ -9,7 +9,7 @@ import Foundation
 actor UsersService: UsersServiceProtocol {
     // MARK: - Constants
 
-    private let networkService: NetworkService
+    private let networkService: NetworkServiceProtocol
 
     // MARK: - Private Properties
 
@@ -17,20 +17,20 @@ actor UsersService: UsersServiceProtocol {
 
     // MARK: - Initializers
 
-    init(networkService: NetworkService = NetworkService()) {
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
         self.networkService = networkService
     }
 
     // MARK: - Public Methods
 
-    func clearCache() {
+    func clearCache() async {
         usersCache = []
     }
     
     func loadUsers(fromPage page: Int, count: Int, sortBy: UsersSortType) async throws -> [User] {
         if let cachedUsers = usersCache.first(
             where: {
-                    $0.page == page && $0.count == count && $0.sortBy == sortBy
+                $0.page == page && $0.count == count && $0.sortBy == sortBy
             }) {
             return cachedUsers.users
         }
