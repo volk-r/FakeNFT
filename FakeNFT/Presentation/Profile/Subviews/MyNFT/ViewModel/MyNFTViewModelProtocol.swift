@@ -7,10 +7,11 @@
 
 import Foundation
 
-protocol MyNFTViewModelProtocol: Observable {
+protocol MyNFTViewModelProtocol: AnyObject {
     var nftsData: [NFTModel] { get set }
     var showingSortingDialog: Bool { get set }
     var sortType: NFTSortingType { get set }
+    @MainActor
     func loadPageSettings() async
     func fetchNFTData(nftIDs: [String]?)
     func fetchMockNFTData()

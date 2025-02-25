@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-final class MyNFTViewModel: MyNFTViewModelProtocol {
+final class MyNFTViewModel: MyNFTViewModelProtocol, Sendable {
     
     // MARK: - Properties
     
