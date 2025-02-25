@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MyNFTViewModelProtocol: AnyObject {
+protocol MyNFTViewModelProtocol: AnyObject, Sendable {
     var nftsData: [NFTModel] { get set }
     var showingSortingDialog: Bool { get set }
     var sortType: NFTSortingType { get set }
