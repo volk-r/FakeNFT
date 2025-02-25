@@ -53,7 +53,7 @@ struct StatisticRowView: View {
 
                 Spacer()
 
-                Text(user.nfts.count.description)
+                Text(user.nfts.count.formatted(.number.locale(Locale.current)))
                     .appTextStyleHeadline3()
                     .padding(.horizontal, Constants.nftsCountHorizontalPadding)
             }
