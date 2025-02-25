@@ -1,5 +1,5 @@
 //
-//  CartItem.swift
+//  PurchaseItem.swift
 //  FakeNFT
 //
 //  Created by Леонид Лавров on 2/25/25.
@@ -7,18 +7,16 @@
 
 import Foundation
 
-struct CartItem: Identifiable {
+struct PurchaseItem: Identifiable {
     let id = UUID()
     let imageUrl: String
     let name: String
-    let rating: Int
-    let price: Double
+    let ticker: String
     
-    static let mockItem = CartItem(
+    static let mockItem = PurchaseItem(
         imageUrl: GlobalConstants.mockPreviewImageUrl,
-        name: "Lilo",
-        rating: 3,
-        price: 1.78
+        name: "Bitcoin",
+        ticker: "BTC"
     )
     
     static let mockItems = Array(repeating: Self.mockItem, count: 10)

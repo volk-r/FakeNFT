@@ -1,0 +1,46 @@
+//
+//  PurchaseItemView.swift
+//  FakeNFT
+//
+//  Created by Леонид Лавров on 2/25/25.
+//
+
+import SwiftUI
+
+struct PurchaseItemView: View {
+    let item: PurchaseItem
+    
+    var body: some View {
+        HStack(spacing: 4) {
+            image
+            info
+            Spacer()
+        }
+        .background(.appLightGray)
+        .cornerRadius(12)
+    }
+    
+    var image: some View {
+        ImageLoaderFactory(
+            url: item.imageUrl
+        )
+        .cornerRadius(6)
+        .frame(width: 36, height: 36)
+        .padding(.leading, 12)
+        .padding(.vertical, 5)
+    }
+    
+    var info: some View {
+        VStack(alignment: .leading) {
+            Text(item.name)
+                .appTextStyleBodyRegular()
+            Text(item.ticker)
+                .appTextStyleBodyRegular(withColor: .appGreenUniversal)
+        }
+    }
+}
+
+#Preview {
+    PurchaseItemView(item: .mockItem)
+        .padding()
+}
