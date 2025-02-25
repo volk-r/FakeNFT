@@ -18,15 +18,18 @@ struct UsersServiceTests {
         let mockNetworkService = MockNetworkServiceForUsersService()
         let usersService = UsersService(networkService: mockNetworkService)
         let expectedUsers = [User(id: "1", name: "Sergei Kukharev", avatar: "", description: nil, website: "", nfts: [], rating: "1")]
+        let fromPage = 0
+        let count = 20
+        let sortBy = UsersSortType.byRating
         await mockNetworkService.setupMockResponse(expectedUsers)
         await usersService.clearCache()
 
         // Act
-        _ = try await usersService.loadUsers(fromPage: 0, count: 20, sortBy: .byRating)
-        let secondCallUsers = try await usersService.loadUsers(fromPage: 0, count: 20, sortBy: .byRating)
+        _ = try await usersService.loadUsers(fromPage: fromPage, count: count, sortBy: sortBy)
+        let users = try await usersService.loadUsers(fromPage: fromPage, count: count, sortBy: sortBy)
 
         // Assert
-        #expect(secondCallUsers == expectedUsers)
+        #expect(users == expectedUsers)
         await #expect(mockNetworkService.callCount == 1)
     }
     
@@ -49,11 +52,25 @@ struct UsersServiceTests {
         await #expect(mockNetworkService.callCount == 1)
     }
     
+    /// Проверка обработки ошибок
+    /// Цель теста: убедиться в том, что при возникновении ошибок при загрузке данных, сервис пробрасывает ошибку далее
+    /// План теста: сгенерировать ошибку в NetworkService и убедиться в том, что исключение было проброшено дальше по коду
+    @Test func test_ThrowsErrorOnNetworkFailure() async {
+        // Arrange
+        let mockNetworkService = MockNetworkServiceForUsersService()
+        let usersService = UsersService(networkService: mockNetworkService)
+        await mockNetworkService.setupShouldThrowError(true)
+
+        // Act & Assert
+        await #expect(throws: NetworkServiceError.self) {
+            _ = try await usersService.loadUsers(fromPage: 0, count: 20, sortBy: .byRating)
+        }
+    }
 }
 
 actor MockNetworkServiceForUsersService: NetworkServiceProtocol {
     var callCount = 0
-    var shouldThrowError = false
+    private var shouldThrowError = false
     private var mockResponse: [User] = []
 
     func send<T>(request: any FakeNFT.NetworkRequest) async throws -> T? where T: Decodable & Sendable {
@@ -69,5 +86,9 @@ actor MockNetworkServiceForUsersService: NetworkServiceProtocol {
 
     func setupMockResponse(_ response: [User]) {
         self.mockResponse = response
+    }
+
+    func setupShouldThrowError(_ shouldThrowError: Bool) {
+        self.shouldThrowError = shouldThrowError
     }
 }
