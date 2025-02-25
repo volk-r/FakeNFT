@@ -55,13 +55,13 @@ struct MyNFTView: View {
             titleVisibility: .visible
         ) {
             Button(NFTSortingType.byPrice.title) {
-                model.sortType = .byPrice
+                model.setSorting(.byPrice)
             }
             Button(NFTSortingType.byRating.title) {
-                model.sortType = .byRating
+                model.setSorting(.byRating)
             }
             Button(NFTSortingType.byName.title) {
-                model.sortType = .byName
+                model.setSorting(.byName)
             }
             Button("Close", role: .cancel, action: {
                 model.showingSortingDialog = false

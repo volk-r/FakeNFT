@@ -12,10 +12,10 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
     
     // MARK: - Properties
     
-    var nftsData: [NFTModel] = []
-    
     var showingSortingDialog: Bool = false
-    var sortType: NFTSortingType = .byPrice {
+    
+    private(set) var nftsData: [NFTModel] = []
+    private(set) var sortType: NFTSortingType = .byPrice {
         didSet {
             switch sortType {
             case .byPrice:
@@ -48,6 +48,12 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
         guard nftIDs != nil else { return }
         
         fetchMockNFTData()
+    }
+    
+    // MARK: - setSorting
+    
+    func setSorting(_ sortingType: NFTSortingType) {
+        sortType = sortingType
     }
     
     // MARK: - fetchMockNFTData
