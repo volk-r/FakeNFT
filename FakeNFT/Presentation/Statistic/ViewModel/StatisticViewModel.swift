@@ -45,9 +45,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
 
     func loadData() async {
         do {
-            if loadingState == .loading {
-                return
-            }
+            guard loadingState != .loading else { return }
             loadingState = .loading
             loadingDataMode = .loadData
             isNoMoreDataInTheUsersList = false
@@ -88,13 +86,11 @@ final class StatisticViewModel: StatisticViewModelProtocol {
 
     private func fetchNextData() async {
         do {
-            if loadingState == .loading || isNoMoreDataInTheUsersList {
-                return
-            }
+            guard loadingState != .loading  && !isNoMoreDataInTheUsersList else { return }
             loadingState = .loading
             loadingDataMode = .fetchNextData
             let newUsers = try await usersService.loadUsers(
-                fromPage: currentPage+1,
+                fromPage: currentPage + 1,
                 count: Constants.batchSize,
                 sortBy: sortType
             )
