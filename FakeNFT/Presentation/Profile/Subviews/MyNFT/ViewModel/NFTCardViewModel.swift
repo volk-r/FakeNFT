@@ -12,7 +12,7 @@ final class NFTCardViewModel: NFTCardViewModelProtocol {
     
     // MARK: - Properties
     
-    var isLiked: Bool = false
+    private(set) var isLiked: Bool = false
     
     // MARK: - changeLike
     
