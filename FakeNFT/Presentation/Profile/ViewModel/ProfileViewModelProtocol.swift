@@ -10,7 +10,7 @@ import Foundation
 protocol ProfileViewModelProtocol: Observable, AnyObject {
     var isAboutPresented: Bool { get set }
     var isMyNFTPresented: Bool { get set }
-    var profile: ProfileModel? { get set }
+    var profile: ProfileModel? { get }
     func loadProfile()
     func loadMockProfile()
 }

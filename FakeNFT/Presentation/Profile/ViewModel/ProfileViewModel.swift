@@ -14,13 +14,16 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     var isAboutPresented: Bool = false
     var isMyNFTPresented: Bool = false
-    var profile: ProfileModel?
+    
+    private(set) var profile: ProfileModel?
     
     // MARK: - loadProfile
     
     func loadProfile() {
         loadMockProfile()
     }
+    
+    // MARK: - loadMockProfile
     
     func loadMockProfile() {
         profile = ProfileModel(
