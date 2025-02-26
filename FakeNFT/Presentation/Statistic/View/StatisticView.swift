@@ -12,7 +12,7 @@ struct StatisticView: View {
 
     private enum Constants {
         static let listEdgeInsets = EdgeInsets(
-            top: 20,
+            top: 0,
             leading: 16,
             bottom: 0,
             trailing: 16
