@@ -4,6 +4,16 @@
     "%lld NFT" : {
 
     },
+    "Are you sure you want remove an item from the trash?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите\nудалить объект из корзины?"
+          }
+        }
+      }
+    },
     "By making a purchase, you agree to the terms and conditions" : {
       "localizations" : {
         "ru" : {
@@ -94,6 +104,16 @@
     "Catalog View" : {
       "shouldTranslate" : false
     },
+    "Delete" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
     "For payment" : {
       "localizations" : {
         "ru" : {
@@ -146,6 +166,16 @@
     },
     "Profile View" : {
       "shouldTranslate" : false
+    },
+    "Return" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вернуться"
+          }
+        }
+      }
     },
     "Sorting" : {
       "localizations" : {
