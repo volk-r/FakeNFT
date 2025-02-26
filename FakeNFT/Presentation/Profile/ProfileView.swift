@@ -8,11 +8,131 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
+    // MARK: - Properties
+    
+    @State private var viewModel = ProfileViewModel()
+    
+    // MARK: - body
+    
     var body: some View {
-        Text("Profile View")
+        NavigationStack {
+            VStack {
+                Group {
+                    header
+                    userInfo
+                }
+                .padding(.horizontal, 16)
+                
+                optionList
+            }
+            .padding(.top, 20)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    editButton
+                }
+            }
+            .navigationDestination(isPresented: $viewModel.isAboutPresented) {
+                WebView(navigationURL: viewModel.profile?.website ?? "")
+            }
+            .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
+                MyNFTView()
+                    .environment(viewModel)
+            }
+        }
+        .accentColor(.appBlack)
+        .onAppear {
+            viewModel.loadProfile()
+        }
     }
 }
 
+private extension ProfileView {
+    
+    // MARK: - editButton
+    
+    private var editButton: some View {
+        Button(
+            action: {
+                // TODO: - open edit view
+                print("Edit profile")
+            },
+            label: {
+                Image(systemName: "square.and.pencil")
+                    .resizable()
+                    .frame(width: 26.34, height: 26.33)
+                    .fontWeight(.bold)
+                    .foregroundColor(.appBlack)
+                    .padding(.trailing, 9)
+            }
+        )
+    }
+    
+    // MARK: - header
+    
+    private var header: some View {
+        HStack {
+            Image(.profile)
+                .resizable()
+                .scaledToFit()
+                .clipShape(Circle())
+                .frame(width: 70, height: 70)
+            Text(verbatim: viewModel.profile?.name ?? "")
+                .appTextStyleHeadline3()
+                .padding(.leading, 16)
+            Spacer()
+        }
+    }
+    
+    // MARK: - userInfo
+    
+    private var userInfo: some View {
+        Group {
+            Text(verbatim: viewModel.profile?.description ?? "")
+                .appTextStyleCaption2()
+                .padding(.top, 20)
+            HStack {
+                Button {
+                    viewModel.isAboutPresented = true
+                } label: {
+                    Text(verbatim: URL(string: viewModel.profile?.website ?? "")?.host(percentEncoded: true) ?? "")
+                        .foregroundStyle(.appBlueUniversal)
+                        .appTextStyleCaption1()
+                }
+                Spacer()
+            }
+            .padding(.top, 12)
+        }
+    }
+    
+    // MARK: - optionList
+    
+    private var optionList: some View {
+        List {
+            Section {
+                ProfileListItemView(listItem: LocalizedStringKey("My NFTs (\(viewModel.getMyNFTsCount()))"))
+                    .onTapGesture {
+                        viewModel.isMyNFTPresented = true
+                    }
+                ProfileListItemView(listItem: LocalizedStringKey("Favorite NFTs (\(viewModel.getFavoriteNFTsCount()))"))
+                ProfileListItemView(listItem: LocalizedStringKey( "About the developer"))
+                    .onTapGesture {
+                        viewModel.isAboutPresented = true
+                    }
+            }
+            .appTextStyleBodyBold()
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+        }
+        .listStyle(.plain)
+        .padding(.top)
+    }
+}
+
+// MARK: - Preview
+
 #Preview {
-    ProfileView()
+    NavigationStack {
+        AppTabView()
+    }
 }
