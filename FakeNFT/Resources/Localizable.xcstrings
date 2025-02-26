@@ -1,12 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "By Name" : {
+    "By name" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "По названию"
+            "value" : "По имени"
           }
         }
       }
@@ -17,6 +17,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "По количеству NFT"
+          }
+        }
+      }
+    },
+    "By price" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По цене"
+          }
+        }
+      }
+    },
+    "By rating" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По рейтингу"
+          }
+        }
+      }
+    },
+    "By Title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По названию"
           }
         }
       }
@@ -101,7 +131,7 @@
     "Profile View" : {
       "shouldTranslate" : false
     },
-    "Sort" : {
+    "Sorting" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
