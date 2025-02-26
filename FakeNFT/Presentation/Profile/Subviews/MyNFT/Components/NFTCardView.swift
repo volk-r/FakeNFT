@@ -13,7 +13,7 @@ struct NFTCardView: View {
     
     let nftData: NFTModel
     let isLiked: Bool
-    @State private var model: NFTCardViewModelProtocol = NFTCardViewModel()
+    @State private var viewModel: NFTCardViewModelProtocol = NFTCardViewModel()
     
     // MARK: - body
     
@@ -21,16 +21,16 @@ struct NFTCardView: View {
         HStack {
             NFTCard(
                 imageUrl: nftData.images.first ?? "",
-                isLiked: model.isLiked,
+                isLiked: viewModel.isLiked,
                 сardType: .normal
             ) {
-                model.likeToggle(for: nftData.id)
+                viewModel.likeToggle(for: nftData.id)
             }
             description
             price
         }
         .onAppear {
-            model.setIsLiked(isLiked)
+            viewModel.setIsLiked(isLiked)
         }
     }
 }

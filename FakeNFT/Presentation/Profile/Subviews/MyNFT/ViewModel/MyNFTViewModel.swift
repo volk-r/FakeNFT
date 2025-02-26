@@ -76,7 +76,7 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
             ),
             NFTModel(
                 createdAt: "2023-06-08T05:52:06.646Z[GMT]",
-                name: "Daryl Lucas",
+                name: "Daryl",
                 images: [
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Peach/Nacho/1.png",
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Peach/Nacho/2.png",
@@ -85,12 +85,12 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
                 rating: 2,
                 description: "animal solet pharetra perpetua usu alienum",
                 price: 43.53,
-                author: "https://strange_gates.fakenfts.org/",
+                author: "Daryl Lucas",
                 id: "a4edeccd-ad7c-4c7f-b09e-6edec02a812b"
             ),
             NFTModel(
                 createdAt: "2023-06-13T09:59:28.425Z[GMT]",
-                name: "Lonnie Mercado",
+                name: "Lonnie",
                 images: [
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Penny/1.png",
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Penny/2.png",
@@ -99,12 +99,12 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
                 rating: 2,
                 description: "agam dicant referrentur facilisi interpretaris",
                 price: 23.02,
-                author: "https://objective_kilby.fakenfts.org/",
+                author: "Lonnie Mercado",
                 id: "eb959204-76cc-46ef-ba07-aefa036ca1a5"
             ),
             NFTModel(
                 createdAt: "2023-07-11T00:08:48.728Z[GMT]",
-                name: "Minnie Sanders",
+                name: "Minnie",
                 images: [
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Pink/Lilo/1.png",
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Pink/Lilo/2.png",
@@ -113,12 +113,12 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
                 rating: 2,
                 description: "mediocritatem interdum eleifend penatibus adipiscing mattis",
                 price: 40.59,
-                author: "https://wonderful_dubinsky.fakenfts.org/",
+                author: "Minnie Sanders",
                 id: "594aaf01-5962-4ab7-a6b5-470ea37beb93"
             ),
             NFTModel(
                 createdAt: "2023-07-11T05:27:40.359Z[GMT]",
-                name: "James Burt",
+                name: "James",
                 images: [
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Blue/Clover/1.png",
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Blue/Clover/2.png",
@@ -127,12 +127,12 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
                 rating: 2,
                 description: "eos habeo percipit duis malesuada",
                 price: 11.14,
-                author: "https://exciting_pare.fakenfts.org/",
+                author: "James",
                 id: "cc74e9ab-2189-465f-a1a6-8405e07e9fe4"
             ),
             NFTModel(
                 createdAt: "2023-09-27T23:48:21.462Z[GMT]",
-                name: "Myrna Cervantes",
+                name: "Myrna",
                 images: [
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Ellsa/1.png",
                     "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Ellsa/2.png",
@@ -141,7 +141,7 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
                 rating: 5,
                 description: "eloquentiam deterruisset tractatos repudiandae nunc a electram",
                 price: 39.37,
-                author: "https://priceless_leavitt.fakenfts.org/",
+                author: "Myrna",
                 id: "c14cf3bc-7470-4eec-8a42-5eaa65f4053c"
             )
         ]

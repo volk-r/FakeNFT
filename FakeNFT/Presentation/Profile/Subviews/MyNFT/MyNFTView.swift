@@ -12,7 +12,7 @@ struct MyNFTView: View {
     // MARK: - Properties
     
     @Environment(ProfileViewModel.self) var profileModel
-    @State var model: MyNFTViewModelProtocol = MyNFTViewModel()
+    @State private var viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
     
     // MARK: - body
     
@@ -22,7 +22,7 @@ struct MyNFTView: View {
                 Text("You don't have NFT yet")
                     .appTextStyleBodyBold()
             } else {
-                List(model.nftsData, id: \.id) { data in
+                List(viewModel.nftsData, id: \.id) { data in
                     Section {
                         NFTCardView(
                             nftData: data,
@@ -44,27 +44,27 @@ struct MyNFTView: View {
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            model.fetchNFTData(nftIDs: profileModel.profile?.nfts)
+            viewModel.fetchNFTData(nftIDs: profileModel.profile?.nfts)
         }
         .task {
-            await model.loadPageSettings()
+            await viewModel.loadPageSettings()
         }
         .confirmationDialog(
             NFTSortingType.description,
-            isPresented: $model.showingSortingDialog,
+            isPresented: $viewModel.showingSortingDialog,
             titleVisibility: .visible
         ) {
             Button(NFTSortingType.byPrice.title) {
-                model.setSorting(.byPrice)
+                viewModel.setSorting(.byPrice)
             }
             Button(NFTSortingType.byRating.title) {
-                model.setSorting(.byRating)
+                viewModel.setSorting(.byRating)
             }
             Button(NFTSortingType.byName.title) {
-                model.setSorting(.byName)
+                viewModel.setSorting(.byName)
             }
             Button("Close", role: .cancel, action: {
-                model.showingSortingDialog = false
+                viewModel.showingSortingDialog = false
             })
         }
     }
@@ -77,7 +77,7 @@ extension MyNFTView {
     private var sortButton: some View {
         Button(
             action: {
-                model.showingSortingDialog = true
+                viewModel.showingSortingDialog = true
             },
             label: {
                 Image(.appSortButton)
