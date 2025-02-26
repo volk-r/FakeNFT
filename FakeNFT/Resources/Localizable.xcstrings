@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "shouldTranslate" : false
+    },
     "By name" : {
       "localizations" : {
         "ru" : {
@@ -121,8 +124,124 @@
         }
       }
     },
-    "Statistic View" : {
-      "shouldTranslate" : false
+    "StatisticViewCancelButton" : {
+      "comment" : "Название кнопки \"Отмена\" в диалоговом окне с ошибкой",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "StatisticViewCloseButton" : {
+      "comment" : "Название кнопки \"Закрыть\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "StatisticViewErrorText" : {
+      "comment" : "Текст ошибки при загрузке данных из Сети",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to get data"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить данные"
+          }
+        }
+      }
+    },
+    "StatisticViewRetryButton" : {
+      "comment" : "Название кнопки \"Повторить\" в диалоговом окне с ошибкой",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingByName" : {
+      "comment" : "Название элемента \"По имени\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По имени"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingByRating" : {
+      "comment" : "Название элемента \"По рейтингу\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By rating"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По рейтингу"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingDialogTitle" : {
+      "comment" : "Заголовок диалогового окна выбора типа сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorting"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировка"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
