@@ -60,12 +60,12 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
     private var sortDialog: some View {
         EmptyView()
             .confirmationDialog(
-                "Sort",
+                "Sorting",
                 isPresented: $isSortDialogPresented,
                 titleVisibility: .visible
             ) {
-                Button("By Name") {
-                    viewModel.sortOrder = .name
+                Button("By Title") {
+                    viewModel.sortOrder = .title
                 }
                 Button("By NFT Count") {
                     viewModel.sortOrder = .nftCount

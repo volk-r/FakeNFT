@@ -29,7 +29,7 @@ final class CatalogViewModel: CatalogViewModelProtocol {
     
     var sortedCollections: [NFTCollection] {
         switch sortOrder {
-        case .name:
+        case .title:
             return collections.sorted {
                 $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
             }
@@ -67,7 +67,7 @@ final class CatalogViewModel: CatalogViewModelProtocol {
     // MARK: - Nested Types
     
     enum SortOrder: String {
-        case name
+        case title
         case nftCount
     }
 }
