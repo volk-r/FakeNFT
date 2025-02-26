@@ -71,11 +71,11 @@ private extension ProfileView {
     // MARK: - header
     
     private var header: some View {
-        HStack(alignment: .center) {
+        HStack {
             Image(.profile)
                 .resizable()
                 .scaledToFit()
-                .cornerRadius(70)
+                .clipShape(Circle())
                 .frame(width: 70, height: 70)
             Text(verbatim: viewModel.profile?.name ?? "")
                 .appTextStyleHeadline3()
@@ -92,12 +92,13 @@ private extension ProfileView {
                 .appTextStyleCaption2()
                 .padding(.top, 20)
             HStack {
-                Text(verbatim: URL(string: viewModel.profile?.website ?? "")?.host(percentEncoded: true) ?? "")
-                    .foregroundStyle(.appBlueUniversal)
-                    .appTextStyleCaption1()
-                    .onTapGesture {
-                        viewModel.isAboutPresented = true
-                    }
+                Button {
+                    viewModel.isAboutPresented = true
+                } label: {
+                    Text(verbatim: URL(string: viewModel.profile?.website ?? "")?.host(percentEncoded: true) ?? "")
+                        .foregroundStyle(.appBlueUniversal)
+                        .appTextStyleCaption1()
+                }
                 Spacer()
             }
             .padding(.top, 12)
@@ -109,15 +110,15 @@ private extension ProfileView {
     private var optionList: some View {
         List {
             Section {
-                ProfileListItemView(listItem: String(localized: "My NFTs (\(viewModel.profile?.nfts?.count ?? 0))"))
+                ProfileListItemView(listItem: LocalizedStringKey("My NFTs (\(viewModel.getMyNFTsCount()))"))
                     .onTapGesture {
                         viewModel.isMyNFTPresented = true
                     }
-                ProfileListItemView(listItem: String(localized: "Favorite NFTs (\(viewModel.profile?.likes?.count ?? 0))"))
-                ProfileListItemView(listItem: String(localized: "About the developer"))
+                ProfileListItemView(listItem: LocalizedStringKey("Favorite NFTs (\(viewModel.getFavoriteNFTsCount()))"))
+                ProfileListItemView(listItem: LocalizedStringKey( "About the developer"))
                     .onTapGesture {
-                    viewModel.isAboutPresented = true
-                }
+                        viewModel.isAboutPresented = true
+                    }
             }
             .appTextStyleBodyBold()
             .listRowBackground(Color.clear)

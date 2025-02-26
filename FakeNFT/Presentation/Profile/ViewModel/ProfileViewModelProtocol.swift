@@ -12,5 +12,7 @@ protocol ProfileViewModelProtocol: Observable, AnyObject {
     var isMyNFTPresented: Bool { get set }
     var profile: ProfileModel? { get }
     func loadProfile()
+    func getMyNFTsCount() -> Int
+    func getFavoriteNFTsCount() -> Int
     func loadMockProfile()
 }

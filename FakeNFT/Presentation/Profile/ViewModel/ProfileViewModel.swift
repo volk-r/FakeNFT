@@ -23,6 +23,18 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         loadMockProfile()
     }
     
+    // MARK: - getMyNFTsCount
+    
+    func getMyNFTsCount() -> Int {
+        profile?.nfts?.count ?? 0
+    }
+    
+    // MARK: - getFavoriteNFTsCount
+    
+    func getFavoriteNFTsCount() -> Int {
+        profile?.likes?.count ?? 0
+    }
+    
     // MARK: - loadMockProfile
     
     func loadMockProfile() {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileListItemView: View {
     
-    let listItem: String
+    let listItem: LocalizedStringKey
     
     var body: some View {
         HStack {
@@ -18,4 +18,12 @@ struct ProfileListItemView: View {
             Text("\(Image(systemName: "chevron.right"))")
         }
     }
+}
+
+// MARK: - Preview
+
+#Preview {
+    ProfileListItemView(listItem: LocalizedStringKey("About the developer"))
+        .appTextStyleBodyBold()
+        .padding()
 }

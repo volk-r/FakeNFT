@@ -5,6 +5,7 @@
 
     },
     "About the developer" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
