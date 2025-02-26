@@ -12,14 +12,16 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Properties
     
-    var isAboutPresented: Bool = false
     var isMyNFTPresented: Bool = false
+    var isFavoriteNFTsPresented: Bool = false
+    var isAboutPresented: Bool = false
     
     private(set) var profile: ProfileModel?
     
     // MARK: - loadProfile
     
     func loadProfile() {
+        // TODO: get profile from API
         loadMockProfile()
     }
     

@@ -65,6 +65,7 @@ extension NFTCardView {
             Text("Price")
                 .appTextStyleCaption2()
             PriceView(price: nftData.price)
+                .appTextStyleBodyBold()
         }
         .padding(.leading, 28)
     }
@@ -87,4 +88,5 @@ extension NFTCardView {
         )
         .padding(.horizontal)
     }
+    .padding()
 }

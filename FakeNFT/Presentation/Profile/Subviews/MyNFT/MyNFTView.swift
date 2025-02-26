@@ -90,12 +90,13 @@ extension MyNFTView {
 }
 
 #Preview("NFT") {
-    let model = ProfileViewModel()
+    let viewModel = ProfileViewModel()
     NavigationStack {
         MyNFTView()
-            .environment(model)
-    }.onAppear {
-        model.loadMockProfile()
+            .environment(viewModel)
+    }
+    .onAppear {
+        viewModel.loadMockProfile()
     }
 }
 

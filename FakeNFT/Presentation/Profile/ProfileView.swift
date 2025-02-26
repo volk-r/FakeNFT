@@ -32,12 +32,16 @@ struct ProfileView: View {
                     editButton
                 }
             }
-            .navigationDestination(isPresented: $viewModel.isAboutPresented) {
-                WebView(navigationURL: viewModel.profile?.website ?? "")
-            }
             .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
                 MyNFTView()
                     .environment(viewModel)
+            }
+            .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
+                FavoriteNFTsView()
+                    .environment(viewModel)
+            }
+            .navigationDestination(isPresented: $viewModel.isAboutPresented) {
+                WebView(navigationURL: viewModel.profile?.website ?? "")
             }
         }
         .accentColor(.appBlack)
@@ -115,6 +119,9 @@ private extension ProfileView {
                         viewModel.isMyNFTPresented = true
                     }
                 ProfileListItemView(listItem: LocalizedStringKey("Favorite NFTs (\(viewModel.getFavoriteNFTsCount()))"))
+                    .onTapGesture {
+                        viewModel.isFavoriteNFTsPresented = true
+                    }
                 ProfileListItemView(listItem: LocalizedStringKey("About the developer"))
                     .onTapGesture {
                         viewModel.isAboutPresented = true
