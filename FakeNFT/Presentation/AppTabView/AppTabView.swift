@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  AppTabView.swift
 //  FakeNFT
 //
 //  Created by Сергей Кухарев on 18.02.2025.
@@ -7,7 +7,13 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct AppTabView: View {
+    @StateObject private var catalogViewModel: CatalogViewModel
+    
+    init(servicesAssembly: ServicesAssembly) {
+        _catalogViewModel = StateObject(
+            wrappedValue: CatalogViewModel(networkService: servicesAssembly.nftCollectionService))
+    }
     // MARK: - View
 
     var body: some View {
@@ -18,7 +24,7 @@ struct MainView: View {
                     Text("Profile")
                 }
                 .tag(0)
-            CatalogView()
+            CatalogView(viewModel: catalogViewModel)
                 .tabItem {
                     Image(selectedTabIndex == 1 ? "catalogActive" : "catalogNoActive")
                     Text("Catalog")
@@ -41,9 +47,14 @@ struct MainView: View {
 
     // MARK: - Bindings
 
-    @AppStorage("mainViewSelectedTabIndex") var selectedTabIndex: Int = 0
+    @AppStorage("appTabViewSelectedTabIndex") var selectedTabIndex: Int = 0
 }
 
 #Preview {
-    MainView()
+    let servicesAssembly = ServicesAssembly(
+        networkClient: DefaultNetworkClient(),
+        nftStorage: NftStorageImpl()
+    )
+    
+    AppTabView(servicesAssembly: servicesAssembly)
 }

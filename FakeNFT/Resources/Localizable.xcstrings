@@ -1,6 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "By Name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По названию"
+          }
+        }
+      }
+    },
+    "By NFT Count" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По количеству NFT"
+          }
+        }
+      }
+    },
     "Cart" : {
       "comment" : "Название tabItem \"Корзина\"",
       "localizations" : {
@@ -38,8 +58,25 @@
         }
       }
     },
-    "Catalog View" : {
-      "shouldTranslate" : false
+    "Close" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "Failed to retrieve data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить данные"
+          }
+        }
+      }
     },
     "No internet" : {
 
@@ -63,6 +100,16 @@
     },
     "Profile View" : {
       "shouldTranslate" : false
+    },
+    "Sort" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировка"
+          }
+        }
+      }
     },
     "Statistic" : {
       "comment" : "Название tabItem \"Статистика\"",
