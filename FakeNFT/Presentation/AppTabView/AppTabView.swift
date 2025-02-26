@@ -14,28 +14,30 @@ struct AppTabView: View {
         TabView(selection: $selectedTabIndex) {
             ProfileView()
                 .tabItem {
-                    Image(selectedTabIndex == 0 ? "profileActive" : "profileNoActive")
+                    Image(uiImage: selectedTabIndex == 0 ? .profileActive : .profileNoActive)
                     Text("Profile")
                 }
                 .tag(0)
             CatalogView()
                 .tabItem {
-                    Image(selectedTabIndex == 1 ? "catalogActive" : "catalogNoActive")
+                    Image(uiImage: selectedTabIndex == 1 ? .catalogActive : .catalogNoActive)
                     Text("Catalog")
                 }
                 .tag(1)
             CartView()
                 .tabItem {
-                    Image(selectedTabIndex == 2 ? "cartActive" : "cartNoActive")
+                    Image(uiImage: selectedTabIndex == 2 ? .cartActive : .cartNoActive)
                     Text("Cart")
                 }
                 .tag(2)
-            StatisticView()
-                .tabItem {
-                    Image(selectedTabIndex == 3 ? "statisticActive" : "statisticNoActive")
-                    Text("Statistic")
-                }
-                .tag(3)
+            NavigationStack {
+                StatisticView()
+            }
+            .tabItem {
+                Image(uiImage: selectedTabIndex == 3 ? .statisticActive : .statisticNoActive)
+                Text("Statistic")
+            }
+            .tag(3)
         }
     }
 
