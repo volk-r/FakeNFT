@@ -11,18 +11,23 @@ actor NetworkService: NetworkServiceProtocol {
     // MARK: - Constants
 
     private let urlSession: URLSession
-    
+    private let decoder: JSONDecoder
+
     // MARK: - Initializers
 
-    init(urlSession: URLSession = .shared) {
+    init(
+        urlSession: URLSession = .shared,
+        decoder: JSONDecoder = JSONDecoder()
+    ) {
         self.urlSession = urlSession
+        self.decoder = decoder
     }
-    
+
     // MARK: - Public Methods
-    
+
     func send<T: Sendable & Decodable>(request: NetworkRequest) async throws -> T? where T: Sendable & Decodable {
         guard let urlRequest = create(request: request) else { return nil }
-    
+
         do {
             let (data, response) = try await urlSession.data(for: urlRequest)
 
@@ -34,7 +39,7 @@ actor NetworkService: NetworkServiceProtocol {
                 throw NetworkServiceError.httpStatusCode(statusCode)
             }
 
-            return try JSONDecoder().decode(T.self, from: data)
+            return try decoder.decode(T.self, from: data)
         } catch {
             if let urlError = error as? URLError {
                 throw NetworkServiceError.urlSessionError(urlError)
