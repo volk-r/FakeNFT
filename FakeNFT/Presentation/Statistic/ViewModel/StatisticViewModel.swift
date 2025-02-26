@@ -19,11 +19,17 @@ final class StatisticViewModel: StatisticViewModelProtocol {
 
     // MARK: - Constants
 
-    private let usersService = UsersService()
+    private let usersService: UsersServiceProtocol
 
     // MARK: - Public Properties
 
-    var loadingState: LoadingState = .default
+    var loadingState: LoadingState = .default {
+        didSet {
+            if loadingState == .failure {
+                showingErrorAlert = true
+            }
+        }
+    }
     var users: [User] = []
     var showingErrorAlert: Bool = false
     var showingSortDialog: Bool = false
@@ -43,6 +49,12 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     private var loadingDataMode: LoadingDataMode = .default
     private var currentPage: Int = 0
     private var isNoMoreDataInTheUsersList: Bool = false
+
+    // MARK: - Initializers
+
+    init(usersService: UsersServiceProtocol = UsersService()) {
+        self.usersService = usersService
+    }
 
     // MARK: - Public Methods
 
@@ -66,7 +78,6 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             loadingState = .success
         } catch { 
             loadingState = .failure
-            showingErrorAlert = true
         }
     }
 
@@ -111,7 +122,6 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             loadingState = .success
         } catch {
             loadingState = .failure
-            showingErrorAlert = true
         }
     }
 }
