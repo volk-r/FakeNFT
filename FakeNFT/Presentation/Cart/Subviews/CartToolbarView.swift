@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct CartToolbarView: View {
-    let totalCount: Int
-    let totalPrice: Double
+    let item: CartToolbarItem
     let onPayment: () -> Void
     
     var body: some View {
         HStack(spacing: 24) {
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(totalCount) NFT")
+                Text("\(item.count) NFT")
                 PriceView(
-                    price: totalPrice,
+                    price: item.price,
                     color: .appGreenUniversal
                 )
             }
@@ -48,8 +47,10 @@ struct CartToolbarView: View {
 
 #Preview {
     CartToolbarView(
-        totalCount: 3,
-        totalPrice: 5.34
+        item: .init(
+            count: 3,
+            price: 5.34
+        )
     ) {
         
     }
