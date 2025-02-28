@@ -11,8 +11,7 @@ struct AppTabView: View {
     @StateObject private var catalogViewModel: CatalogViewModel
     
     init() {
-        _catalogViewModel = StateObject(
-            wrappedValue: CatalogViewModel(collectionsService: NFTCollectionsService()))
+        _catalogViewModel = StateObject(wrappedValue: CatalogViewModel())
     }
     // MARK: - View
 

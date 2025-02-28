@@ -46,7 +46,7 @@ final class CatalogViewModel: CatalogViewModelProtocol {
     
     // MARK: - Initialization
     
-    init(collectionsService: NFTCollectionsServiceProtocol) {
+    init(collectionsService: NFTCollectionsServiceProtocol = NFTCollectionsService()) {
         self.collectionsService = collectionsService
     }
     
