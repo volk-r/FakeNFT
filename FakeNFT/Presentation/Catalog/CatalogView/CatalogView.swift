@@ -76,5 +76,5 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
 }
 
 #Preview {
-    CatalogView(viewModel: CatalogViewModel(networkService: NFTCollectionsServiceMock()))
+    CatalogView(viewModel: CatalogViewModel(collectionsService: NFTCollectionsServiceMock()))
 }

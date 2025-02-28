@@ -10,9 +10,9 @@ import SwiftUI
 struct AppTabView: View {
     @StateObject private var catalogViewModel: CatalogViewModel
     
-    init(servicesAssembly: ServicesAssembly) {
+    init() {
         _catalogViewModel = StateObject(
-            wrappedValue: CatalogViewModel(networkService: servicesAssembly.nftCollectionService))
+            wrappedValue: CatalogViewModel(collectionsService: NFTCollectionsService()))
     }
     // MARK: - View
 
@@ -51,10 +51,5 @@ struct AppTabView: View {
 }
 
 #Preview {
-    let servicesAssembly = ServicesAssembly(
-        networkClient: DefaultNetworkClient(),
-        nftStorage: NftStorageImpl()
-    )
-    
-    AppTabView(servicesAssembly: servicesAssembly)
+    AppTabView()
 }

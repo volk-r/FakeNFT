@@ -8,12 +8,12 @@
 import Foundation
 
 actor NFTCollectionsService: NFTCollectionsServiceProtocol {
-    private let networkClient: NetworkClient
+    private let networkService: NetworkServiceProtocol
     private var collectionsCache: [NFTCollection]?
     private var inProgressLoadTask: Task<[NFTCollection], Error>?
-    
-    init(networkClient: NetworkClient) {
-        self.networkClient = networkClient
+
+    init(networkService: NetworkServiceProtocol = NetworkService()) {
+        self.networkService = networkService
     }
     
     func loadCollections() async throws -> [NFTCollection] {
@@ -25,42 +25,17 @@ actor NFTCollectionsService: NFTCollectionsServiceProtocol {
             return try await existingTask.value
         }
         
-        let newTask = Task<[NFTCollection], Error> {
-            return try await withCheckedThrowingContinuation { continuation in
-                let request = NFTCollectionsRequest()
-                
-                networkClient.send(request: request, type: [NFTCollection].self, completionQueue: .main) { [weak self] result in
-                    Task {
-                        guard let self = self else { return }
-
-                        switch result {
-                        case .success(let collections):
-                            await self.setCache(collections)
-                            continuation.resume(returning: collections)
-                        case .failure(let error):
-                            continuation.resume(throwing: error)
-                        }
-                    }
-                }
+        let task = Task { () throws -> [NFTCollection] in
+            let request = NFTCollectionsRequest()
+            guard let collections: [NFTCollection] = try await networkService.send(request: request) else {
+                throw NetworkServiceError.invalidResponse
             }
-        }
-        
-        inProgressLoadTask = newTask
-        
-        do {
-            let collections = try await newTask.value
-            inProgressLoadTask = nil
+            self.collectionsCache = collections
             return collections
-        } catch {
-            inProgressLoadTask = nil
-            throw error
         }
-    }
-    
-    // MARK: - Private Helpers
-
-    // Helper to assign to the cache safely within the actor
-    private func setCache(_ newValue: [NFTCollection]) {
-        self.collectionsCache = newValue
+        inProgressLoadTask = task
+        defer { inProgressLoadTask = nil }
+        
+        return try await task.value
     }
 }
