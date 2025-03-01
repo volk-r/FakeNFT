@@ -11,6 +11,10 @@ struct UserCardView: View {
     // MARK: - Types
 
     private enum Constants {
+        static let userImageAccessibilityIdentifier = "userCardViewImage"
+        static let userNameAccessibilityIdentifier = "userCardViewName"
+        static let userWebSiteButtonAccessibilityIdentifier = "userCardViewWebSiteButton"
+        static let nftsCollectionAccessibilityIdentifier = "userCardViewNFTsCollectionList"
         static let defaultForegroundColor: Color = .appBlack
         static let panelsTopPadding: CGFloat = 20
         static let panelsHorizontalPadding: CGFloat = 16
@@ -70,9 +74,11 @@ struct UserCardView: View {
                 )
                 .frame(width: Constants.usersPictureSize, height: Constants.usersPictureSize)
                 .clipShape(Circle())
+                .accessibilityIdentifier(Constants.userImageAccessibilityIdentifier)
                 Text(user.name)
                     .appTextStyleHeadline3()
                     .lineLimit(Constants.userNameLineLimit)
+                    .accessibilityIdentifier(Constants.userNameAccessibilityIdentifier)
                 Spacer()
             }
             if let userDescription = user.description {
@@ -101,6 +107,7 @@ struct UserCardView: View {
                         )
                 }
             )
+            .accessibilityIdentifier(Constants.userWebSiteButtonAccessibilityIdentifier)
             .padding([.top], Constants.usersSiteButtonTopPadding)
             .disabled(user.website.isEmpty)
             List {
@@ -129,6 +136,7 @@ struct UserCardView: View {
                 .listRowInsets(Constants.listEdgeInsets)
                 .disabled(user.nfts.isEmpty)
             }
+            .accessibilityIdentifier(Constants.nftsCollectionAccessibilityIdentifier)
             .padding([.top], Constants.listTopPadding)
             .listStyle(.plain)
             .scrollContentBackground(.hidden)

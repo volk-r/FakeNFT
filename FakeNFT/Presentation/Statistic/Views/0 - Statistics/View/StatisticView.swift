@@ -11,6 +11,7 @@ struct StatisticView: View {
     // MARK: - Types
 
     private enum Constants {
+        static let listAccessibilityIdentifier: String = "statisticsList"
         static let listEdgeInsets = EdgeInsets(
             top: 0,
             leading: 16,
@@ -59,6 +60,7 @@ struct StatisticView: View {
                             viewModel.navigationPath.append(user)
                         }
                 }
+                .accessibilityIdentifier(Constants.listAccessibilityIdentifier)
                 .navigationDestination(for: User.self) { user in
                     UserCardView(user: user, navigationPath: $viewModel.navigationPath)
                 }

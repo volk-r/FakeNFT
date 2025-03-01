@@ -4,6 +4,9 @@
     "" : {
       "shouldTranslate" : false
     },
+    "%@" : {
+      "shouldTranslate" : false
+    },
     "By name" : {
       "localizations" : {
         "ru" : {
