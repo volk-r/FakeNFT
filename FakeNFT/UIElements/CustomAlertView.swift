@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CustomAlertView: View {
-    let title: String
-    let message: String
+    let title: LocalizedStringKey
+    let message: LocalizedStringKey
     @Binding var inputText: String
     @Binding var isPresented: Bool
     var onSave: (String) -> Void
@@ -73,7 +73,7 @@ struct CustomAlertView: View {
     VStack {
         CustomAlertView(
             title: "Change photo",
-            message: "Please enter new value bellow",
+            message: "Please enter a new value below",
             inputText: $myText,
             isPresented: .constant(true),
             onSave: { newValue in
@@ -84,7 +84,7 @@ struct CustomAlertView: View {
         
         CustomAlertView(
             title: "Change photo",
-            message: "Please enter new value bellow",
+            message: "Please enter a new value below",
             inputText: $myText,
             isPresented: .constant(true),
             onSave: { newValue in
