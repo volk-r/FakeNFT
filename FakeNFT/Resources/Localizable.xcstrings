@@ -101,6 +101,15 @@
         }
       }
     },
+    "Description" : {
+
+    },
+    "Enter your name" : {
+
+    },
+    "Enter your website" : {
+
+    },
     "Favorite NFTs" : {
       "localizations" : {
         "ru" : {
@@ -150,6 +159,9 @@
           }
         }
       }
+    },
+    "Name" : {
+
     },
     "No internet" : {
       "localizations" : {
@@ -223,6 +235,12 @@
     },
     "Statistic View" : {
       "shouldTranslate" : false
+    },
+    "Tell us about yourself" : {
+
+    },
+    "Website" : {
+
     },
     "You don't have any featured NFTs yet" : {
       "localizations" : {

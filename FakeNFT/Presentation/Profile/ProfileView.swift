@@ -58,8 +58,7 @@ private extension ProfileView {
     private var editButton: some View {
         Button(
             action: {
-                // TODO: - open edit view
-                print("Edit profile")
+                viewModel.isEditProfilePresented.toggle()
             },
             label: {
                 Image(systemName: "square.and.pencil")
@@ -70,6 +69,10 @@ private extension ProfileView {
                     .padding(.trailing, 9)
             }
         )
+        .sheet(isPresented: $viewModel.isEditProfilePresented) {
+            EditProfileView()
+                .environment(viewModel)
+        }
     }
     
     // MARK: - header
