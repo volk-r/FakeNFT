@@ -13,7 +13,8 @@ struct EditableValue: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            TitleOfEditValue(title: valueType.title)
+            Text(valueType.title)
+                .appTextStyleHeadline3()
             CustomTextField(
                 text: $value,
                 placeholder: valueType.placeholder,
