@@ -12,7 +12,7 @@ struct EditProfileView: View {
     // MARK: - Properties
     
     @Environment(ProfileViewModel.self) var profileModel
-    @State private var viewModel = EditProfileViewModel()
+    @State private var viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
     
     // MARK: - body
     
@@ -21,10 +21,8 @@ struct EditProfileView: View {
             backgroundOverlay
             VStack {
                 closeButton
-                
                 VStack(alignment: .leading, spacing: 24) {
-                    photo
-                    
+                    avatar
                     EditableValue(
                         valueType: .name,
                         value: $viewModel.userName
@@ -38,7 +36,6 @@ struct EditProfileView: View {
                         value: $viewModel.userWebsite
                     )
                 }
-                
                 Spacer()
             }
         }
@@ -47,6 +44,8 @@ struct EditProfileView: View {
         .onAppear {
             viewModel.setupProfile(profileModel.profile)
         }
+        .onDisappear { viewModel.updateProfile() }
+        .overlay(alert)
     }
 }
 
@@ -85,9 +84,9 @@ private extension EditProfileView {
         }
     }
     
-    // MARK: - photo
+    // MARK: - avatar
     
-    private var photo: some View {
+    private var avatar: some View {
         HStack(alignment: .center) {
             Spacer()
             Image(.profile)
@@ -101,12 +100,35 @@ private extension EditProfileView {
                         .lineLimit(3)
                         .multilineTextAlignment(.center)
                         .padding(2)
+                        .onTapGesture {
+                            viewModel.showDialog.toggle()
+                        }
                 }
                 .clipShape(Circle())
                 .frame(width: 70, height: 70)
             Spacer()
         }
         .padding(.top, 22)
+    }
+    
+    // MARK: - alert
+    
+    private var alert: some View {
+        Group {
+            if viewModel.showDialog {
+                CustomAlertView(
+                    title: "Change photo",
+                    message: "Please enter new value bellow",
+                    inputText: $viewModel.avatarLink,
+                    isPresented: $viewModel.showDialog,
+                    onSave: { newValue in
+                        viewModel.updateAvatarLink(newValue)
+                    }
+                )
+                .transition(.opacity)
+            }
+        }
+        .animation(.easeInOut, value: viewModel.showDialog)
     }
 }
 
