@@ -30,6 +30,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
             }
         }
     }
+    var navigationPath = NavigationPath()
     var users: [User] = []
     var showingErrorAlert: Bool = false
     var showingSortDialog: Bool = false

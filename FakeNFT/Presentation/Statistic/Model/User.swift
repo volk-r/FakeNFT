@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable, Identifiable, Sendable, Equatable {
+struct User: Codable, Identifiable, Sendable, Equatable, Hashable {
     let id: String
     let name: String
     let avatar: String
@@ -97,7 +97,7 @@ struct User: Codable, Identifiable, Sendable, Equatable {
             id: "f2d94f2b-83ca-42c1-ab75-f7f4571e0e06",
             name: "Ila Simpson",
             avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/519.jpg",
-            description: "learn it all",
+            description: "Дизайнер из Казани, люблю цифровое искусство  и бейглы. В моей коллекции уже 100+ NFT,  и еще больше — на моём сайте. Открыт  к коллаборациям.",
             website: "https://practicum.yandex.ru/interface-designer/",
             nfts: [
                 "5093c01d-e79e-4281-96f1-76db5880ba70",

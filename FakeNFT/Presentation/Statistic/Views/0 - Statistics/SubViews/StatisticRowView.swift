@@ -39,7 +39,7 @@ struct StatisticRowView: View {
                 ImageLoaderFactory(
                     url: user.avatar,
                     contentMode: .fill,
-                    placeholder: Image(uiImage: .appUserPickStub),
+                    placeholder: Image(uiImage: GlobalConstants.userPictureStub),
                     isShowActivityIndicator: true
                 )
                 .frame(width: Constants.imageSize, height: Constants.imageSize)
@@ -48,7 +48,6 @@ struct StatisticRowView: View {
 
                 Text(user.name)
                     .appTextStyleHeadline3()
-                    .lineLimit(Constants.userNameLineLimit)
                     .padding(.leading, Constants.userNameLeadingPadding)
 
                 Spacer()

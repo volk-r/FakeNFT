@@ -242,6 +242,40 @@
           }
         }
       }
+    },
+    "userCardViewGoToUsersSiteButton" : {
+      "comment" : "Наименование кнопки \"Перейти на сайт пользователя\"",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to user's website"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти на сайт пользователя"
+          }
+        }
+      }
+    },
+    "usersCardViewNFTSCollectionCount" : {
+      "comment" : "Наименование гиперссылки на экран с коллекцией NFT",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFT collection (%lld)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коллекция NFT (%lld)"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
