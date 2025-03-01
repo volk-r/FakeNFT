@@ -80,7 +80,6 @@ private extension EditProfileView {
                 label: {
                     Image(systemName: "xmark")
                         .fontWeight(.bold)
-                        .foregroundColor(.appBlack)
                 }
             )
         }
