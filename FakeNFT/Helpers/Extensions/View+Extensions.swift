@@ -7,6 +7,9 @@
 import SwiftUI
 
 extension View {
+    
+    // MARK: - Text Styles
+    
     func appTextStyleBodyRegular(withColor color: Color = .appBlack) -> some View {
         self.modifier(AppTextStyleBodyRegular())
             .foregroundStyle(color)
@@ -45,5 +48,15 @@ extension View {
     func appTextStyleHeadline4(withColor color: Color = .appBlack) -> some View {
         self.modifier(AppTextStyleHeadline4())
             .foregroundStyle(color)
+    }
+    
+    // MARK: - TextField Styles
+    
+    func appTextFieldStyle(lineLimit: Int = 1) -> some View {
+        self.modifier(AppTextFieldStyle(lineLimit: lineLimit))
+    }
+    
+    func clearButton(on text: Binding<String>) -> some View {
+        self.modifier(AppTextFieldClearButtonStyle(text: text))
     }
 }
