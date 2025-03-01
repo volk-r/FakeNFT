@@ -18,11 +18,13 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     
     func fetchNFTData(likeIDs: [String]?) {
         // TODO: get favorite NFTs Data from API
+
         fetchMockNFTData()
     }
     
     // MARK: - fetchMockNFTData
     
+    // swiftlint:disable function_body_length
     func fetchMockNFTData() {
         favoriteNFTsData = [
             NFTModel(
@@ -111,4 +113,5 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
             )
         ]
     }
+    // swiftlint:enable function_body_length
 }

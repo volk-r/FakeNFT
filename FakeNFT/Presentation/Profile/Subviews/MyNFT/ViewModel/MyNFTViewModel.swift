@@ -58,6 +58,7 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
     
     // MARK: - fetchMockNFTData
     
+    // swiftlint:disable function_body_length
     func fetchMockNFTData() {
         nftsData = [
             NFTModel(
@@ -146,4 +147,5 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
             )
         ]
     }
+    // swiftlint:enable function_body_length
 }
