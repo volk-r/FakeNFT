@@ -94,6 +94,15 @@ private extension EditProfileView {
             Image(.profile)
                 .resizable()
                 .scaledToFit()
+                .overlay {
+                    Color(.appBlackUniversal)
+                        .opacity(0.6)
+                    Text("Change photo")
+                        .appTextStyleCaption3(withColor: .appWhiteUniversal)
+                        .lineLimit(3)
+                        .multilineTextAlignment(.center)
+                        .padding(2)
+                }
                 .clipShape(Circle())
                 .frame(width: 70, height: 70)
             Spacer()
