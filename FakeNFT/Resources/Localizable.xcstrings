@@ -237,6 +237,16 @@
         }
       }
     },
+    "Please enter a new value below" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, введите новое значение ниже"
+          }
+        }
+      }
+    },
     "Price" : {
       "localizations" : {
         "ru" : {
