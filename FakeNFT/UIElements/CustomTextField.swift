@@ -24,3 +24,22 @@ struct CustomTextField: View {
         .appTextFieldStyle(lineLimit: lineLimit)
     }
 }
+
+#Preview {
+    @Previewable @State var nameValue: String = ""
+    @Previewable @State var descriptionValue: String = ""
+    
+    VStack(spacing: 20) {
+        CustomTextField(
+            text: $nameValue,
+            placeholder: "Enter your name",
+            lineLimit: 1
+        )
+        
+        CustomTextField(
+            text: $descriptionValue,
+            placeholder: "Tell us about yourself",
+            lineLimit: 5
+        )
+    }
+}
