@@ -26,28 +26,62 @@ struct FavoriteNFTsView: View {
                 Text("You don't have any featured NFTs yet")
                     .appTextStyleBodyBold()
             } else {
-                ScrollView {
-                    LazyVGrid(
-                        columns: gridColumns,
-                        spacing: 20
-                    ) {
-                        ForEach(viewModel.favoriteNFTsData) { data in
-                            FavoriteNFTCardView(
-                                nftData: data,
-                                isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
-                            )
-                        }
-                    }
-                    .padding(.top, 20)
-                    .padding(.horizontal, 16)
-                }
+                LoadingSwitcher(
+                    viewModel.loadingState,
+                    content: { favoriteNFTsList },
+                    loading: { loadingContent },
+                    error: { errorContent }
+                )
             }
         }
         .navigationTitle("Favorite NFTs")
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            viewModel.fetchNFTData(likeIDs: profileModel.profile?.likes)
+        .task {
+            await viewModel.fetchNFTData(likeIDs: profileModel.profile?.likes)
+        }
+    }
+}
+
+extension FavoriteNFTsView {
+    
+    // MARK: - favoriteNFTsList
+    
+    private var favoriteNFTsList: some View {
+        ScrollView {
+            LazyVGrid(
+                columns: gridColumns,
+                spacing: 20
+            ) {
+                ForEach(viewModel.favoriteNFTsData) { data in
+                    FavoriteNFTCardView(
+                        nftData: data,
+                        isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
+                    )
+                }
+            }
+            .padding(.top, 20)
+            .padding(.horizontal, 16)
+        }
+    }
+    
+    // MARK: - errorContent
+    
+    // TODO: need general error view
+    private var errorContent: some View {
+        VStack(alignment: .center, spacing: 10) {
+            Text("Something went wrong")
+                .appTextStyleHeadline3(withColor: .appRedUniversal)
+            Text("Try again later")
+                .appTextStyleHeadline3(withColor: .appRedUniversal)
+        }
+    }
+    
+    // MARK: - loadingContent
+    
+    private var loadingContent: some View {
+        VStack(alignment: .center) {
+            ProgressView()
         }
     }
 }

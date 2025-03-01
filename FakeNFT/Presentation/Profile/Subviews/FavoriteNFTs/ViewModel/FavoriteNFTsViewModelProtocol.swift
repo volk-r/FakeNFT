@@ -7,8 +7,11 @@
 
 import Foundation
 
-protocol FavoriteNFTsViewModelProtocol {
+protocol FavoriteNFTsViewModelProtocol: Sendable {
     var favoriteNFTsData: [NFTModel] { get }
-    func fetchNFTData(likeIDs: [String]?)
-    func fetchMockNFTData()
+    var loadingState: LoadingState { get }
+    @MainActor
+    func fetchNFTData(likeIDs: [String]?) async
+    @MainActor
+    func fetchMockNFTData() async
 }

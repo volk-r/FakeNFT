@@ -48,7 +48,13 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             description: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
             website: "http://JoaquinPhoenix.com",
             nfts: Array(1...5).map { String($0) },
-            likes: Array(1...15).map { String($0) }
+            likes: [
+                "9810d484-c3fc-49e8-bc73-f5e602c36b40",
+                "e8c1f0b6-5caf-4f65-8e5b-12f4bcb29efb",
+                "594aaf01-5962-4ab7-a6b5-470ea37beb93",
+                "cc74e9ab-2189-465f-a1a6-8405e07e9fe4",
+                "c14cf3bc-7470-4eec-8a42-5eaa65f4053c"
+            ]
         )
     }
 }

@@ -47,18 +47,21 @@ struct FavoriteNFTCardView: View {
 
 #Preview {
     let model = FavoriteNFTsViewModel()
-    model.fetchMockNFTData()
     
-    return HStack(spacing: 8) {
-        FavoriteNFTCardView(
-            nftData: model.favoriteNFTsData.first!,
-            isLiked: true
-        )
-        
-        FavoriteNFTCardView(
-            nftData: model.favoriteNFTsData.last!,
-            isLiked: false
-        )
+    return AsyncPreviewModel {
+        HStack(spacing: 8) {
+            FavoriteNFTCardView(
+                nftData: model.favoriteNFTsData.first!,
+                isLiked: true
+            )
+            
+            FavoriteNFTCardView(
+                nftData: model.favoriteNFTsData.last!,
+                isLiked: false
+            )
+        }
+        .padding(.horizontal, 16)
+    } model: {
+        await model.fetchMockNFTData()
     }
-    .padding(.horizontal, 16)
 }

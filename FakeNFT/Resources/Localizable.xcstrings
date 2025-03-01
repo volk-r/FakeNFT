@@ -274,6 +274,16 @@
         }
       }
     },
+    "Something went wrong" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что-то пошло не так"
+          }
+        }
+      }
+    },
     "Sorting" : {
       "localizations" : {
         "ru" : {
@@ -310,6 +320,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Расскажите о себе"
+          }
+        }
+      }
+    },
+    "Try again later" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробуйте еще раз позже"
           }
         }
       }
