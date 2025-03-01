@@ -42,4 +42,5 @@ struct CustomTextField: View {
             lineLimit: 5
         )
     }
+    .padding()
 }
