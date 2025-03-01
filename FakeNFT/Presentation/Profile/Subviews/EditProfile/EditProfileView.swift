@@ -118,7 +118,7 @@ private extension EditProfileView {
             if viewModel.showDialog {
                 CustomAlertView(
                     title: "Change photo",
-                    message: "Please enter new value bellow",
+                    message: "Please enter a new value below",
                     inputText: $viewModel.avatarLink,
                     isPresented: $viewModel.showDialog,
                     onSave: { newValue in
