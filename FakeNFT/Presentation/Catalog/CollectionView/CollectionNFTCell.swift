@@ -13,42 +13,53 @@ struct CollectionNFTCell: View {
     private var nftDisplayName: String {
         nft.name.split(separator: " ").first.map(String.init) ?? nft.name
     }
+    private var priceText: String {
+        String(format: "%.2f ETH", nft.price)
+    }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 0) {
             NFTCard(
                 imageUrl: nft.images.first ?? "",
                 isLiked: false,
-                сardType: .normal,
+                сardType: .flexible,
                 action: {
                     // Change Like
                 }
             )
             
+            NFTCardDescription(
+                descriptionType: .none,
+                rating: nft.rating
+            )
+            .padding(.top, 8)
+            
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    NFTCardDescription(
-                        descriptionType: .belowRating,
-                        rating: nft.rating,
-                        title: nftDisplayName
-                    )
+                    Text(nftDisplayName)
+                        .appTextStyleBodyBold()
+                        .lineLimit(1)
                     
-                    Text("\(nft.price, specifier: "%.2f") ETH")
+                    Text(verbatim: priceText)
                         .appTextStyleCaption3()
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Button {
                     // Add to Cart
                 } label: {
-                    Image(systemName: "cart.fill")
+                    Image(.appAddToCart)
                         .tint(.appBlack)
                 }
+                .frame(width: 40, height: 40)
             }
+            .padding(.top, 4)
         }
-        .aspectRatio(108/192, contentMode: .fit)
+        .frame(maxWidth: .infinity, alignment: .topLeading)
     }
 }
 
 #Preview {
     CollectionNFTCell(nft: NFTModel.mock1)
+        .frame(width: 120, height: 200)
 }

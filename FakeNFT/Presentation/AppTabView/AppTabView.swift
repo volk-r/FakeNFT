@@ -29,9 +29,7 @@ struct AppTabView: View {
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
         
-        // TODO: - для быстрой отладки Collections View
-        //_catalogViewModel = StateObject(wrappedValue: CatalogViewModel())
-        _catalogViewModel = StateObject(wrappedValue: CatalogViewModel(collectionsService: NFTCollectionsServiceMock()))
+        _catalogViewModel = StateObject(wrappedValue: CatalogViewModel())
     }
     
     // MARK: - View
