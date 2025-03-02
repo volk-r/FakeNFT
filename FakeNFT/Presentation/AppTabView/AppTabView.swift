@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppTabView: View {
+    private let cartViewModel = CartViewModel()
+    
     // MARK: - Initializers
 
     init() {
@@ -44,7 +46,7 @@ struct AppTabView: View {
                     Text("Catalog")
                 }
                 .tag(1)
-            CartView()
+            CartView(viewModel: cartViewModel)
                 .tabItem {
                     Image(uiImage: .tabCart)
                     Text("Cart")

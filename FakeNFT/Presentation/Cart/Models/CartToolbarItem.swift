@@ -9,3 +9,7 @@ struct CartToolbarItem {
     let count: Int
     let price: Double
 }
+
+extension CartToolbarItem {
+    static let empty = CartToolbarItem(count: 0, price: 0)
+}

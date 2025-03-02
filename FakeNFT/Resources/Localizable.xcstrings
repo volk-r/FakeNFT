@@ -81,9 +81,6 @@
         }
       }
     },
-    "Cart View" : {
-      "shouldTranslate" : false
-    },
     "Catalog" : {
       "comment" : "Название tabItem \"Каталог\"",
       "localizations" : {
@@ -110,6 +107,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "Error loading cart" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка загрузки корзины"
           }
         }
       }
@@ -173,6 +180,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вернуться"
+          }
+        }
+      }
+    },
+    "Select payment method" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите способ оплаты"
           }
         }
       }
