@@ -12,7 +12,7 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
     
     @ObservedObject var viewModel: ViewModel
     @State private var isSortDialogPresented = false
-    @State private var selectedCollection: NFTCollection? = nil
+    @State private var selectedCollection: NFTCollection?
     
     // MARK: - Body
     
