@@ -9,7 +9,7 @@ import SwiftUI
 
 @Observable
 @MainActor
-final class CollectionViewModel: ObservableObject {
+final class CollectionViewModel: CollectionViewModelProtocol {
     let collection: NFTCollection
     let authorLink = URL(string: "https://practicum.yandex.ru/ios-developer/")
     var nftModels: [NFTModel] = []

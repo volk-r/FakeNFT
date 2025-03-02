@@ -19,43 +19,62 @@ struct CollectionNFTCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            NFTCard(
-                imageUrl: nft.images.first ?? "",
-                isLiked: false,
-                сardType: .flexible,
-                action: {
-                    // Change Like
-                }
-            )
-            
-            NFTCardDescription(
-                descriptionType: .none,
-                rating: nft.rating
-            )
-            .padding(.top, 8)
-            
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(nftDisplayName)
-                        .appTextStyleBodyBold()
-                        .lineLimit(1)
-                    
-                    Text(verbatim: priceText)
-                        .appTextStyleCaption3()
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                
-                Button {
-                    // Add to Cart
-                } label: {
-                    Image(.appAddToCart)
-                        .tint(.appBlack)
-                }
-                .frame(width: 40, height: 40)
-            }
-            .padding(.top, 4)
+            nftCardView
+            nftRatingView
+            nftDetailsView
         }
         .frame(maxWidth: .infinity, alignment: .topLeading)
+    }
+    
+    // MARK: - Subviews
+    
+    private var nftCardView: some View {
+        NFTCard(
+            imageUrl: nft.images.first ?? "",
+            isLiked: false,
+            сardType: .flexible,
+            action: {
+                // Change Like
+            }
+        )
+    }
+    
+    private var nftRatingView: some View {
+        NFTCardDescription(
+            descriptionType: .none,
+            rating: nft.rating
+        )
+        .padding(.top, 8)
+    }
+    
+    private var nftDetailsView: some View {
+        HStack {
+            detailsTextView
+            addToCartButton
+        }
+        .padding(.top, 4)
+    }
+    
+    private var detailsTextView: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(nftDisplayName)
+                .appTextStyleBodyBold()
+                .lineLimit(1)
+            
+            Text(verbatim: priceText)
+                .appTextStyleCaption3()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    private var addToCartButton: some View {
+        Button {
+            // Add to Cart
+        } label: {
+            Image(.appAddToCart)
+                .tint(.appBlack)
+        }
+        .frame(width: 40, height: 40)
     }
 }
 

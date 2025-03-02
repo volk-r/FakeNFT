@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct CollectionView: View {
-    @ObservedObject var viewModel: CollectionViewModel
+struct CollectionView<ViewModel: CollectionViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
     
     let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
