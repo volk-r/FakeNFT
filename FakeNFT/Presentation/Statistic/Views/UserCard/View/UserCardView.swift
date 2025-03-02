@@ -8,34 +8,6 @@
 import SwiftUI
 
 struct UserCardView: View {
-    // MARK: - Types
-
-    private enum Constants {
-        static let userImageAccessibilityIdentifier = "userCardViewImage"
-        static let userNameAccessibilityIdentifier = "userCardViewName"
-        static let userWebSiteButtonAccessibilityIdentifier = "userCardViewWebSiteButton"
-        static let nftsCollectionAccessibilityIdentifier = "userCardViewNFTsCollectionList"
-        static let defaultForegroundColor: Color = .appBlack
-        static let panelsTopPadding: CGFloat = 20
-        static let panelsHorizontalPadding: CGFloat = 16
-        static let usersNameHorizontalSpacing: CGFloat = 16
-        static let usersPictureSize: CGFloat = 70
-        static let userNameLineLimit: Int = 2
-        static let usersDescriptionTopPadding: CGFloat = 20
-        static let usersSiteButtonTextVerticalPadding: CGFloat = 10
-        static let usersSiteButtonCornerRadius: CGFloat = 16
-        static let usersSiteButtonBorderWidth: CGFloat = 1
-        static let usersSiteButtonBorderColor: Color = .appBlack
-        static let usersSiteButtonTopPadding: CGFloat = 28
-        static let listEdgeInsets = EdgeInsets(
-            top: 0,
-            leading: 0,
-            bottom: 0,
-            trailing: 0
-        )
-        static let listTopPadding: CGFloat = 40
-    }
-
     // MARK: - Constants
 
     let user: User
@@ -162,6 +134,36 @@ struct UserCardView: View {
 
     private func dismissView() {
         dismiss()
+    }
+}
+
+extension UserCardView {
+    // MARK: - Types
+
+    private enum Constants {
+        static let userImageAccessibilityIdentifier = "userCardViewImage"
+        static let userNameAccessibilityIdentifier = "userCardViewName"
+        static let userWebSiteButtonAccessibilityIdentifier = "userCardViewWebSiteButton"
+        static let nftsCollectionAccessibilityIdentifier = "userCardViewNFTsCollectionList"
+        static let defaultForegroundColor: Color = .appBlack
+        static let panelsTopPadding: CGFloat = 20
+        static let panelsHorizontalPadding: CGFloat = 16
+        static let usersNameHorizontalSpacing: CGFloat = 16
+        static let usersPictureSize: CGFloat = 70
+        static let userNameLineLimit: Int = 2
+        static let usersDescriptionTopPadding: CGFloat = 20
+        static let usersSiteButtonTextVerticalPadding: CGFloat = 10
+        static let usersSiteButtonCornerRadius: CGFloat = 16
+        static let usersSiteButtonBorderWidth: CGFloat = 1
+        static let usersSiteButtonBorderColor: Color = .appBlack
+        static let usersSiteButtonTopPadding: CGFloat = 28
+        static let listEdgeInsets = EdgeInsets(
+            top: 0,
+            leading: 0,
+            bottom: 0,
+            trailing: 0
+        )
+        static let listTopPadding: CGFloat = 40
     }
 }
 
