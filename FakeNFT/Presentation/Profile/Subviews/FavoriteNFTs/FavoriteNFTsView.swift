@@ -34,7 +34,7 @@ struct FavoriteNFTsView: View {
                 )
             }
         }
-        .navigationTitle("Favorite NFTs")
+        .navigationTitle(viewModel.isEmptyNFTs ? "" : "Favorite NFTs")
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
         .task {

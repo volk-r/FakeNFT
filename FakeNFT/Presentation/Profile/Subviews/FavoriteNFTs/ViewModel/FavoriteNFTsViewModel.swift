@@ -12,16 +12,21 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     
     // MARK: - Properties
     
+    private let nftDetailsService: NFTDetailsServiceProtocol = NFTDetailsService()
+    
     private(set) var favoriteNFTsData: [NFTModel] = []
     private(set) var loadingState: LoadingState = .default
-    private let nftDetailsService: NFTDetailsServiceProtocol = NFTDetailsService()
+    private(set) var isEmptyNFTs: Bool = true
     
     // MARK: - fetchNFTData
     
-    @MainActor
     func fetchNFTData(likeIDs: [String]?) async {
-        guard let likeIDs else { return }
+        guard let likeIDs else {
+            isEmptyNFTs = true
+            return
+        }
         
+        isEmptyNFTs = false
         loadingState = .loading
         
         do {
@@ -35,7 +40,6 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     // MARK: - fetchMockNFTData
     
     // swiftlint:disable function_body_length
-    @MainActor
     func fetchMockNFTData() async {
         loadingState = .loading
         

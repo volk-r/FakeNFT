@@ -11,6 +11,7 @@ import Foundation
 protocol FavoriteNFTsViewModelProtocol: Sendable {
     var favoriteNFTsData: [NFTModel] { get }
     var loadingState: LoadingState { get }
+    var isEmptyNFTs: Bool { get }
     func fetchNFTData(likeIDs: [String]?) async
     func fetchMockNFTData() async
 }

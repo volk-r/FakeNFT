@@ -18,36 +18,32 @@ struct MyNFTView: View {
     
     var body: some View {
         VStack {
-            if profileModel.profile?.nfts == nil {
+            if viewModel.isEmptyNFTs {
                 Text("You don't have NFT yet")
                     .appTextStyleBodyBold()
             } else {
-                List(viewModel.nftsData, id: \.id) { data in
-                    Section {
-                        NFTCardView(
-                            nftData: data,
-                            isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
-                        )
-                    }
-                    .listRowSeparator(.hidden)
-                }
-                .listStyle(.plain)
-                .padding(.top)
+                LoadingSwitcher(
+                    viewModel.loadingState,
+                    content: { myNFTsList },
+                    loading: { loadingContent },
+                    error: { errorContent }
+                )
             }
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                sortButton
+            Group {
+                if !viewModel.isEmptyNFTs {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        sortButton
+                    }
+                }
             }
         }
-        .navigationTitle("My NFT")
+        .navigationTitle(viewModel.isEmptyNFTs ? "" : "My NFT")
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            viewModel.fetchNFTData(nftIDs: profileModel.profile?.nfts)
-        }
         .task {
-            await viewModel.loadPageSettings()
+            await viewModel.fetchNFTData(nftIDs: profileModel.profile?.nfts)
         }
         .confirmationDialog(
             NFTSortingType.description,
@@ -86,6 +82,42 @@ extension MyNFTView {
                     .padding(.trailing, 9)
             }
         )
+    }
+    
+    // MARK: - myNFTsList
+    
+    private var myNFTsList: some View {
+        List(viewModel.nftsData, id: \.id) { data in
+            Section {
+                NFTCardView(
+                    nftData: data,
+                    isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
+                )
+            }
+            .listRowSeparator(.hidden)
+        }
+        .listStyle(.plain)
+        .padding(.top)
+    }
+    
+    // MARK: - errorContent
+    
+    // TODO: need general error view
+    private var errorContent: some View {
+        VStack(alignment: .center, spacing: 10) {
+            Text("Something went wrong")
+                .appTextStyleHeadline3(withColor: .appRedUniversal)
+            Text("Try again later")
+                .appTextStyleHeadline3(withColor: .appRedUniversal)
+        }
+    }
+    
+    // MARK: - loadingContent
+    
+    private var loadingContent: some View {
+        VStack(alignment: .center) {
+            ProgressView()
+        }
     }
 }
 

@@ -73,20 +73,23 @@ extension NFTCardView {
 
 #Preview {
     let model = MyNFTViewModel()
-    model.fetchMockNFTData()
     
-    return VStack {
-        NFTCardView(
-            nftData: model.nftsData.first!,
-            isLiked: true
-        )
-        .padding(.horizontal)
-        
-        NFTCardView(
-            nftData: model.nftsData.last!,
-            isLiked: false
-        )
-        .padding(.horizontal)
+    return AsyncPreviewModel {
+        VStack {
+            NFTCardView(
+                nftData: model.nftsData.first!,
+                isLiked: true
+            )
+            .padding(.horizontal)
+            
+            NFTCardView(
+                nftData: model.nftsData.last!,
+                isLiked: false
+            )
+            .padding(.horizontal)
+        }
+        .padding()
+    } model: {
+        await model.fetchMockNFTData()
     }
-    .padding()
 }
