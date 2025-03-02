@@ -29,7 +29,6 @@ struct FavoriteNFTsView: View {
                 LoadingSwitcher(
                     viewModel.loadingState,
                     content: { favoriteNFTsList },
-                    loading: { loadingContent },
                     error: { errorContent }
                 )
             }
@@ -74,14 +73,6 @@ extension FavoriteNFTsView {
                 .appTextStyleHeadline3(withColor: .appRedUniversal)
             Text("Try again later")
                 .appTextStyleHeadline3(withColor: .appRedUniversal)
-        }
-    }
-    
-    // MARK: - loadingContent
-    
-    private var loadingContent: some View {
-        VStack(alignment: .center) {
-            ProgressView()
         }
     }
 }
