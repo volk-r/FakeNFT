@@ -13,6 +13,7 @@ final class CollectionViewModel: ObservableObject {
     let collection: NFTCollection
     let authorLink = URL(string: "https://practicum.yandex.ru/ios-developer/")
     var nftModels: [NFTModel] = []
+    var loadingState: LoadingState = .default
     
     private let nftDetailsService: NFTDetailsServiceProtocol
     
@@ -23,9 +24,13 @@ final class CollectionViewModel: ObservableObject {
     }
     
     func loadNFT() async {
+        loadingState = .loading
+        
         do {
             nftModels = try await nftDetailsService.loadNFT(for: collection.nfts)
+            loadingState = .success
         } catch {
+            loadingState = .failure
             print("Error loading NFTs: \(error)")
         }
     }

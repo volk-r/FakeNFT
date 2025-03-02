@@ -22,13 +22,7 @@ struct CollectionView: View {
                     titleView
                     authorView
                     descriptionView
-                    
-                    if viewModel.nftModels.isEmpty {
-                        ProgressView()
-                            .padding()
-                    } else {
-                        nftCollectionView
-                    }
+                    collectionLoaderView
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(16)
@@ -80,6 +74,16 @@ struct CollectionView: View {
             .padding(.top, 4)
     }
     
+    private var collectionLoaderView: some View {
+        LoadingSwitcher(viewModel.loadingState) {
+            nftCollectionView
+        } error: {
+            Text("Failed to retrieve data")
+                .appTextStyleCaption2()
+        }
+        .padding(.top, 24)
+    }
+    
     private var nftCollectionView: some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(viewModel.nftModels) { nft in
@@ -91,7 +95,6 @@ struct CollectionView: View {
                     .shadow(radius: 2)
             }
         }
-        .padding(.top, 24)
     }
     
     private var toolbarItem: some ToolbarContent {
