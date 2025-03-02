@@ -9,6 +9,11 @@ import Testing
 @testable import FakeNFT
 
 struct NFTCardViewModelTests {
+    @Test func testInitState() async {
+        let viewModel: NFTCardViewModelProtocol = NFTCardViewModel()
+        #expect(viewModel.isLiked == false)
+    }
+    
     @Test func testSetLikeToFale() async {
         let viewModel: NFTCardViewModelProtocol = NFTCardViewModel()
         viewModel.setIsLiked(false)
