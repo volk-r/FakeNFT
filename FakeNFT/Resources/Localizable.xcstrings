@@ -1,6 +1,29 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld NFT" : {
+
+    },
+    "Are you sure you want remove an item from the trash?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите\nудалить объект из корзины?"
+          }
+        }
+      }
+    },
+    "By making a purchase, you agree to the terms and conditions" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Совершая покупку, вы соглашаетесь с условиями"
+          }
+        }
+      }
+    },
     "By name" : {
       "localizations" : {
         "ru" : {
@@ -48,6 +71,16 @@
         }
       }
     },
+    "Cart is empty" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Корзина пуста"
+          }
+        }
+      }
+    },
     "Cart View" : {
       "shouldTranslate" : false
     },
@@ -71,8 +104,48 @@
     "Catalog View" : {
       "shouldTranslate" : false
     },
+    "Delete" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "For payment" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "К оплате"
+          }
+        }
+      }
+    },
     "No internet" : {
 
+    },
+    "Pay" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оплатить"
+          }
+        }
+      }
+    },
+    "Price" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цена"
+          }
+        }
+      }
     },
     "Profile" : {
       "comment" : "Название tabItem \"Профиль\"",
@@ -93,6 +166,16 @@
     },
     "Profile View" : {
       "shouldTranslate" : false
+    },
+    "Return" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вернуться"
+          }
+        }
+      }
     },
     "Sorting" : {
       "localizations" : {
@@ -123,6 +206,26 @@
     },
     "Statistic View" : {
       "shouldTranslate" : false
+    },
+    "Success! The payment went through Congratulations on your purchase!" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Успех! Оплата прошла,\nпоздравляем с покупкой!"
+          }
+        }
+      }
+    },
+    "User agreement" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пользовательского соглашения"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
