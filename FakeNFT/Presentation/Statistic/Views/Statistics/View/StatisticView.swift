@@ -135,6 +135,7 @@ struct StatisticView: View {
                 }
             }
         }
+        .accentColor(.appBlack)
         .task {
             await viewModel.loadData()
         }
