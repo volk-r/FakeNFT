@@ -16,6 +16,16 @@ struct CollectionView: View {
             Text(viewModel.collection.name.capitalized)
                 .font(.largeTitle)
                 .padding()
+            
+            if viewModel.nftModels.isEmpty {
+                ProgressView()
+                    .padding()
+            } else {
+                List(viewModel.nftModels) { nft in
+                    Text(nft.name)
+                }
+                .listStyle(.plain)
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -24,12 +34,23 @@ struct CollectionView: View {
                     dismiss()
                 } label: {
                     Image(systemName: "chevron.left")
+                        .foregroundStyle(.appBlack)
                 }
             }
+        }
+        .task {
+            await viewModel.loadNFT()
         }
     }
 }
 
 #Preview {
-    CollectionView(viewModel: CollectionViewModel(collection: NFTCollection.mock1))
+    NavigationStack {
+        CollectionView(
+            viewModel: CollectionViewModel(
+                collection: NFTCollection.mock1,
+                nftDetailsService: NFTDetailsServiceMock()
+            )
+        )
+    }
 }
