@@ -15,10 +15,10 @@ struct CartToolbarView: View {
         HStack(spacing: 24) {
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(item.count) NFT")
-                PriceView(
-                    price: item.price,
-                    color: .appGreenUniversal
-                )
+                PriceView(price: item.price)
+                    .appTextStyleBodyBold(
+                        withColor: .appGreenUniversal
+                    )
             }
             Button(action: onPayment, label: {
                 Text("For payment")

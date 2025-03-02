@@ -47,6 +47,7 @@ struct CartItemView: View {
             Text("Price")
                 .appTextStyleBodyRegular()
             PriceView(price: item.price)
+                .appTextStyleBodyBold()
         }
     }
     
