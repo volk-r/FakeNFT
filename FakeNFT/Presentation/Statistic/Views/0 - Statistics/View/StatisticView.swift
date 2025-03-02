@@ -105,7 +105,21 @@ struct StatisticView: View {
                     }
                     Button("StatisticViewCloseButton", role: .cancel) { }
                 }
-                
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button(
+                            action: {
+                                viewModel.sortList()
+                            },
+                            label: {
+                                Image(uiImage: Constants.sortButtonImage)
+                                    .foregroundStyle(Constants.sortButtonColor)
+                            }
+                        )
+                        .disabled(viewModel.loadingState == .loading)
+                    }
+                }
+
                 if viewModel.loadingState == .loading {
                     ZStack {
                         Color.black.opacity(Constants.loadingDataBackgroundShading)
@@ -119,20 +133,6 @@ struct StatisticView: View {
                     }
                     .allowsHitTesting(true)
                 }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button(
-                    action: {
-                        viewModel.sortList()
-                    },
-                    label: {
-                        Image(uiImage: Constants.sortButtonImage)
-                            .foregroundStyle(Constants.sortButtonColor)
-                    }
-                )
-                .disabled(viewModel.loadingState == .loading)
             }
         }
         .task {
