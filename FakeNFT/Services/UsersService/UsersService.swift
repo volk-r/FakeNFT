@@ -14,6 +14,9 @@ actor UsersService: UsersServiceProtocol {
     // MARK: - Private Properties
 
     private var usersCache: [UsersCache] = []
+    var isRunningUITests: Bool {
+        return ProcessInfo.processInfo.environment["TEST"] == "true"
+    }
 
     // MARK: - Initializers
 
@@ -28,6 +31,9 @@ actor UsersService: UsersServiceProtocol {
     }
     
     func loadUsers(fromPage page: Int, count: Int, sortBy: UsersSortType) async throws -> [User] {
+        if isRunningUITests {
+            return try User.getMockData()
+        }
         if let cachedUsers = usersCache.first(
             where: {
                 $0.page == page && $0.count == count && $0.sortBy == sortBy

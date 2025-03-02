@@ -28,7 +28,7 @@ struct StatisticViewScreen {
     }
     
     func loadStatistics() -> Self {
-        sleep(30)
+        sleep(1)
         let usersList = listElement()
         XCTAssertTrue(usersList.exists)
         let firstCell = getFirstCell()
