@@ -11,7 +11,7 @@ struct CollectionView: View {
     @ObservedObject var viewModel: CollectionViewModel
     @Environment(\.dismiss) private var dismiss
     
-    let columns = [GridItem(.adaptive(minimum: 120), spacing: 16)]
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 3)
     
     var body: some View {
         ScrollView {
@@ -22,7 +22,7 @@ struct CollectionView: View {
                     titleView
                     authorView
                     descriptionView
-                    collectionLoaderView
+                    nftCollectionView
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(16)
@@ -74,27 +74,18 @@ struct CollectionView: View {
             .padding(.top, 4)
     }
     
-    private var collectionLoaderView: some View {
+    private var nftCollectionView: some View {
         LoadingSwitcher(viewModel.loadingState) {
-            nftCollectionView
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(viewModel.nftModels) { nft in
+                    CollectionNFTCell(nft: nft)
+                }
+            }
         } error: {
             Text("Failed to retrieve data")
                 .appTextStyleCaption2()
         }
         .padding(.top, 24)
-    }
-    
-    private var nftCollectionView: some View {
-        LazyVGrid(columns: columns, spacing: 16) {
-            ForEach(viewModel.nftModels) { nft in
-                Text(nft.name)
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    .cornerRadius(12)
-                    .shadow(radius: 2)
-            }
-        }
     }
     
     private var toolbarItem: some ToolbarContent {
@@ -103,7 +94,7 @@ struct CollectionView: View {
                 dismiss()
             } label: {
                 Image(systemName: "chevron.left")
-                    .foregroundStyle(.appBlack)
+                    .tint(.appBlack)
             }
         }
     }
