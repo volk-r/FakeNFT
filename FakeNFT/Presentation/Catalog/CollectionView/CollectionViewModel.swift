@@ -11,6 +11,7 @@ import SwiftUI
 @MainActor
 final class CollectionViewModel: ObservableObject {
     let collection: NFTCollection
+    let authorLink = URL(string: "https://practicum.yandex.ru/ios-developer/")
     var nftModels: [NFTModel] = []
     
     private let nftDetailsService: NFTDetailsServiceProtocol

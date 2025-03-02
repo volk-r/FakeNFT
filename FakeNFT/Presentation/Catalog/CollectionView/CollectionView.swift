@@ -15,20 +15,24 @@ struct CollectionView: View {
     
     var body: some View {
         ScrollView {
-            cover
-            
-            VStack(alignment: .leading) {
-                title
+            VStack(spacing: 0) {
+                coverView
                 
-                if viewModel.nftModels.isEmpty {
-                    ProgressView()
-                        .padding()
-                } else {
-                    nftCollection
+                VStack(alignment: .leading, spacing: 0) {
+                    titleView
+                    authorView
+                    descriptionView
+                    
+                    if viewModel.nftModels.isEmpty {
+                        ProgressView()
+                            .padding()
+                    } else {
+                        nftCollectionView
+                    }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(16)
         }
         .edgesIgnoringSafeArea(.top)
         .navigationBarTitleDisplayMode(.inline)
@@ -42,7 +46,7 @@ struct CollectionView: View {
     
     // MARK: - Subviews
     
-    private var cover: some View {
+    private var coverView: some View {
         ImageLoaderFactory(url: viewModel.collection.cover, contentMode: .fill)
             .frame(maxWidth: .infinity)
             .frame(height: 310)
@@ -50,12 +54,33 @@ struct CollectionView: View {
             .ignoresSafeArea(edges: .top)
     }
     
-    private var title: some View {
+    private var titleView: some View {
         Text(viewModel.collection.name.capitalized)
             .appTextStyleHeadline3()
     }
     
-    private var nftCollection: some View {
+    private var authorView: some View {
+        HStack(spacing: 4) {
+            Text("Author of the collection:")
+                .appTextStyleCaption2()
+            
+            Button {
+                // Open viewModel.authorLink in Web View
+            } label: {
+                Text(viewModel.collection.author)
+                    .appTextStyleCaption1(withColor: .appBlueUniversal)
+            }
+        }
+        .padding(.top, 8)
+    }
+    
+    private var descriptionView: some View {
+        Text(viewModel.collection.description.capitalized)
+            .appTextStyleCaption2()
+            .padding(.top, 4)
+    }
+    
+    private var nftCollectionView: some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(viewModel.nftModels) { nft in
                 Text(nft.name)
@@ -66,7 +91,7 @@ struct CollectionView: View {
                     .shadow(radius: 2)
             }
         }
-        .padding(.top, 16)
+        .padding(.top, 24)
     }
     
     private var toolbarItem: some ToolbarContent {
