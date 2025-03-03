@@ -55,7 +55,7 @@ extension NFTCardDescription {
     // MARK: - ratingProgress
     
     var ratingProgress: some View {
-        HStack {
+        HStack(spacing: 0) {
             ForEach(0..<maxRating, id: \.self) { index in
                 Image(systemName: "star.fill")
                     .foregroundColor(
