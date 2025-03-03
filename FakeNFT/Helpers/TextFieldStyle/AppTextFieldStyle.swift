@@ -16,7 +16,7 @@ struct AppTextFieldStyle: ViewModifier {
         content
             .appTextStyleBodyRegular()
             .lineLimit(lineLimit, reservesSpace: true)
-            .padding(.all, 11)
+            .padding(11)
             .padding(.horizontal, 5)
             .background(.appLightGray)
             .overlay(
