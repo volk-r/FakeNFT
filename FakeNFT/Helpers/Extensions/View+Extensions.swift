@@ -30,6 +30,11 @@ extension View {
             .foregroundStyle(color)
     }
     
+    func appTextStyleCaption3(withColor color: Color = .appBlack) -> some View {
+        self.modifier(AppTextStyleCaption3())
+            .foregroundStyle(color)
+    }
+    
     func appTextStyleHeadline1(withColor color: Color = .appBlack) -> some View {
         self.modifier(AppTextStyleHeadline1())
             .foregroundStyle(color)

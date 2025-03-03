@@ -7,13 +7,14 @@
 
 import Foundation
 
+@MainActor
 protocol MyNFTViewModelProtocol: AnyObject, Sendable {
     var nftsData: [NFTModel] { get }
     var showingSortingDialog: Bool { get set }
+    var loadingState: LoadingState { get }
+    var isEmptyNFTs: Bool { get }
     var sortType: NFTSortingType { get }
-    @MainActor
-    func loadPageSettings() async
-    func fetchNFTData(nftIDs: [String]?)
-    func fetchMockNFTData()
+    func fetchNFTData(nftIDs: [String]?) async
+    func fetchMockNFTData() async
     func setSorting(_ sortingType: NFTSortingType)
 }

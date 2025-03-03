@@ -32,12 +32,16 @@ struct ProfileView: View {
                     editButton
                 }
             }
-            .navigationDestination(isPresented: $viewModel.isAboutPresented) {
-                WebView(navigationURL: viewModel.profile?.website ?? "")
-            }
             .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
                 MyNFTView()
                     .environment(viewModel)
+            }
+            .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
+                FavoriteNFTsView()
+                    .environment(viewModel)
+            }
+            .navigationDestination(isPresented: $viewModel.isDeveloperInfoPresented) {
+                WebView(navigationURL: viewModel.profile?.website ?? "")
             }
         }
         .accentColor(.appBlack)
@@ -54,8 +58,7 @@ private extension ProfileView {
     private var editButton: some View {
         Button(
             action: {
-                // TODO: - open edit view
-                print("Edit profile")
+                viewModel.isEditProfilePresented.toggle()
             },
             label: {
                 Image(systemName: "square.and.pencil")
@@ -66,17 +69,16 @@ private extension ProfileView {
                     .padding(.trailing, 9)
             }
         )
+        .sheet(isPresented: $viewModel.isEditProfilePresented) {
+            EditProfileView(profile: viewModel.profile)
+        }
     }
     
     // MARK: - header
     
     private var header: some View {
         HStack {
-            Image(.profile)
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .frame(width: 70, height: 70)
+            ProfileAvatarView(avatarLink: viewModel.profile?.avatar ?? "")
             Text(verbatim: viewModel.profile?.name ?? "")
                 .appTextStyleHeadline3()
                 .padding(.leading, 16)
@@ -93,7 +95,7 @@ private extension ProfileView {
                 .padding(.top, 20)
             HStack {
                 Button {
-                    viewModel.isAboutPresented = true
+                    viewModel.isDeveloperInfoPresented = true
                 } label: {
                     Text(verbatim: URL(string: viewModel.profile?.website ?? "")?.host(percentEncoded: true) ?? "")
                         .foregroundStyle(.appBlueUniversal)
@@ -115,9 +117,12 @@ private extension ProfileView {
                         viewModel.isMyNFTPresented = true
                     }
                 ProfileListItemView(listItem: LocalizedStringKey("Favorite NFTs (\(viewModel.getFavoriteNFTsCount()))"))
+                    .onTapGesture {
+                        viewModel.isFavoriteNFTsPresented = true
+                    }
                 ProfileListItemView(listItem: LocalizedStringKey("About the developer"))
                     .onTapGesture {
-                        viewModel.isAboutPresented = true
+                        viewModel.isDeveloperInfoPresented = true
                     }
             }
             .appTextStyleBodyBold()

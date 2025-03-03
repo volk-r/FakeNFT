@@ -1,43 +1,33 @@
 //
-//  MyNFTViewModel.swift
+//  FavoriteNFTsViewModel.swift
 //  FakeNFT
 //
-//  Created by Roman Romanov on 23.02.2025.
+//  Created by Roman Romanov on 26.02.2025.
 //
 
-import SwiftUI
+import Foundation
 
 @Observable
-final class MyNFTViewModel: MyNFTViewModelProtocol {
+final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     
     // MARK: - Properties
     
-    var showingSortingDialog: Bool = false
+    private let nftDetailsService: NFTDetailsServiceProtocol
     
-    @ObservationIgnored
-    @AppStorage("myNFTViewModelSortType") private(set) var sortType: NFTSortingType = .byPrice {
-        didSet {
-            switch sortType {
-            case .byPrice:
-                nftsData = nftsData.sorted { $0.price < $1.price }
-            case .byRating:
-                nftsData = nftsData.sorted { $0.rating > $1.rating }
-            case .byName:
-                nftsData = nftsData.sorted { $0.name < $1.name }
-            }
-        }
-    }
-    
-    private let nftDetailsService: NFTDetailsServiceProtocol = NFTDetailsService()
-
+    private(set) var favoriteNFTsData: [NFTModel] = []
     private(set) var loadingState: LoadingState = .default
     private(set) var isEmptyNFTs: Bool = true
-    private(set) var nftsData: [NFTModel] = []
+    
+    // MARK: - init
+    
+    init(nftDetailsService: NFTDetailsServiceProtocol = NFTDetailsService()) {
+        self.nftDetailsService = nftDetailsService
+    }
     
     // MARK: - fetchNFTData
     
-    func fetchNFTData(nftIDs: [String]?) async {
-        guard let nftIDs else {
+    func fetchNFTData(likeIDs: [String]?) async {
+        guard let likeIDs else {
             isEmptyNFTs = true
             return
         }
@@ -46,18 +36,11 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
         loadingState = .loading
         
         do {
-            nftsData = try await nftDetailsService.loadNFT(for: nftIDs)
+            favoriteNFTsData = try await nftDetailsService.loadNFT(for: likeIDs)
             loadingState = .success
-            setSorting(sortType)
         } catch {
             loadingState = .failure
         }
-    }
-    
-    // MARK: - setSorting
-    
-    func setSorting(_ sortingType: NFTSortingType) {
-        self.sortType = sortingType
     }
     
     // MARK: - fetchMockNFTData
@@ -68,9 +51,9 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
         
         do {
             try await Task.sleep(for: .seconds(5))
-            
+           
             loadingState = .success
-            nftsData = [
+            favoriteNFTsData = [
                 NFTModel(
                     createdAt: "2023-10-08T07:43:22.944Z[GMT]",
                     name: "Finn",

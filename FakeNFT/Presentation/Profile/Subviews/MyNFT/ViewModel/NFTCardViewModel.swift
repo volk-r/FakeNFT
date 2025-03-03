@@ -18,6 +18,7 @@ final class NFTCardViewModel: NFTCardViewModelProtocol {
     
     func likeToggle(for id: String) {
         isLiked.toggle()
+        // TODO: put request
         print("put request with \(isLiked.description) for id: \(id)")
     }
     
