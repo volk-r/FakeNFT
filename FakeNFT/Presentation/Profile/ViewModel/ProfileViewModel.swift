@@ -14,7 +14,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     var isMyNFTPresented: Bool = false
     var isFavoriteNFTsPresented: Bool = false
-    var isAboutPresented: Bool = false
+    var isDeveloperInfoPresented: Bool = false
     var isEditProfilePresented: Bool = false
     
     private(set) var profile: ProfileModel?

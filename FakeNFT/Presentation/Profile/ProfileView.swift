@@ -40,7 +40,7 @@ struct ProfileView: View {
                 FavoriteNFTsView()
                     .environment(viewModel)
             }
-            .navigationDestination(isPresented: $viewModel.isAboutPresented) {
+            .navigationDestination(isPresented: $viewModel.isDeveloperInfoPresented) {
                 WebView(navigationURL: viewModel.profile?.website ?? "")
             }
         }
@@ -100,7 +100,7 @@ private extension ProfileView {
                 .padding(.top, 20)
             HStack {
                 Button {
-                    viewModel.isAboutPresented = true
+                    viewModel.isDeveloperInfoPresented = true
                 } label: {
                     Text(verbatim: URL(string: viewModel.profile?.website ?? "")?.host(percentEncoded: true) ?? "")
                         .foregroundStyle(.appBlueUniversal)
@@ -127,7 +127,7 @@ private extension ProfileView {
                     }
                 ProfileListItemView(listItem: LocalizedStringKey("About the developer"))
                     .onTapGesture {
-                        viewModel.isAboutPresented = true
+                        viewModel.isDeveloperInfoPresented = true
                     }
             }
             .appTextStyleBodyBold()
