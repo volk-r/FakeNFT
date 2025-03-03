@@ -22,6 +22,8 @@ struct AppTextFieldClearButtonStyle: ViewModifier {
                     text = ""
                 } label: {
                     Image(systemName: "multiply.circle.fill")
+                        .resizable()
+                        .frame(width: 16, height: 16)
                 }
                 .opacity(text.isEmpty ? 0 : 1)
                 .buttonStyle(.plain)
