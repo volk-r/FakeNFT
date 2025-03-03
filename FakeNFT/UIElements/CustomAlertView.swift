@@ -17,7 +17,7 @@ struct CustomAlertView: View {
     var body: some View {
         ZStack {
             Color.black.opacity(0.4)
-                .edgesIgnoringSafeArea(.all)
+                .ignoresSafeArea()
 
             VStack(spacing: 5) {
                 Group {
