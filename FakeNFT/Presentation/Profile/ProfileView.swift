@@ -79,11 +79,7 @@ private extension ProfileView {
     
     private var header: some View {
         HStack {
-            Image(.profile)
-                .resizable()
-                .scaledToFit()
-                .clipShape(Circle())
-                .frame(width: 70, height: 70)
+            ProfileAvatarView(avatarLink: viewModel.profile?.avatar ?? "")
             Text(verbatim: viewModel.profile?.name ?? "")
                 .appTextStyleHeadline3()
                 .padding(.leading, 16)

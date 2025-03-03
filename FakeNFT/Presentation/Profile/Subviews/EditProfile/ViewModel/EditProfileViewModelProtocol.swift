@@ -8,7 +8,8 @@
 import Foundation
 
 protocol EditProfileViewModelProtocol {
-    var avatarLink: String { get set }
+    var avatarLink: String { get }
+    var avatarLinkChangeable: String { get set }
     var userName: String { get set }
     var userDescription: String { get set }
     var userWebsite: String { get set }

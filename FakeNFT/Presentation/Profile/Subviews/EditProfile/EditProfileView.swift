@@ -89,23 +89,20 @@ private extension EditProfileView {
     private var avatar: some View {
         HStack {
             Spacer()
-            Image(.profile)
-                .resizable()
-                .scaledToFit()
-                .overlay {
-                    Color(.appBlackUniversal)
-                        .opacity(0.6)
-                    Text("Change photo")
-                        .appTextStyleCaption3(withColor: .appWhiteUniversal)
-                        .lineLimit(3)
-                        .multilineTextAlignment(.center)
-                        .padding(2)
-                        .onTapGesture {
-                            viewModel.showDialog.toggle()
-                        }
-                }
-                .clipShape(Circle())
-                .frame(width: 70, height: 70)
+            ProfileAvatarView(avatarLink: viewModel.avatarLink)
+            .overlay {
+                Color(.appBlackUniversal)
+                    .opacity(0.6)
+                    .clipShape(Circle())
+                Text("Change photo")
+                    .appTextStyleCaption3(withColor: .appWhiteUniversal)
+                    .lineLimit(3)
+                    .multilineTextAlignment(.center)
+                    .padding(2)
+                    .onTapGesture {
+                        viewModel.showDialog.toggle()
+                    }
+            }
             Spacer()
         }
         .padding(.top, 22)
@@ -119,7 +116,7 @@ private extension EditProfileView {
                 CustomAlertView(
                     title: "Change photo",
                     message: "Please enter a new value below",
-                    inputText: $viewModel.avatarLink,
+                    inputText: $viewModel.avatarLinkChangeable,
                     isPresented: $viewModel.showDialog,
                     onSave: { newValue in
                         viewModel.updateAvatarLink(newValue)

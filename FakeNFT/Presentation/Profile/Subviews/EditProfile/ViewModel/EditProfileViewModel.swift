@@ -12,7 +12,9 @@ final class EditProfileViewModel: EditProfileViewModelProtocol {
     
     // MARK: - Properties
     
-    var avatarLink: String = ""
+    private(set) var avatarLink: String = ""
+    
+    var avatarLinkChangeable: String = ""
     var userName: String = ""
     var userDescription: String = ""
     var userWebsite: String = ""
@@ -22,6 +24,7 @@ final class EditProfileViewModel: EditProfileViewModelProtocol {
     
     func setupProfile(_ profile: ProfileModel?) {
         avatarLink = profile?.avatar ?? ""
+        avatarLinkChangeable = avatarLink
         userName = profile?.name ?? ""
         userDescription = profile?.description ?? ""
         userWebsite = URL(string: profile?.website ?? "")?.host(percentEncoded: true) ?? ""
@@ -30,7 +33,10 @@ final class EditProfileViewModel: EditProfileViewModelProtocol {
     // MARK: - updateAvatarLink
     
     func updateAvatarLink(_ link: String) {
-        guard !link.isEmpty else { return }
+        guard !link.isEmpty else {
+            avatarLinkChangeable = avatarLink
+            return
+        }
         avatarLink = link
     }
     

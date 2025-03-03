@@ -44,7 +44,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         profile = ProfileModel(
             id: "1",
             name: "Joaquin Phoenix",
-            avatar: "",
+            avatar: "https://i.pinimg.com/736x/71/b6/c5/71b6c5ae9e78bc3783faba4d074c9ea2.jpg",
             description: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100+ NFT, и еще больше — на моём сайте. Открыт к коллаборациям.",
             website: "http://JoaquinPhoenix.com",
             nfts: [
