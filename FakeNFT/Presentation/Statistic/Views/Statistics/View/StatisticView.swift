@@ -45,17 +45,7 @@ struct StatisticView: View {
                 }
 
                 if viewModel.loadingState == .loading {
-                    ZStack {
-                        Color.black.opacity(Constants.loadingDataBackgroundShading)
-                        ProgressView()
-                            .frame(
-                                width: Constants.loadingProgressViewSize,
-                                height: Constants.loadingProgressViewSize
-                            )
-                            .background(Constants.loadingDataBackgroundColor)
-                            .cornerRadius(Constants.loadingProgressViewCornerRadius)
-                    }
-                    .allowsHitTesting(true)
+                    loadingIndicator
                 }
             }
             .navigationDestination(for: User.self) { user in
@@ -115,6 +105,22 @@ struct StatisticView: View {
         .task {
             await viewModel.loadData()
         }
+    }
+
+    // MARK: - Private Properties
+
+    private var loadingIndicator: some View {
+        ZStack {
+            Color.black.opacity(Constants.loadingDataBackgroundShading)
+            ProgressView()
+                .frame(
+                    width: Constants.loadingProgressViewSize,
+                    height: Constants.loadingProgressViewSize
+                )
+                .background(Constants.loadingDataBackgroundColor)
+                .cornerRadius(Constants.loadingProgressViewCornerRadius)
+        }
+        .allowsHitTesting(true)
     }
 }
 

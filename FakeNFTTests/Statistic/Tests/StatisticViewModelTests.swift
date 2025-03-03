@@ -95,7 +95,7 @@ struct StatisticViewModelTests {
         await withCheckedContinuation { continuation in
             Task {
                 while await viewModel.loadingState == .loading {
-                    try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 сек
+                    try? await Task.sleep(for: .seconds(0.1)) 
                 }
                 continuation.resume()
             }

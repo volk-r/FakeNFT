@@ -41,7 +41,7 @@ struct UserCardWebsiteButton: View {
                     )
             }
         )
-        .accessibilityIdentifier(Constants.userWebSiteButtonAccessibilityIdentifier)
+        .accessibilityIdentifier(StatisticUITestIdentifiers.userWebSiteButtonAccessibilityIdentifier)
         .padding([.top], Constants.usersSiteButtonTopPadding)
         .disabled(user.website.isEmpty)
     }
@@ -56,7 +56,6 @@ private extension UserCardWebsiteButton {
         static let usersSiteButtonBorderWidth: CGFloat = 1
         static let usersSiteButtonBorderColor: Color = .appBlack
         static let usersSiteButtonTopPadding: CGFloat = 28
-        static let userWebSiteButtonAccessibilityIdentifier = "userCardViewWebSiteButton"
     }
 }
 

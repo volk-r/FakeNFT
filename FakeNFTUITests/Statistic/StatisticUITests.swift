@@ -34,9 +34,8 @@ final class StatisticUITests: XCTestCase {
             .switchToStatisticsTab()
             .loadStatistics()
             .tapOnFirstCell()
-        guard let userCard = userCard else { return XCTFail("User card not found")}
+        guard let userCard = userCard else { return XCTFail("User card not found") }
        _ = userCard.checkControlsExist()
             .checkUsersWebSiteButton()
     }
-
 }

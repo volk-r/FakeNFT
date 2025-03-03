@@ -35,6 +35,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0740497D2D75BFFF003B66DF /* Exceptions for "FakeNFT" folder in "FakeNFTUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Presentation/Statistic/Model/StatisticUITestIdentifiers.swift,
+			);
+			target = 072ECBFE2D646D9000D76C5F /* FakeNFTUITests */;
+		};
 		0761D1822D64851300DC0536 /* Exceptions for "FakeNFT" folder in "FakeNFT" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -49,6 +56,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				0761D1822D64851300DC0536 /* Exceptions for "FakeNFT" folder in "FakeNFT" target */,
+				0740497D2D75BFFF003B66DF /* Exceptions for "FakeNFT" folder in "FakeNFTUITests" target */,
 			);
 			path = FakeNFT;
 			sourceTree = "<group>";

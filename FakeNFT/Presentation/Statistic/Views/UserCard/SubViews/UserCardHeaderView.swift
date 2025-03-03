@@ -24,17 +24,17 @@ struct UserCardHeaderView: View {
             )
             .frame(width: Constants.usersPictureSize, height: Constants.usersPictureSize)
             .clipShape(Circle())
-            .accessibilityIdentifier(Constants.userImageAccessibilityIdentifier)
+            .accessibilityIdentifier(StatisticUITestIdentifiers.userImageAccessibilityIdentifier)
             Text(user.name)
                 .appTextStyleHeadline3()
                 .lineLimit(Constants.userNameLineLimit)
-                .accessibilityIdentifier(Constants.userNameAccessibilityIdentifier)
+                .accessibilityIdentifier(StatisticUITestIdentifiers.userNameAccessibilityIdentifier)
             Spacer()
         }
         if let userDescription = user.description {
             Text(userDescription)
                 .appTextStyleCaption2()
-                .padding([.top], Constants.usersDescriptionTopPadding)
+                .padding(.top, Constants.usersDescriptionTopPadding)
         }
     }
 }
@@ -45,9 +45,7 @@ private extension UserCardHeaderView {
     private enum Constants {
         static let usersNameHorizontalSpacing: CGFloat = 16
         static let usersPictureSize: CGFloat = 70
-        static let userImageAccessibilityIdentifier = "userCardViewImage"
         static let userNameLineLimit: Int = 2
-        static let userNameAccessibilityIdentifier = "userCardViewName"
         static let usersDescriptionTopPadding: CGFloat = 20
     }
 }

@@ -9,19 +9,7 @@ import XCTest
 @testable import FakeNFT
 
 struct UserCardViewScreen {
-    // MARK: - Types
-
-    private enum Identifiers {
-        static let userImageIdentifier = "userCardViewImage"
-        static let userNameIdentifier = "userCardViewName"
-        static let userWebSiteIdentifier = "userCardViewWebSiteButton"
-        static let nftsCollectionIdentifier = "userCardViewNFTsCollectionList"
-        static let webViewProgressViewIdentifier = "webViewProgressViewIdentifier"
-    }
-
     // MARK: - Constants
-
-    // MARK: - Public Properties
 
     let application: XCUIApplication
 
@@ -53,19 +41,31 @@ struct UserCardViewScreen {
     // MARK: - Private Methods
 
     private func userImageElement() -> XCUIElement {
-        return application.images.element(matching: NSPredicate(format: "identifier == '\(Identifiers.userImageIdentifier)'"))
+        return application.images.element(
+            matching: NSPredicate(
+                format: "identifier == '\(StatisticUITestIdentifiers.userImageAccessibilityIdentifier)'"
+            )
+        )
     }
 
     private func userNameElement() -> XCUIElement {
-        return application.staticTexts.element(matching: NSPredicate(format: "identifier == '\(Identifiers.userNameIdentifier)'"))
+        return application.staticTexts.element(matching: NSPredicate(format: "identifier == '\(StatisticUITestIdentifiers.userNameAccessibilityIdentifier)'"))
     }
 
     private func userWebSiteButtonElement() -> XCUIElement {
-        return application.buttons.element(matching: NSPredicate(format: "identifier == '\(Identifiers.userWebSiteIdentifier)'"))
+        return application.buttons.element(
+            matching: NSPredicate(
+                format: "identifier == '\(StatisticUITestIdentifiers.userWebSiteButtonAccessibilityIdentifier)'"
+            )
+        )
     }
 
     private func nftsCollectionElement() -> XCUIElement {
-        return application.collectionViews.element(matching: NSPredicate(format: "identifier == '\(Identifiers.nftsCollectionIdentifier)'"))
+        return application.collectionViews.element(
+            matching: NSPredicate(
+                format: "identifier == '\(StatisticUITestIdentifiers.nftsCollectionAccessibilityIdentifier)'"
+            )
+        )
     }
 
     private func nftsCollectionCellElement() -> XCUIElement {
@@ -73,6 +73,6 @@ struct UserCardViewScreen {
     }
 
     private func webViewProgressViewElement() -> XCUIElement {
-        return application.progressIndicators.element(matching: NSPredicate(format: "identifier == '\(Identifiers.webViewProgressViewIdentifier)'"))
+        return application.progressIndicators.element(matching: NSPredicate(format: "identifier == 'webViewProgressViewIdentifier'"))
     }
 }

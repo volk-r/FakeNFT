@@ -46,7 +46,7 @@ struct UserCardNFTLink: View {
             .listRowInsets(Constants.listEdgeInsets)
             .disabled(user.nfts.isEmpty)
         }
-        .accessibilityIdentifier(Constants.nftsCollectionAccessibilityIdentifier)
+        .accessibilityIdentifier(StatisticUITestIdentifiers.nftsCollectionAccessibilityIdentifier)
         .padding([.top], Constants.listTopPadding)
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
@@ -58,7 +58,6 @@ private extension UserCardNFTLink {
     // MARK: - Types
     
     private enum Constants {
-        static let nftsCollectionAccessibilityIdentifier = "userCardViewNFTsCollectionList"
         static let listEdgeInsets = EdgeInsets(
             top: 0,
             leading: 0,
