@@ -30,7 +30,7 @@ final class EditProfileViewModel: EditProfileViewModelProtocol {
     // MARK: - updateAvatarLink
     
     func updateAvatarLink(_ link: String) {
-        guard link.isEmpty == false else { return }
+        guard !link.isEmpty else { return }
         avatarLink = link
     }
     
