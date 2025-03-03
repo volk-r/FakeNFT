@@ -8,36 +8,54 @@
 import SwiftUI
 
 struct AppTabView: View {
+    // MARK: - Initializers
+
+    init() {
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .systemBackground
+        appearance.shadowColor = .clear
+
+        appearance.stackedLayoutAppearance.selected.iconColor = .systemBlue
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            .foregroundColor: UIColor.systemBlue
+        ]
+        appearance.stackedLayoutAppearance.normal.iconColor = .appBlack
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.appBlack
+        ]
+
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
+
     // MARK: - View
 
     var body: some View {
         TabView(selection: $selectedTabIndex) {
             ProfileView()
                 .tabItem {
-                    Image(uiImage: selectedTabIndex == 0 ? .profileActive : .profileNoActive)
+                    Image(uiImage: .tabProfile)
                     Text("Profile")
                 }
                 .tag(0)
             CatalogView()
                 .tabItem {
-                    Image(uiImage: selectedTabIndex == 1 ? .catalogActive : .catalogNoActive)
+                    Image(uiImage: .tabCatalog)
                     Text("Catalog")
                 }
                 .tag(1)
             CartView()
                 .tabItem {
-                    Image(uiImage: selectedTabIndex == 2 ? .cartActive : .cartNoActive)
+                    Image(uiImage: .tabCart)
                     Text("Cart")
                 }
                 .tag(2)
-            NavigationStack {
-                StatisticView()
-            }
-            .tabItem {
-                Image(uiImage: selectedTabIndex == 3 ? .statisticActive : .statisticNoActive)
-                Text("Statistic")
-            }
-            .tag(3)
+            StatisticView()
+                .tabItem {
+                    Image(uiImage: .tabStatistics)
+                    Text("Statistic")
+                }
+                .tag(3)
         }
     }
 

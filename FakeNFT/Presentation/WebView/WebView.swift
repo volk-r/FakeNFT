@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct WebView: View {
-    
+    // MARK: - Types
+
+    private enum Constants {
+        static let progressViewIdentifier = "webViewProgressViewIdentifier"
+    }
+
     // MARK: - Properties
 
     let navigationURL: String
@@ -17,6 +22,7 @@ struct WebView: View {
     var body: some View {
         VStack {
             ProgressView(value: model.loadingProgress)
+                .accessibilityIdentifier(Constants.progressViewIdentifier)
                 .progressViewStyle(.linear)
                 .opacity(model.loadingProgress == 1.0 ? 0 : 1)
             ZStack {

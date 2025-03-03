@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable, Identifiable, Sendable, Equatable {
+struct User: Codable, Identifiable, Sendable, Hashable {
     let id: String
     let name: String
     let avatar: String
@@ -21,10 +21,13 @@ struct User: Codable, Identifiable, Sendable, Equatable {
             User(
                 id: "6d78ae9c-874d-440d-b7c5-db8eb571db2e",
                 name: "Студентус Практикумс",
-                avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/989.jpg",
+                avatar: "https://i.pinimg.com/736x/71/b6/c5/71b6c5ae9e78bc3783faba4d074c9ea2.jpg",
                 description: "Дизайнер из Казани, люблю цифровое искусство и бейглы. В моей коллекции уже 100 NFT, и еще больше — на моём сайте.",
                 website: "https://practicum.yandex.ru/devops/",
-                nfts: [],
+                nfts: [
+                    "5093c01d-e79e-4281-96f1-76db5880ba70",
+                    "cc74e9ab-2189-465f-a1a6-8405e07e9fe4"
+                ],
                 rating: "1"
             ),
             User(
@@ -97,7 +100,7 @@ struct User: Codable, Identifiable, Sendable, Equatable {
             id: "f2d94f2b-83ca-42c1-ab75-f7f4571e0e06",
             name: "Ila Simpson",
             avatar: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/519.jpg",
-            description: "learn it all",
+            description: "Дизайнер из Казани, люблю цифровое искусство  и бейглы. В моей коллекции уже 100+ NFT,  и еще больше — на моём сайте. Открыт  к коллаборациям.",
             website: "https://practicum.yandex.ru/interface-designer/",
             nfts: [
                 "5093c01d-e79e-4281-96f1-76db5880ba70",
