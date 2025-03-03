@@ -12,11 +12,17 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     
     // MARK: - Properties
     
-    private let nftDetailsService: NFTDetailsServiceProtocol = NFTDetailsService()
+    private let nftDetailsService: NFTDetailsServiceProtocol
     
     private(set) var favoriteNFTsData: [NFTModel] = []
     private(set) var loadingState: LoadingState = .default
     private(set) var isEmptyNFTs: Bool = true
+    
+    // MARK: - init
+    
+    init(nftDetailsService: NFTDetailsServiceProtocol = NFTDetailsService()) {
+        self.nftDetailsService = nftDetailsService
+    }
     
     // MARK: - fetchNFTData
     
