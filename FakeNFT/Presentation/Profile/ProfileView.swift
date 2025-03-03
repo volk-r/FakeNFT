@@ -70,8 +70,7 @@ private extension ProfileView {
             }
         )
         .sheet(isPresented: $viewModel.isEditProfilePresented) {
-            EditProfileView()
-                .environment(viewModel)
+            EditProfileView(profile: viewModel.profile)
         }
     }
     

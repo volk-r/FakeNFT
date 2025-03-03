@@ -11,7 +11,9 @@ struct EditProfileView: View {
     
     // MARK: - Properties
     
-    @Environment(ProfileViewModel.self) var profileModel
+    var profile: ProfileModel?
+    
+    @Environment(\.dismiss) var dismiss
     @State private var viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
     
     // MARK: - body
@@ -42,7 +44,7 @@ struct EditProfileView: View {
         .padding(16)
         .accentColor(.appBlack)
         .onAppear {
-            viewModel.setupProfile(profileModel.profile)
+            viewModel.setupProfile(profile)
         }
         .onDisappear { viewModel.updateProfile() }
         .overlay(alert)
@@ -73,9 +75,7 @@ private extension EditProfileView {
         HStack {
             Spacer()
             Button(
-                action: {
-                    profileModel.isEditProfilePresented.toggle()
-                },
+                action: { dismiss() },
                 label: {
                     Image(systemName: "xmark")
                         .fontWeight(.bold)
