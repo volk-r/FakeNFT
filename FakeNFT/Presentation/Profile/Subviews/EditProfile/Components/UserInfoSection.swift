@@ -1,5 +1,5 @@
 //
-//  EditableValue.swift
+//  UserInfoSection.swift
 //  FakeNFT
 //
 //  Created by Roman Romanov on 01.03.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditableValue: View {
+struct UserInfoSection: View {
     let valueType: EditValueType
     @Binding var value: String
     

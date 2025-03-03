@@ -23,15 +23,15 @@ struct EditProfileView: View {
                 closeButton
                 VStack(alignment: .leading, spacing: 24) {
                     avatar
-                    EditableValue(
+                    UserInfoSection(
                         valueType: .name,
                         value: $viewModel.userName
                     )
-                    EditableValue(
+                    UserInfoSection(
                         valueType: .description,
                         value: $viewModel.userDescription
                     )
-                    EditableValue(
+                    UserInfoSection(
                         valueType: .website,
                         value: $viewModel.userWebsite
                     )
