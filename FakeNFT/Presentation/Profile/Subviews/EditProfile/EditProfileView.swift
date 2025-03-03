@@ -39,7 +39,7 @@ struct EditProfileView: View {
                 Spacer()
             }
         }
-        .padding(.all, 16)
+        .padding(16)
         .accentColor(.appBlack)
         .onAppear {
             viewModel.setupProfile(profileModel.profile)
@@ -87,7 +87,7 @@ private extension EditProfileView {
     // MARK: - avatar
     
     private var avatar: some View {
-        HStack(alignment: .center) {
+        HStack {
             Spacer()
             Image(.profile)
                 .resizable()
