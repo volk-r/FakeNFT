@@ -17,19 +17,18 @@ struct AppTextFieldClearButtonStyle: ViewModifier {
             content
                 .focused($isFocused)
                 .padding(.trailing, 20)
-            if !text.isEmpty && isFocused {
-                Button {
-                    text = ""
-                } label: {
-                    Image(systemName: "multiply.circle.fill")
-                        .resizable()
-                        .frame(width: 16, height: 16)
-                }
-                .opacity(text.isEmpty ? 0 : 1)
-                .buttonStyle(.plain)
-                .foregroundColor(.secondary)
-                .transition(.opacity)
+            
+            Button {
+                text = ""
+            } label: {
+                Image(systemName: "multiply.circle.fill")
+                    .resizable()
+                    .frame(width: 16, height: 16)
             }
+            .opacity(text.isEmpty || !isFocused ? 0 : 1)
+            .buttonStyle(.plain)
+            .foregroundColor(.secondary)
+            .transition(.opacity)
         }
         .animation(.easeInOut, value: text)
     }
