@@ -23,7 +23,7 @@ struct NFTCardViewModelTests {
     @Test func testSetLikeToTrue() async {
         let viewModel: NFTCardViewModelProtocol = NFTCardViewModel()
         viewModel.setIsLiked(true)
-        #expect(viewModel.isLiked == true)
+        #expect(viewModel.isLiked)
     }
     
     @Test func testSetToggleLike() async {

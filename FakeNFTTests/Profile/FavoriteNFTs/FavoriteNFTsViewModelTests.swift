@@ -15,7 +15,7 @@ struct FavoriteNFTsViewModelTests {
         let viewModel = FavoriteNFTsViewModel()
         
         #expect(viewModel.loadingState == .default)
-        #expect(viewModel.isEmptyNFTs == true)
+        #expect(viewModel.isEmptyNFTs)
         #expect(viewModel.favoriteNFTsData == [])
     }
     
