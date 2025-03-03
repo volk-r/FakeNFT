@@ -31,7 +31,7 @@ struct MyNFTViewModelTests {
     }
     
     @MainActor @Test func testSortByRating() async {
-        var viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+        let viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
         await viewModel.fetchMockNFTData()
         viewModel.setSorting(.byRating)
         
