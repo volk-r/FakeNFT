@@ -15,7 +15,7 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
     var showingSortingDialog: Bool = false
     
     @ObservationIgnored
-    @AppStorage("myNFTViewModelSortType") private(set) var sortType: NFTSortingType = .byPrice {
+    @AppStorage(AppStorageKey.Sorting.myNFTView) private(set) var sortType: NFTSortingType = .byRating {
         didSet {
             switch sortType {
             case .byPrice:
