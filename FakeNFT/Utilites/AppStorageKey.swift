@@ -11,5 +11,6 @@ enum AppStorageKey {
     enum Sorting {
         static let catalogView = "catalogViewSortOrder"
         static let myNFTView = "myNFTViewSortOrder"
+        static let statisticView = "statisticViewUsersSortType"
     }
 }
