@@ -12,13 +12,13 @@ import SwiftUI
 final class UserCardViewModel: UserCardViewModelProtocol {
     // MARK: - Public Methods
     
-    func showUsersWebSite(withAddress website: String, in navigationPath: Binding<NavigationPath>) {
+    func showUsersWebSite(withAddress website: String, in navigationPath: inout NavigationPath) {
         let usersWebSite = UserWebSite(website: website)
-        navigationPath.wrappedValue.append(usersWebSite)
+        navigationPath.append(usersWebSite)
     }
 
-    func showUsersNFTCollection(withId id: String, in navigationPath: Binding<NavigationPath>) {
+    func showUsersNFTCollection(withId id: String, in navigationPath: inout NavigationPath) {
         let usersId = UserId(id: id)
-        navigationPath.wrappedValue.append(usersId)
+        navigationPath.append(usersId)
     }
 }

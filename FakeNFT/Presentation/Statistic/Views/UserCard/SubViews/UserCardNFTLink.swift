@@ -25,7 +25,7 @@ struct UserCardNFTLink: View {
                 action: {
                     viewModel.showUsersNFTCollection(
                         withId: user.id,
-                        in: $navigationPath
+                        in: &navigationPath
                     )
                 },
                 label: {

@@ -24,7 +24,7 @@ struct UserCardWebsiteButton: View {
             action: {
                 viewModel.showUsersWebSite(
                     withAddress: user.website,
-                    in: $navigationPath
+                    in: &navigationPath
                 )
             },
             label: {
