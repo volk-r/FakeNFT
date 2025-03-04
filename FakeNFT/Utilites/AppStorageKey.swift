@@ -9,7 +9,7 @@ import Foundation
 
 enum AppStorageKey {
     enum Sorting {
-        static let catalogView = "catalogView"
-        static let myNFTView = "myNFTView"
+        static let catalogView = "catalogViewSortOrder"
+        static let myNFTView = "myNFTViewSortOrder"
     }
 }
