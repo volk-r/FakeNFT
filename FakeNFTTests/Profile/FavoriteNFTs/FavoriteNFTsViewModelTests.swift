@@ -5,8 +5,6 @@
 //  Created by Roman Romanov on 02.03.2025.
 //
 
-import Foundation
-
 import Testing
 @testable import FakeNFT
 
