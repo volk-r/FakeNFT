@@ -5,10 +5,26 @@
 //  Created by Roman Romanov on 02.03.2025.
 //
 
+import Foundation
 import Testing
 @testable import FakeNFT
 
 struct MyNFTViewModelTests {
+    @MainActor @Test func testInitState() async {
+        let viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+        
+        let currentSortTypeKey = FakeNFT.AppStorageKey.Sorting.myNFTView
+        let currentSortTypeValue =  UserDefaults.standard.string(forKey: currentSortTypeKey)
+        UserDefaults.standard.removeObject(forKey: currentSortTypeKey)
+        
+        #expect(viewModel.sortType == .byRating)
+        UserDefaults.standard.set(currentSortTypeValue, forKey: currentSortTypeKey)
+        
+        #expect(viewModel.showingSortingDialog == false)
+        #expect(viewModel.loadingState == .default)
+        #expect(viewModel.isEmptyNFTs)
+        #expect(viewModel.nftsData.isEmpty)
+    }
     
     @MainActor @Test func testSortByName() async {
         let viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
