@@ -10,7 +10,7 @@ import Testing
 
 struct EditProfileViewModelTests {
     @Test func testInitState() {
-        let viewModel = EditProfileViewModel()
+        let viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
 
         #expect(viewModel.avatarLink.isEmpty)
         #expect(viewModel.avatarLinkChangeable.isEmpty)
@@ -22,7 +22,7 @@ struct EditProfileViewModelTests {
     }
     
     @Test func testSetupProfile() {
-        let viewModel = EditProfileViewModel()
+        let viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
         let expectedProfile: ProfileModel = ProfileModel(
             id: "1",
             name: "name",
@@ -42,7 +42,7 @@ struct EditProfileViewModelTests {
     }
     
     @Test func testSetupEmptyProfile() {
-        let viewModel = EditProfileViewModel()
+        let viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
         let expectedProfile: ProfileModel? = nil
         viewModel.setupProfile(expectedProfile)
         
@@ -56,7 +56,7 @@ struct EditProfileViewModelTests {
     }
     
     @Test func testUpdateAvatarLink() {
-        let viewModel = EditProfileViewModel()
+        let viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
         let expectedAvatarValue = "https://example.com/avatar.png"
         
         viewModel.updateAvatarLink(expectedAvatarValue)
@@ -69,7 +69,7 @@ struct EditProfileViewModelTests {
     }
     
     @Test func testUpdateAvatarLinkEmpty() {
-        let viewModel = EditProfileViewModel()
+        let viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
         viewModel.updateAvatarLink("")
         
         #expect(viewModel.avatarLink.isEmpty)

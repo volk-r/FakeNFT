@@ -10,15 +10,15 @@ import Testing
 
 struct FavoriteNFTsViewModelTests {
     @MainActor @Test func testInitState() async throws {
-        let viewModel = FavoriteNFTsViewModel()
+        let viewModel: FavoriteNFTsViewModelProtocol = FavoriteNFTsViewModel()
         
         #expect(viewModel.loadingState == .default)
         #expect(viewModel.isEmptyNFTs)
-        #expect(viewModel.favoriteNFTsData == [])
+        #expect(viewModel.favoriteNFTsData.isEmpty)
     }
     
     @MainActor @Test func testLoadData() async throws {
-        let viewModel = FavoriteNFTsViewModel(nftDetailsService: NFTDetailsServiceMock())
+        let viewModel: FavoriteNFTsViewModelProtocol = FavoriteNFTsViewModel(nftDetailsService: NFTDetailsServiceMock())
         let expectedFavoriteNFTsData: [NFTModel] = [NFTModel.mock1, NFTModel.mock2]
         await viewModel.fetchNFTData(likeIDs: [])
 
