@@ -27,7 +27,10 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     // MARK: - fetchNFTData
     
     func fetchNFTData(likeIDs: [String]?) async {
-        guard let likeIDs else {
+        guard
+            let likeIDs,
+            !likeIDs.isEmpty
+        else {
             isEmptyNFTs = true
             return
         }

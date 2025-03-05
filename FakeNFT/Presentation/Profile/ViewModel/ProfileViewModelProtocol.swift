@@ -7,13 +7,15 @@
 
 import Foundation
 
+@MainActor
 protocol ProfileViewModelProtocol: Observable, AnyObject {
+    var loadingState: LoadingState { get }
     var isMyNFTPresented: Bool { get set }
     var isFavoriteNFTsPresented: Bool { get set }
     var isDeveloperInfoPresented: Bool { get set }
     var isEditProfilePresented: Bool { get set }
     var profile: ProfileModel? { get }
-    func loadProfile()
+    func loadProfile(for profileId: String) async
     func getMyNFTsCount() -> Int
     func getFavoriteNFTsCount() -> Int
     func loadMockProfile()

@@ -37,7 +37,10 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
     // MARK: - fetchNFTData
     
     func fetchNFTData(nftIDs: [String]?) async {
-        guard let nftIDs else {
+        guard
+            let nftIDs,
+            !nftIDs.isEmpty
+        else {
             isEmptyNFTs = true
             return
         }

@@ -22,7 +22,7 @@ struct FavoriteNFTsView: View {
     
     var body: some View {
         VStack {
-            if profileModel.profile?.nfts == nil {
+            if viewModel.isEmptyNFTs {
                 Text("You don't have any featured NFTs yet")
                     .appTextStyleBodyBold()
             } else {

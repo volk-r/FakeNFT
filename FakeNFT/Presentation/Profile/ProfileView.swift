@@ -11,47 +11,58 @@ struct ProfileView: View {
     
     // MARK: - Properties
     
+    let profileId = GlobalConstants.mockProfileID
     @State private var viewModel = ProfileViewModel()
     
     // MARK: - body
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Group {
-                    header
-                    userInfo
-                }
-                .padding(.horizontal, 16)
-                
-                optionList
-            }
-            .padding(.top, 20)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    editButton
-                }
-            }
-            .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
-                MyNFTView()
-                    .environment(viewModel)
-            }
-            .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
-                FavoriteNFTsView()
-                    .environment(viewModel)
-            }
-            .navigationDestination(isPresented: $viewModel.isDeveloperInfoPresented) {
-                WebView(navigationURL: viewModel.profile?.website ?? "")
-            }
+            LoadingSwitcher(
+                viewModel.loadingState,
+                content: { profile },
+                error: { errorContent }
+            )
         }
         .accentColor(.appBlack)
-        .onAppear {
-            viewModel.loadProfile()
+        .task {
+            await viewModel.loadProfile(for: profileId)
         }
     }
 }
 
 private extension ProfileView {
+    
+    // MARK: - body
+    
+    private var profile: some View {
+        VStack {
+            Group {
+                header
+                userInfo
+            }
+            .padding(.horizontal, 16)
+            
+            optionList
+        }
+        .padding(.top, 20)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                editButton
+            }
+        }
+        .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
+            MyNFTView()
+                .environment(viewModel)
+        }
+        .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
+            FavoriteNFTsView()
+                .environment(viewModel)
+        }
+        .navigationDestination(isPresented: $viewModel.isDeveloperInfoPresented) {
+            WebView(navigationURL: viewModel.profile?.website ?? "")
+        }
+    }
     
     // MARK: - editButton
     
@@ -131,6 +142,18 @@ private extension ProfileView {
         }
         .listStyle(.plain)
         .padding(.top)
+    }
+    
+    // MARK: - errorContent
+    
+    // TODO: need general error view
+    private var errorContent: some View {
+        VStack(alignment: .center, spacing: 10) {
+            Text("Something went wrong")
+                .appTextStyleHeadline3(withColor: .appRedUniversal)
+            Text("Try again later")
+                .appTextStyleHeadline3(withColor: .appRedUniversal)
+        }
     }
 }
 

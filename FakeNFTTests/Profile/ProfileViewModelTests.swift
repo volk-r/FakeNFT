@@ -9,7 +9,7 @@ import Testing
 @testable import FakeNFT
 
 struct ProfileViewModelTest {
-    @Test func testInitState() {
+    @MainActor @Test func testInitState() {
         let viewModel: ProfileViewModelProtocol = ProfileViewModel()
         
         #expect(viewModel.isMyNFTPresented == false)
@@ -21,14 +21,14 @@ struct ProfileViewModelTest {
         #expect(viewModel.getFavoriteNFTsCount() == 0)
     }
     
-    @Test func testGetMyNFTsCount() {
+    @MainActor @Test func testGetMyNFTsCount() {
         let viewModel: ProfileViewModelProtocol = ProfileViewModel()
         viewModel.loadMockProfile()
         
         #expect(viewModel.getMyNFTsCount() == 4)
     }
     
-    @Test func testGetFavoriteNFTsCount() {
+    @MainActor @Test func testGetFavoriteNFTsCount() {
         let viewModel: ProfileViewModelProtocol = ProfileViewModel()
         viewModel.loadMockProfile()
         
