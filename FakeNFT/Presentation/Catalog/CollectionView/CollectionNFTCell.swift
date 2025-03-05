@@ -13,9 +13,6 @@ struct CollectionNFTCell: View {
     private var nftDisplayName: String {
         nft.name.split(separator: " ").first.map(String.init) ?? nft.name
     }
-    private var priceText: String {
-        String(format: "%.2f ETH", nft.price)
-    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -61,7 +58,7 @@ struct CollectionNFTCell: View {
                 .appTextStyleBodyBold()
                 .lineLimit(1)
             
-            Text(verbatim: priceText)
+            PriceView(price: nft.price)
                 .appTextStyleCaption3()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
