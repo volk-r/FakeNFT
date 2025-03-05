@@ -12,6 +12,7 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
     
     @ObservedObject var viewModel: ViewModel
     @State private var isSortDialogPresented = false
+    @State private var selectedCollection: NFTCollection?
     
     // MARK: - Body
     
@@ -29,6 +30,11 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
             }
         }
         .overlay(sortDialog)
+        .fullScreenCover(item: $selectedCollection) { collection in
+            NavigationStack {
+                CollectionView(viewModel: CollectionViewModel(collection: collection))
+            }
+        }
         .task {
             await viewModel.loadCollections()
         }
@@ -41,6 +47,9 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
             LazyVStack(alignment: .leading, spacing: 20) {
                 ForEach(viewModel.sortedCollections) { collection in
                     CatalogRow(collection: collection)
+                        .onTapGesture {
+                            selectedCollection = collection
+                        }
                 }
             }
         }
@@ -76,5 +85,5 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
 }
 
 #Preview {
-    CatalogView(viewModel: CatalogViewModel(networkService: NFTCollectionsServiceMock()))
+    CatalogView(viewModel: CatalogViewModel(collectionsService: NFTCollectionsServiceMock()))
 }

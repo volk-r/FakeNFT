@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Author of the collection:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор коллекции:"
+          }
+        }
+      }
+    },
     "By name" : {
       "localizations" : {
         "ru" : {

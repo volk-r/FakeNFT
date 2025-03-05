@@ -42,12 +42,12 @@ final class CatalogViewModel: CatalogViewModelProtocol {
     
     // MARK: - Private Properties
     
-    nonisolated private let networkService: NFTCollectionsServiceProtocol
+    private let collectionsService: NFTCollectionsServiceProtocol
     
     // MARK: - Initialization
     
-    init(networkService: NFTCollectionsServiceProtocol) {
-        self.networkService = networkService
+    init(collectionsService: NFTCollectionsServiceProtocol = NFTCollectionsService()) {
+        self.collectionsService = collectionsService
     }
     
     // MARK: - Methods
@@ -56,7 +56,7 @@ final class CatalogViewModel: CatalogViewModelProtocol {
         loadingState = .loading
         
         do {
-            collections = try await networkService.loadCollections()
+            collections = try await collectionsService.loadCollections()
             loadingState = .success
         } catch {
             loadingState = .failure

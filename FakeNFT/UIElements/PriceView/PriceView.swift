@@ -16,7 +16,6 @@ struct PriceView: View {
         Text(
             formatter.string(for: price) ?? ""
         )
-        .appTextStyleBodyBold()
     }
 }
 

@@ -24,6 +24,7 @@ struct CatalogRow: View {
             Text(verbatim: title)
                 .appTextStyleBodyBold()
         }
+        .contentShape(Rectangle())
     }
 }
 

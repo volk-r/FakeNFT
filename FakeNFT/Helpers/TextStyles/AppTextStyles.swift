@@ -34,6 +34,13 @@ struct AppTextStyleCaption2: ViewModifier {
     }
 }
 
+struct AppTextStyleCaption3: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.system(size: 10, weight: .medium))
+    }
+}
+
 struct AppTextStyleHeadline1: ViewModifier {
     func body(content: Content) -> some View {
         content
