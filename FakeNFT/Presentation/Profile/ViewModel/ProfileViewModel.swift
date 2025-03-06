@@ -29,9 +29,12 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         loadingState = .loading
         
         do {
-            profile = try await profileService.loadProfile(for: profileId)
-            // TODO: for tests
-//            loadMockProfile()
+            if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+                loadMockProfile()
+            }
+            else {
+                profile = try await profileService.loadProfile(for: profileId)
+            }
             loadingState = .success
         } catch {
             loadingState = .failure

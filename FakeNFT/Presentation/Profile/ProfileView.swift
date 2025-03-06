@@ -112,6 +112,7 @@ private extension ProfileView {
                         .foregroundStyle(.appBlueUniversal)
                         .appTextStyleCaption1()
                 }
+                .accessibilityIdentifier(AppAccessibilityId.Profile.webView)
                 Spacer()
             }
             .padding(.top, 12)
@@ -127,14 +128,17 @@ private extension ProfileView {
                     .onTapGesture {
                         viewModel.isMyNFTPresented = true
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.Profile.myNFT)
                 ProfileListItemView(listItem: LocalizedStringKey("Favorite NFTs (\(viewModel.getFavoriteNFTsCount()))"))
                     .onTapGesture {
                         viewModel.isFavoriteNFTsPresented = true
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.Profile.favoriteNFTs)
                 ProfileListItemView(listItem: LocalizedStringKey("About the developer"))
                     .onTapGesture {
                         viewModel.isDeveloperInfoPresented = true
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.Profile.developerInfo)
             }
             .appTextStyleBodyBold()
             .listRowBackground(Color.clear)
