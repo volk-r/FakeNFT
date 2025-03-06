@@ -55,7 +55,7 @@ struct StatisticView: View {
                 WebView(navigationURL: userWebSite.website)
             }
             .navigationDestination(for: UserId.self) { userId in
-                Text("\(userId.id)")
+                UsersCollectionView(id: userId.id)
             }
             .alert(
                 "",
