@@ -80,6 +80,7 @@ private extension ProfileView {
                     .padding(.trailing, 9)
             }
         )
+        .accessibilityIdentifier(AppAccessibilityId.Profile.editButton)
         .sheet(isPresented: $viewModel.isEditProfilePresented) {
             EditProfileView(profile: viewModel.profile)
         }
@@ -93,6 +94,7 @@ private extension ProfileView {
             Text(verbatim: viewModel.profile?.name ?? "")
                 .appTextStyleHeadline3()
                 .padding(.leading, 16)
+                .accessibilityIdentifier(AppAccessibilityId.Profile.name)
             Spacer()
         }
     }

@@ -9,6 +9,8 @@ import Foundation
 
 enum AppAccessibilityId {
     enum Profile {
+        static let editButton = "accessibilityIdentifiersProfileEditButton"
+        static let name = "accessibilityIdentifiersProfileName"
         static let webView = "accessibilityIdentifiersProfileWebView"
         static let myNFT = "accessibilityIdentifiersProfileMyNFT"
         static let favoriteNFTs = "accessibilityIdentifiersProfileFavoriteNFTs"
