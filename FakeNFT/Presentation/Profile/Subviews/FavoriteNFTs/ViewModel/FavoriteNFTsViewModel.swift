@@ -57,7 +57,7 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
         loadingState = .loading
         
         do {
-            try await Task.sleep(for: .seconds(5))
+            try await Task.sleep(for: .seconds(3))
            
             loadingState = .success
             favoriteNFTsData = [
