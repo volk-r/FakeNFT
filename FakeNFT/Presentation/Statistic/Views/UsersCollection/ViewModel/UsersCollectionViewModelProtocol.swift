@@ -12,5 +12,5 @@ protocol UsersCollectionViewModelProtocol: AnyObject, Sendable, Observable {
     var loadingState: LoadingState { get set }
     var nftModels: [NFTModel] { get set }
     var showingErrorAlert: Bool { get set }
-    func loadData() async
+    func loadData(withNFTs nfts: [String]) async
 }

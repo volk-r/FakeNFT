@@ -10,5 +10,5 @@ import SwiftUI
 @MainActor
 protocol UserCardViewModelProtocol: AnyObject, Sendable, Observable {
     func showUsersWebSite(withAddress website: String, in navigationPath: inout NavigationPath)
-    func showUsersNFTCollection(withId id: String, in navigationPath: inout NavigationPath)
+    func showUsersNFTCollection(withData userData: UserData, in navigationPath: inout NavigationPath)
 }

@@ -54,8 +54,8 @@ struct StatisticView: View {
             .navigationDestination(for: UserWebSite.self) { userWebSite in
                 WebView(navigationURL: userWebSite.website)
             }
-            .navigationDestination(for: UserId.self) { userId in
-                UsersCollectionView(id: userId.id)
+            .navigationDestination(for: UserData.self) { userData in
+                UsersCollectionView(userData: userData)
             }
             .alert(
                 "",
@@ -112,6 +112,7 @@ struct StatisticView: View {
     private var loadingIndicator: some View {
         ZStack {
             Color.black.opacity(Constants.loadingDataBackgroundShading)
+                .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
             ProgressView()
                 .frame(
                     width: Constants.loadingProgressViewSize,

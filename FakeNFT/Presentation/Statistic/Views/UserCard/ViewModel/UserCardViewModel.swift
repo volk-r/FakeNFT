@@ -17,8 +17,8 @@ final class UserCardViewModel: UserCardViewModelProtocol {
         navigationPath.append(usersWebSite)
     }
 
-    func showUsersNFTCollection(withId id: String, in navigationPath: inout NavigationPath) {
-        let usersId = UserId(id: id)
-        navigationPath.append(usersId)
+    func showUsersNFTCollection(withData userData: UserData, in navigationPath: inout NavigationPath) {
+        let userData = userData
+        navigationPath.append(userData)
     }
 }

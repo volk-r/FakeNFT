@@ -88,8 +88,8 @@ extension UserCardView {
             .navigationDestination(for: UserWebSite.self) { userWebSite in
                 WebView(navigationURL: userWebSite.website)
             }
-            .navigationDestination(for: UserId.self) { _ in
-                Text("\(user.id)")
+            .navigationDestination(for: UserData.self) { userData in
+                UsersCollectionView(userData: userData)
             }
     }
     .accentColor(.appBlack)

@@ -10,7 +10,7 @@ import SwiftUI
 struct UsersCollectionView: View {
     // MARK: - Constants
 
-    let id: String
+    let userData: UserData
     private let columns = Array(
         repeating: GridItem(.flexible(), spacing: 9),
         count: 3
@@ -27,10 +27,10 @@ struct UsersCollectionView: View {
     // MARK: - Initializers
 
     init(
-        id: String,
+        userData: UserData,
         viewModel: UsersCollectionViewModelProtocol = UsersCollectionViewModel()
     ) {
-        self.id = id
+        self.userData = userData
         self.viewModel = viewModel
     }
 
@@ -44,10 +44,8 @@ struct UsersCollectionView: View {
                         UserCollectionViewCell(nft: nft)
                     }
                 }
-            }
-            
-            if viewModel.loadingState == .loading {
-                loadingIndicator
+                .padding(.horizontal, Constants.collectionHorizontalPadding)
+                .padding(.top, Constants.collectionTopPadding)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -63,25 +61,25 @@ struct UsersCollectionView: View {
         }
         .foregroundStyle(Constants.defaultForegroundColor)
         .toolbar(.hidden, for: .tabBar)
+        .alert(
+            "",
+            isPresented: $viewModel.showingErrorAlert,
+            actions: {
+                Button("StatisticViewCancelButton", role: .cancel) {}
+                Button("StatisticViewRetryButton") {
+                    Task {
+                        await viewModel.loadData(withNFTs: userData.nfts)
+                    }
+                }
+                .keyboardShortcut(.defaultAction)
+            },
+            message: {
+                Text("StatisticViewErrorText")
+            }
+        )
         .task {
-            await viewModel.loadData()
+            await viewModel.loadData(withNFTs: userData.nfts)
         }
-    }
-
-    // MARK: - Private Properties
-
-    private var loadingIndicator: some View {
-        ZStack {
-            Color.black.opacity(Constants.loadingDataBackgroundShading)
-            ProgressView()
-                .frame(
-                    width: Constants.loadingProgressViewSize,
-                    height: Constants.loadingProgressViewSize
-                )
-                .background(Constants.loadingDataBackgroundColor)
-                .cornerRadius(Constants.loadingProgressViewCornerRadius)
-        }
-        .allowsHitTesting(true)
     }
 
     // MARK: - Private Methods
@@ -96,6 +94,7 @@ private extension UsersCollectionView {
 
     private enum Constants {
         static let defaultForegroundColor: Color = .appBlack
+        static let collectionHorizontalPadding: CGFloat = 16
         static let collectionTopPadding: CGFloat = 20
         static let loadingProgressViewSize: CGFloat = 80
         static let loadingProgressViewCornerRadius: CGFloat = 12
@@ -106,6 +105,11 @@ private extension UsersCollectionView {
 
 #Preview {
     NavigationStack {
-        UsersCollectionView(id: User.getMockUserData().id)
+        UsersCollectionView(
+            userData: UserData(
+                id: User.getMockUserData().id,
+                nfts: User.getMockUserData().nfts
+            )
+        )
     }
 }
