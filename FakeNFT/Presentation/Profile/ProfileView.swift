@@ -52,7 +52,7 @@ private extension ProfileView {
             }
         }
         .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
-            MyNFTView()
+            MyNFTsView()
                 .environment(viewModel)
         }
         .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
@@ -130,7 +130,7 @@ private extension ProfileView {
                     .onTapGesture {
                         viewModel.isMyNFTPresented = true
                     }
-                    .accessibilityIdentifier(AppAccessibilityId.Profile.myNFT)
+                    .accessibilityIdentifier(AppAccessibilityId.Profile.myNFTs)
                 ProfileListItemView(listItem: LocalizedStringKey("Favorite NFTs (\(viewModel.getFavoriteNFTsCount()))"))
                     .onTapGesture {
                         viewModel.isFavoriteNFTsPresented = true

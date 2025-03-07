@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct MyNFTView: View {
+struct MyNFTsView: View {
     
     // MARK: - Properties
     
     @Environment(ProfileViewModel.self) var profileModel
-    @State private var viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+    @State private var viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()
     
     // MARK: - body
     
@@ -65,7 +65,7 @@ struct MyNFTView: View {
     }
 }
 
-extension MyNFTView {
+extension MyNFTsView {
     
     // MARK: - sortButton
     
@@ -115,7 +115,7 @@ extension MyNFTView {
 #Preview("NFT") {
     let viewModel = ProfileViewModel()
     NavigationStack {
-        MyNFTView()
+        MyNFTsView()
             .environment(viewModel)
     }
     .onAppear {
@@ -125,7 +125,7 @@ extension MyNFTView {
 
 #Preview("No NFT") {
     NavigationStack {
-        MyNFTView()
+        MyNFTsView()
             .environment(ProfileViewModel())
     }
 }

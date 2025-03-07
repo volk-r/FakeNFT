@@ -72,7 +72,7 @@ extension NFTCardView {
 }
 
 #Preview {
-    let model = MyNFTViewModel()
+    let model = MyNFTsViewModel()
     
     return AsyncPreviewModel {
         VStack {

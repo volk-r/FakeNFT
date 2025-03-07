@@ -1,5 +1,5 @@
 //
-//  MyNFTViewModel.swift
+//  MyNFTsViewModel.swift
 //  FakeNFT
 //
 //  Created by Roman Romanov on 23.02.2025.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-final class MyNFTViewModel: MyNFTViewModelProtocol {
+final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     
     // MARK: - Properties
     

@@ -29,18 +29,18 @@ final class ProfileUITests: XCTestCase {
         profileButton.tap()
     }
     
-    func testProfileElements() {
+    func testProfileElementsExist() {
         openProfileScreen()
         let webView = app.buttons[AppAccessibilityId.Profile.webView]
         XCTAssertTrue(webView.waitForExistence(timeout: 3), "WebView not found")
         XCTAssertTrue(app.staticTexts[AppAccessibilityId.Profile.name].exists, "Name not found")
         XCTAssertTrue(app.buttons[AppAccessibilityId.Profile.editButton].exists, "Edit button not found")
-        XCTAssertTrue(app.staticTexts[AppAccessibilityId.Profile.myNFT].exists, "My NFT not found")
+        XCTAssertTrue(app.staticTexts[AppAccessibilityId.Profile.myNFTs].exists, "My NFT not found")
         XCTAssertTrue(app.staticTexts[AppAccessibilityId.Profile.favoriteNFTs].exists, "Favorite NFTs not found")
         XCTAssertTrue(app.staticTexts[AppAccessibilityId.Profile.developerInfo].exists, "Developer info not found")
     }
     
-    func testProfileWebView() {
+    func testWebViewOpened() {
         openProfileScreen()
         let webView = app.buttons[AppAccessibilityId.Profile.webView]
         XCTAssertTrue(webView.waitForExistence(timeout: 3))
@@ -49,16 +49,16 @@ final class ProfileUITests: XCTestCase {
         XCTAssertTrue(app.images[AppAccessibilityId.WebView.image].exists)
     }
     
-    func testProfileMyNFTWithElements() {
+    func testMyNFsTOpened() {
         openProfileScreen()
-        let myNFT = app.staticTexts[AppAccessibilityId.Profile.myNFT]
+        let myNFT = app.staticTexts[AppAccessibilityId.Profile.myNFTs]
         XCTAssertTrue(myNFT.waitForExistence(timeout: 3))
         myNFT.firstMatch.tap()
         XCTAssertTrue(app.images[AppAccessibilityId.NFTCard.likeImage].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts[AppAccessibilityId.NFTCard.description].exists)
     }
     
-    func testProfileFavoriteNFTsElements() {
+    func testFavoriteNFTsOpened() {
         openProfileScreen()
         let favoriteNFTs = app.staticTexts[AppAccessibilityId.Profile.favoriteNFTs]
         XCTAssertTrue(favoriteNFTs.waitForExistence(timeout: 3))
@@ -67,7 +67,7 @@ final class ProfileUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts[AppAccessibilityId.NFTCard.description].exists)
     }
     
-    func testProfileDeveloperInfoWithElements() {
+    func testProfileDeveloperInfoOpened() {
         openProfileScreen()
         let developerInfo = app.staticTexts[AppAccessibilityId.Profile.developerInfo]
         XCTAssertTrue(developerInfo.waitForExistence(timeout: 3))
@@ -76,7 +76,7 @@ final class ProfileUITests: XCTestCase {
         XCTAssertTrue(app.images[AppAccessibilityId.WebView.image].exists)
     }
     
-    func testEditProfileOpen() {
+    func testEditProfileOpened() {
         openProfileScreen()
         let editButton = app.buttons[AppAccessibilityId.Profile.editButton]
         XCTAssertTrue(editButton.waitForExistence(timeout: 3))

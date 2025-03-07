@@ -12,7 +12,7 @@ enum AppAccessibilityId {
         static let editButton = "accessibilityIdentifiersProfileEditButton"
         static let name = "accessibilityIdentifiersProfileName"
         static let webView = "accessibilityIdentifiersProfileWebView"
-        static let myNFT = "accessibilityIdentifiersProfileMyNFT"
+        static let myNFTs = "accessibilityIdentifiersProfileMyNFT"
         static let favoriteNFTs = "accessibilityIdentifiersProfileFavoriteNFTs"
         static let developerInfo = "accessibilityIdentifiersProfileDeveloperInfo"
     }

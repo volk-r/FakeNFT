@@ -11,7 +11,7 @@ import Testing
 
 struct MyNFTViewModelTests {
     @MainActor @Test func testInitState() async {
-        let viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+        let viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()
         
         let currentSortTypeKey = FakeNFT.AppStorageKey.Sorting.myNFTView
         let currentSortTypeValue =  UserDefaults.standard.string(forKey: currentSortTypeKey)
@@ -27,7 +27,7 @@ struct MyNFTViewModelTests {
     }
     
     @MainActor @Test func testSortByName() async {
-        let viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+        let viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()
         await viewModel.fetchMockNFTData()
         viewModel.setSorting(.byName)
             
@@ -37,7 +37,7 @@ struct MyNFTViewModelTests {
     }
     
     @MainActor @Test func testSortByPrice() async {
-        let viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+        let viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()
         await viewModel.fetchMockNFTData()
         viewModel.setSorting(.byPrice)
         
@@ -47,7 +47,7 @@ struct MyNFTViewModelTests {
     }
     
     @MainActor @Test func testSortByRating() async {
-        let viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+        let viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()
         await viewModel.fetchMockNFTData()
         viewModel.setSorting(.byRating)
         
