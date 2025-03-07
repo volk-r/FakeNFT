@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct FakeNFTApp: App {
+    @StateObject private var profileManager = ProfileManager()
+    
     var body: some Scene {
         WindowGroup {
             AppTabView()
+                .environmentObject(profileManager)
+                .task {
+                    await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+                }
         }
     }
 }
