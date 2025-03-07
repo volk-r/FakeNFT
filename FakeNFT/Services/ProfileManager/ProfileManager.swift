@@ -10,17 +10,24 @@ import Foundation
 @MainActor
 @Observable
 final class ProfileManager: ObservableObject {
+    
+    // MARK: - Properties
+    
+    private let profileService: ProfileServiceProtocol
     private var profile: ProfileModel?
-    private let profileService: ProfileService
     private var isLikeRequestInProcess = false
     
     var likeIsDisabled: Bool {
         isLikeRequestInProcess || profile == nil
     }
     
+    // MARK: - Initialization
+    
     init(profileService: ProfileService = ProfileService()) {
         self.profileService = profileService
     }
+    
+    // MARK: - Public Methods
     
     func loadProfile(for profileId: String) async {
         do {

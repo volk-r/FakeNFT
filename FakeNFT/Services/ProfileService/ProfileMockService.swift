@@ -19,4 +19,8 @@ actor ProfileMockService: ProfileServiceProtocol {
     func loadProfile(for profileId: String) async throws -> ProfileModel? {
         return ProfileModel.mockProfile
     }
+    
+    func updateLikes(for profileId: String, likes: [String]) async throws -> ProfileModel? {
+        return ProfileModel.mockProfile
+    }
 }
