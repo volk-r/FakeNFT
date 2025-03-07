@@ -102,6 +102,7 @@ private extension EditProfileView {
                     .onTapGesture {
                         viewModel.showDialog.toggle()
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.EditProfile.avatarChangeImage)
             }
             Spacer()
         }

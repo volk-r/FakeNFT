@@ -49,7 +49,11 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
         loadingState = .loading
         
         do {
-            nftsData = try await nftDetailsService.loadNFT(for: nftIDs)
+            if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+                await fetchMockNFTData()
+            } else {
+                nftsData = try await nftDetailsService.loadNFT(for: nftIDs)
+            }
             loadingState = .success
             setSorting(sortType)
         } catch {

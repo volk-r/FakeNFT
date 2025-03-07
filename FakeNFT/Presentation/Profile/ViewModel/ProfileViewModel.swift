@@ -31,8 +31,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         do {
             if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
                 loadMockProfile()
-            }
-            else {
+            } else {
                 profile = try await profileService.loadProfile(for: profileId)
             }
             loadingState = .success

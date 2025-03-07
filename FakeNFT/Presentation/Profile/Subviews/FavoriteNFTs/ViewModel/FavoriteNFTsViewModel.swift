@@ -39,7 +39,11 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
         loadingState = .loading
         
         do {
-            favoriteNFTsData = try await nftDetailsService.loadNFT(for: likeIDs)
+            if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+                await fetchMockNFTData()
+            } else {
+                favoriteNFTsData = try await nftDetailsService.loadNFT(for: likeIDs)
+            }
             loadingState = .success
         } catch {
             loadingState = .failure
