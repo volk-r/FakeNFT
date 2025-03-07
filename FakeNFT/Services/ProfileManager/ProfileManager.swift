@@ -10,9 +10,7 @@ import Foundation
 @MainActor
 @Observable
 final class ProfileManager: ObservableObject {
-    private(set) var likes: Set<String> = []
     private var profile: ProfileModel?
-    
     private let profileService: ProfileService
     
     init(profileService: ProfileService = ProfileService()) {
@@ -23,8 +21,6 @@ final class ProfileManager: ObservableObject {
         do {
             if let loadedProfile = try await profileService.loadProfile(for: profileId) {
                 self.profile = loadedProfile
-                self.likes = Set(loadedProfile.likes ?? [])
-                print("DEBUG - Load Profile")
             }
         } catch {
             print("Error loading profile: \(error)")
@@ -32,18 +28,20 @@ final class ProfileManager: ObservableObject {
     }
     
     func toggleLike(for nftId: String) async {
-        let profileId = GlobalConstants.mockProfileID
-        
-        if likes.contains(nftId) {
-            likes.remove(nftId)
-        } else {
-            likes.insert(nftId)
+        guard let profile else {
+            print("No profile loaded; cannot toggle like.")
+            return
         }
         
+        let likes = profile.likes ?? []
+        let newLikes = likes.contains(nftId)
+            ? likes.filter { $0 != nftId }
+            : likes + [nftId]
+        
         do {
-            if let updatedProfile = try await profileService.updateLikes(for: profileId, likes: Array(likes)) {
+            let profileId = GlobalConstants.mockProfileID
+            if let updatedProfile = try await profileService.updateLikes(for: profileId, likes: newLikes ) {
                 self.profile = updatedProfile
-                self.likes = Set(updatedProfile.likes ?? [])
             }
         } catch {
             print("Failed to update likes: \(error)")
@@ -51,6 +49,6 @@ final class ProfileManager: ObservableObject {
     }
     
     func isLiked(nftId: String) -> Bool {
-        likes.contains(nftId)
+        profile?.likes?.contains(nftId) ?? false
     }
 }
