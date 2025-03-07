@@ -12,6 +12,11 @@ import Foundation
 final class ProfileManager: ObservableObject {
     private var profile: ProfileModel?
     private let profileService: ProfileService
+    private var isLikeRequestInProcess = false
+    
+    var likeIsDisabled: Bool {
+        isLikeRequestInProcess || profile == nil
+    }
     
     init(profileService: ProfileService = ProfileService()) {
         self.profileService = profileService
@@ -32,6 +37,13 @@ final class ProfileManager: ObservableObject {
             print("No profile loaded; cannot toggle like.")
             return
         }
+        
+        guard !isLikeRequestInProcess else {
+            print("A like request is already in process. Ignoring.")
+            return
+        }
+        isLikeRequestInProcess = true
+        defer { isLikeRequestInProcess = false }
         
         let likes = profile.likes ?? []
         let newLikes = likes.contains(nftId)

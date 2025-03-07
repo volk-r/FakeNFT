@@ -20,6 +20,7 @@ struct ProfileView: View {
                 imageUrl: nft1.images.first ?? "",
                 isLiked: profileManager.isLiked(nftId: nft1.id),
                 сardType: .normal,
+                isDisabled: profileManager.likeIsDisabled,
                 action: {
                     Task {
                         await profileManager.toggleLike(for: nft1.id)
@@ -31,6 +32,7 @@ struct ProfileView: View {
                 imageUrl: nft2.images.first ?? "",
                 isLiked: profileManager.isLiked(nftId: nft2.id),
                 сardType: .normal,
+                isDisabled: profileManager.likeIsDisabled,
                 action: {
                     Task {
                         await profileManager.toggleLike(for: nft2.id)
