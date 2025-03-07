@@ -17,6 +17,15 @@ enum AppAccessibilityId {
         static let developerInfo = "accessibilityIdentifiersProfileDeveloperInfo"
     }
     
+    enum EditProfile {
+        static let avatarChangeImage = "accessibilityIdentifiersEditProfileAvatarChangeImage"
+    }
+    
+    enum NFTCard {
+        static let likeImage = "accessibilityIdentifiersNFTCardLikeImage"
+        static let description = "accessibilityIdentifiersNFTCardDescription"
+    }
+    
     enum WebView {
         static let message = "accessibilityIdentifiersWebViewMessage"
         static let image = "accessibilityIdentifiersWebViewImage"

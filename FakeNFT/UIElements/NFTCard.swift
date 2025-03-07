@@ -62,6 +62,7 @@ extension NFTCard {
                             .frame(width: 44, height: 44)
                             .contentShape(Rectangle())
                     )
+                    .accessibilityIdentifier(AppAccessibilityId.NFTCard.likeImage)
                     .onTapGesture {
                         action()
                     }
