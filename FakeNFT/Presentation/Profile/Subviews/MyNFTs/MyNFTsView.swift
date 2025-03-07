@@ -1,5 +1,5 @@
 //
-//  MyNFTView.swift
+//  MyNFsTView.swift
 //  FakeNFT
 //
 //  Created by Roman Romanov on 23.02.2025.
