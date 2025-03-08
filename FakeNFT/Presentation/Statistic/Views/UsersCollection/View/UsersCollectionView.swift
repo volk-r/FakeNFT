@@ -44,6 +44,7 @@ struct UsersCollectionView: View {
                         UserCollectionViewCell(nft: nft)
                     }
                 }
+                .accessibilityIdentifier(AppAccessibilityId.UsersCollectionView.list)
                 .padding(.horizontal, Constants.collectionHorizontalPadding)
                 .padding(.top, Constants.collectionTopPadding)
             }

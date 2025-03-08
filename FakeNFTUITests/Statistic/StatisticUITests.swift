@@ -35,7 +35,12 @@ final class StatisticUITests: XCTestCase {
             .loadStatistics()
             .tapOnFirstCell()
         guard let userCard = userCard else { return XCTFail("User card not found") }
-       _ = userCard.checkControlsExist()
+
+        let nftsCollection = userCard.checkControlsExist()
             .checkUsersWebSiteButton()
+            .showUsersNFTsCollection()
+        guard let nftsCollection = nftsCollection else { return XCTFail("NFTs collection not found") }
+
+        _ = nftsCollection.checkControlsExist()
     }
 }

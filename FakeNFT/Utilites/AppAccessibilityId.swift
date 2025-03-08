@@ -31,4 +31,8 @@ enum AppAccessibilityId {
         static let nftsCollection = "userCardViewNFTsCollectionList"
         static let userWebSiteButton = "userCardViewWebSiteButton"
     }
+
+    enum UsersCollectionView {
+        static let list = "usersCollectionViewNFTsList"
+    }
 }
