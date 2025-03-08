@@ -27,6 +27,13 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     // MARK: - fetchNFTData
     
     func fetchNFTData(likeIDs: [String]?) async {
+        if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+            await fetchMockNFTData()
+            isEmptyNFTs = false
+            loadingState = .success
+            return
+        }
+        
         guard
             let likeIDs,
             !likeIDs.isEmpty
@@ -39,11 +46,7 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
         loadingState = .loading
         
         do {
-            if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
-                await fetchMockNFTData()
-            } else {
-                favoriteNFTsData = try await nftDetailsService.loadNFT(for: likeIDs)
-            }
+            favoriteNFTsData = try await nftDetailsService.loadNFT(for: likeIDs)
             loadingState = .success
         } catch {
             loadingState = .failure

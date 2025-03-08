@@ -49,7 +49,7 @@ final class ProfileUITests: XCTestCase {
         XCTAssertTrue(app.images[AppAccessibilityId.WebView.image].exists)
     }
     
-    func testMyNFsTOpened() {
+    func testMyNFTsOpened() {
         openProfileScreen()
         let myNFT = app.staticTexts[AppAccessibilityId.Profile.myNFTs]
         XCTAssertTrue(myNFT.waitForExistence(timeout: 3))

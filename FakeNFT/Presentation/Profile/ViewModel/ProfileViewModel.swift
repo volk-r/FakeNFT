@@ -25,10 +25,11 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     func setupProfile(with profile: ProfileModel?) {
         if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+            loadingState = .success
             loadMockProfile()
             return
         }
-        
+
         loadingState = .loading
         
         guard let profile else { return }
