@@ -37,9 +37,11 @@ struct WebView: View {
                                 alignment: .center
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 70))
+                            .accessibilityIdentifier(AppAccessibilityId.WebView.image)
                         
                         Text("No internet")
                             .appTextStyleHeadline3()
+                            .accessibilityIdentifier(AppAccessibilityId.WebView.message)
                     }
                 } else {
                     WebViewBridge(url: navigationURL)
