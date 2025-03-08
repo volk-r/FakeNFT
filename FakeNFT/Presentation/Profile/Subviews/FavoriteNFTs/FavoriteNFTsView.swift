@@ -11,7 +11,7 @@ struct FavoriteNFTsView: View {
     
     // MARK: - Properties
     
-    @Environment(ProfileViewModel.self) var profileModel
+    let likes: [String]
     @State private var viewModel: FavoriteNFTsViewModelProtocol = FavoriteNFTsViewModel()
     
     private let gridColumns = [
@@ -37,7 +37,7 @@ struct FavoriteNFTsView: View {
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
         .task {
-            await viewModel.fetchNFTData(likeIDs: profileModel.profile?.likes)
+            await viewModel.fetchNFTData(likeIDs: likes)
         }
     }
 }
@@ -53,10 +53,7 @@ extension FavoriteNFTsView {
                 spacing: 20
             ) {
                 ForEach(viewModel.favoriteNFTsData) { data in
-                    FavoriteNFTCardView(
-                        nftData: data,
-                        isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
-                    )
+                    FavoriteNFTCardView(nftData: data)
                 }
             }
             .padding(.top, 20)
@@ -78,19 +75,13 @@ extension FavoriteNFTsView {
 }
 
 #Preview("Favorite NFT") {
-    let viewModel = ProfileViewModel()
     NavigationStack {
-        FavoriteNFTsView()
-            .environment(viewModel)
-    }
-    .onAppear {
-        viewModel.loadMockProfile()
+        FavoriteNFTsView(likes: ProfileModel.mockProfile.likes ?? [])
     }
 }
 
 #Preview("No Favorite NFT") {
     NavigationStack {
-        FavoriteNFTsView()
-            .environment(ProfileViewModel())
+        FavoriteNFTsView(likes: [])
     }
 }

@@ -11,8 +11,12 @@ struct MyNFTsView: View {
     
     // MARK: - Properties
     
-    @Environment(ProfileViewModel.self) var profileModel
-    @State private var viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()
+    @EnvironmentObject var profileManager: ProfileManager
+    @State private var viewModel: MyNFTsViewModelProtocol
+    
+    init(viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()) {
+        self.viewModel = viewModel
+    }
     
     // MARK: - body
     
@@ -42,7 +46,7 @@ struct MyNFTsView: View {
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
         .task {
-            await viewModel.fetchNFTData(nftIDs: profileModel.profile?.nfts)
+            await viewModel.fetchNFTData(nftIDs: profileManager.profile?.nfts)
         }
         .confirmationDialog(
             NFTSortingType.description,
@@ -88,10 +92,7 @@ extension MyNFTsView {
     private var myNFTsList: some View {
         List(viewModel.nftsData, id: \.id) { data in
             Section {
-                NFTCardView(
-                    nftData: data,
-                    isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
-                )
+                NFTCardView(nftData: data)
             }
             .listRowSeparator(.hidden)
         }
@@ -113,19 +114,26 @@ extension MyNFTsView {
 }
 
 #Preview("NFT") {
-    let viewModel = ProfileViewModel()
-    NavigationStack {
-        MyNFTsView()
-            .environment(viewModel)
+    @Previewable @StateObject var profileManager = ProfileManager(profileService: ProfileMockService())    
+    let model: MyNFTsViewModelProtocol = MyNFTsViewModel()
+
+    return AsyncPreviewModel {
+        NavigationStack {
+            MyNFTsView(viewModel: model)
+                .environmentObject(profileManager)
+        }
+    } model: {
+        
     }
-    .onAppear {
-        viewModel.loadMockProfile()
+    .task {
+        try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+        await model.fetchMockNFTData()
     }
 }
 
 #Preview("No NFT") {
     NavigationStack {
         MyNFTsView()
-            .environment(ProfileViewModel())
+            .environmentObject(ProfileManager(profileService: ProfileMockService()))
     }
 }

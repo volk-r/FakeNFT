@@ -12,8 +12,8 @@ struct FavoriteNFTCardView: View {
     // MARK: - Properties
     
     let nftData: NFTModel
-    let isLiked: Bool
-    @State private var viewModel: NFTCardViewModelProtocol = NFTCardViewModel()
+    
+    @EnvironmentObject var profileManager: ProfileManager
     
     // MARK: - body
     
@@ -21,10 +21,13 @@ struct FavoriteNFTCardView: View {
         HStack {
             NFTCard(
                 imageUrl: nftData.images.first ?? "",
-                isLiked: viewModel.isLiked,
-                сardType: .mini
+                isLiked: profileManager.isLiked(nftId: nftData.id),
+                сardType: .mini,
+                isDisabled: profileManager.likeIsDisabled
             ) {
-                viewModel.likeToggle(for: nftData.id)
+                Task {
+                    try? await profileManager.toggleLike(for: nftData.id)
+                }
             }
             
             VStack(alignment: .leading) {
@@ -33,35 +36,32 @@ struct FavoriteNFTCardView: View {
                     rating: nftData.rating,
                     title: nftData.name
                 )
-                    
+                
                 PriceView(price: nftData.price)
                     .appTextStyleCaption1()
                     .padding(.top, 8)
             }
         }
-        .onAppear {
-            viewModel.setIsLiked(isLiked)
-        }
     }
 }
 
 #Preview {
+    @Previewable @StateObject var profileManager = ProfileManager(profileService: ProfileMockService())
     let model = FavoriteNFTsViewModel()
     
     return AsyncPreviewModel {
         HStack(spacing: 8) {
-            FavoriteNFTCardView(
-                nftData: model.favoriteNFTsData.first!,
-                isLiked: true
-            )
+            FavoriteNFTCardView(nftData: model.favoriteNFTsData.first!)
+                .environmentObject(profileManager)
             
-            FavoriteNFTCardView(
-                nftData: model.favoriteNFTsData.last!,
-                isLiked: false
-            )
+            FavoriteNFTCardView(nftData: model.favoriteNFTsData.last!)
+                .environmentObject(profileManager)
         }
         .padding(.horizontal, 16)
     } model: {
         await model.fetchMockNFTData()
+    }
+    .task {
+        try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
     }
 }
