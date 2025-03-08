@@ -16,7 +16,7 @@ struct FakeNFTApp: App {
             AppTabView()
                 .environmentObject(profileManager)
                 .task {
-                    await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+                    try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
                 }
         }
     }

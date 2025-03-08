@@ -7,9 +7,8 @@
 
 import Foundation
 
-@MainActor
 @Observable
-final class ProfileManager: ObservableObject {
+final class ProfileManager: ObservableObject, ProfileManagerProtocol {
     
     // MARK: - Properties
     
@@ -29,17 +28,17 @@ final class ProfileManager: ObservableObject {
     
     // MARK: - Public Methods
     
-    func loadProfile(for profileId: String) async {
+    func loadProfile(for profileId: String) async throws {
         do {
             if let loadedProfile = try await profileService.loadProfile(for: profileId) {
                 self.profile = loadedProfile
             }
         } catch {
-            print("Error loading profile: \(error)")
+            throw ProfileManagerError.profileLoadingError
         }
     }
     
-    func toggleLike(for nftId: String) async {
+    func toggleLike(for nftId: String) async throws {
         guard let profile else {
             print("No profile loaded; cannot toggle like.")
             return
@@ -63,7 +62,7 @@ final class ProfileManager: ObservableObject {
                 self.profile = updatedProfile
             }
         } catch {
-            print("Failed to update likes: \(error)")
+            throw ProfileManagerError.updateLikesError
         }
     }
     
