@@ -57,6 +57,7 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
             : likes + [nftId]
         
         do {
+            // TODO: profile.id != id in query request api/v1/profile/{id}
             let profileId = GlobalConstants.mockProfileID
             if let updatedProfile = try await profileService.updateLikes(for: profileId, likes: newLikes ) {
                 self.profile = updatedProfile
