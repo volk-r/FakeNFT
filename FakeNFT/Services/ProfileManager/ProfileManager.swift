@@ -25,11 +25,11 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
     
     // MARK: - Initialization
     
-    init(profileService: ProfileService = ProfileService()) {
+    init(profileService: ProfileServiceProtocol = ProfileService()) {
         self.profileService = profileService
     }
     
-    // MARK: - Public Methods
+    // MARK: - loadProfile
     
     func loadProfile(for profileId: String) async throws {
         do {
@@ -41,6 +41,25 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
             throw ProfileManagerError.profileLoadingError
         }
     }
+    
+    // MARK: - updateProfile
+    
+    func updateProfile(with newProfileInfo: ProfileModel) async throws {
+        guard let profileId = self.externalProfileId else {
+            print("No profile loaded; cannot update profile info")
+            return
+        }
+        
+        do {
+            if let updatedProfile = try await profileService.updateProfile(for: profileId, with: newProfileInfo) {
+                self.profile = updatedProfile
+            }
+        } catch {
+            throw ProfileManagerError.updateProfileError
+        }
+    }
+    
+    // MARK: - toggleLike
     
     func toggleLike(for nftId: String) async throws {
         guard
@@ -71,6 +90,8 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
             throw ProfileManagerError.updateLikesError
         }
     }
+    
+    // MARK: - isLiked
     
     func isLiked(nftId: String) -> Bool {
         profile?.likes?.contains(nftId) ?? false
