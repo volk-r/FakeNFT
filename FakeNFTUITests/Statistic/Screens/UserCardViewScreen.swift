@@ -73,6 +73,6 @@ struct UserCardViewScreen {
     }
 
     private func webViewProgressViewElement() -> XCUIElement {
-        return application.progressIndicators.element(matching: NSPredicate(format: "identifier == 'webViewProgressViewIdentifier'"))
+        return application.progressIndicators.element(matching: NSPredicate(format: "identifier == '\(AppAccessibilityId.WebView.progressView)'"))
     }
 }

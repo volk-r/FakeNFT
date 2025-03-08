@@ -18,5 +18,6 @@ enum AppAccessibilityId {
     enum WebView {
         static let message = "accessibilityIdentifiersWebViewMessage"
         static let image = "accessibilityIdentifiersWebViewImage"
+        static let progressView = "accessibilityIdentifiersProgress"
     }
 }
