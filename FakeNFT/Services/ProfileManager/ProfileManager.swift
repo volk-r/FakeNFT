@@ -16,6 +16,8 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
     
     private(set) var profile: ProfileModel?
     private var isLikeRequestInProcess = false
+    // api bug workaround: response profile.id != id in query request api/v1/profile/{id}
+    private var externalProfileId: String?
     
     var likeIsDisabled: Bool {
         isLikeRequestInProcess || profile == nil
@@ -32,6 +34,7 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
     func loadProfile(for profileId: String) async throws {
         do {
             if let loadedProfile = try await profileService.loadProfile(for: profileId) {
+                self.externalProfileId = profileId
                 self.profile = loadedProfile
             }
         } catch {
@@ -40,7 +43,10 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
     }
     
     func toggleLike(for nftId: String) async throws {
-        guard let profile else {
+        guard
+            let profile,
+            let profileId = self.externalProfileId
+        else {
             print("No profile loaded; cannot toggle like.")
             return
         }
@@ -58,8 +64,6 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
             : likes + [nftId]
         
         do {
-            // TODO: profile.id != id in query request api/v1/profile/{id}
-            let profileId = GlobalConstants.mockProfileID
             if let updatedProfile = try await profileService.updateLikes(for: profileId, likes: newLikes ) {
                 self.profile = updatedProfile
             }
