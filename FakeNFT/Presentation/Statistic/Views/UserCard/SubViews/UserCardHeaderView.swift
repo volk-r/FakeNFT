@@ -24,11 +24,11 @@ struct UserCardHeaderView: View {
             )
             .frame(width: Constants.usersPictureSize, height: Constants.usersPictureSize)
             .clipShape(Circle())
-            .accessibilityIdentifier(StatisticUITestIdentifiers.userImageAccessibilityIdentifier)
+            .accessibilityIdentifier(AppAccessibilityId.UserCardView.userImage)
             Text(user.name)
                 .appTextStyleHeadline3()
                 .lineLimit(Constants.userNameLineLimit)
-                .accessibilityIdentifier(StatisticUITestIdentifiers.userNameAccessibilityIdentifier)
+                .accessibilityIdentifier(AppAccessibilityId.UserCardView.userName)
             Spacer()
         }
         if let userDescription = user.description {

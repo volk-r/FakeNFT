@@ -43,19 +43,19 @@ struct UserCardViewScreen {
     private func userImageElement() -> XCUIElement {
         return application.images.element(
             matching: NSPredicate(
-                format: "identifier == '\(StatisticUITestIdentifiers.userImageAccessibilityIdentifier)'"
+                format: "identifier == '\(AppAccessibilityId.UserCardView.userImage)'"
             )
         )
     }
 
     private func userNameElement() -> XCUIElement {
-        return application.staticTexts.element(matching: NSPredicate(format: "identifier == '\(StatisticUITestIdentifiers.userNameAccessibilityIdentifier)'"))
+        return application.staticTexts.element(matching: NSPredicate(format: "identifier == '\(AppAccessibilityId.UserCardView.userName)'"))
     }
 
     private func userWebSiteButtonElement() -> XCUIElement {
         return application.buttons.element(
             matching: NSPredicate(
-                format: "identifier == '\(StatisticUITestIdentifiers.userWebSiteButtonAccessibilityIdentifier)'"
+                format: "identifier == '\(AppAccessibilityId.UserCardView.userWebSiteButton)'"
             )
         )
     }
@@ -63,7 +63,7 @@ struct UserCardViewScreen {
     private func nftsCollectionElement() -> XCUIElement {
         return application.collectionViews.element(
             matching: NSPredicate(
-                format: "identifier == '\(StatisticUITestIdentifiers.nftsCollectionAccessibilityIdentifier)'"
+                format: "identifier == '\(AppAccessibilityId.UserCardView.nftsCollection)'"
             )
         )
     }

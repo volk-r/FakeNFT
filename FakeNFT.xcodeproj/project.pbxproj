@@ -46,7 +46,6 @@
 		3CAB09C12D7A196900755DC0 /* Exceptions for "FakeNFT" folder in "FakeNFTUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Presentation/Statistic/Model/StatisticUITestIdentifiers.swift,
 				Utilites/AppAccessibilityId.swift,
 			);
 			target = 072ECBFE2D646D9000D76C5F /* FakeNFTUITests */;

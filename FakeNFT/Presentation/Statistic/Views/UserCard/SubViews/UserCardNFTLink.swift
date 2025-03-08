@@ -49,7 +49,7 @@ struct UserCardNFTLink: View {
             .listRowInsets(Constants.listEdgeInsets)
             .disabled(user.nfts.isEmpty)
         }
-        .accessibilityIdentifier(StatisticUITestIdentifiers.nftsCollectionAccessibilityIdentifier)
+        .accessibilityIdentifier(AppAccessibilityId.UserCardView.nftsCollection)
         .padding([.top], Constants.listTopPadding)
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
