@@ -12,8 +12,6 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Properties
     
-    private let profileService: ProfileServiceProtocol = ProfileService()
-    
     private(set) var loadingState: LoadingState = .default
     
     var isMyNFTPresented: Bool = false
@@ -25,19 +23,18 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - loadProfile
     
-    func loadProfile(for profileId: String) async {
+    func setupProfile(with profile: ProfileModel?) {
+        if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+            loadMockProfile()
+            return
+        }
+        
         loadingState = .loading
         
-        do {
-            if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
-                loadMockProfile()
-            } else {
-                profile = try await profileService.loadProfile(for: profileId)
-            }
-            loadingState = .success
-        } catch {
-            loadingState = .failure
-        }
+        guard let profile else { return }
+        loadingState = .success
+        
+        self.profile = profile
     }
     
     // MARK: - getMyNFTsCount

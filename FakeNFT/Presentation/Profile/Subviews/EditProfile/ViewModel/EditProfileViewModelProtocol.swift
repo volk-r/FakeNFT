@@ -8,6 +8,7 @@
 import Foundation
 
 protocol EditProfileViewModelProtocol {
+    var profileUpdated: ProfileModel { get }
     var avatarLink: String { get }
     var avatarLinkChangeable: String { get set }
     var userName: String { get set }
@@ -16,5 +17,4 @@ protocol EditProfileViewModelProtocol {
     var showDialog: Bool { get set }
     func setupProfile(_ profile: ProfileModel?)
     func updateAvatarLink(_ link: String)
-    func updateProfile()
 }

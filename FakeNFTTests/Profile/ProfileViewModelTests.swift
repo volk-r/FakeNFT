@@ -32,6 +32,6 @@ struct ProfileViewModelTest {
         let viewModel: ProfileViewModelProtocol = ProfileViewModel()
         viewModel.loadMockProfile()
         
-        #expect(viewModel.getFavoriteNFTsCount() == 5)
+        #expect(viewModel.getFavoriteNFTsCount() == 6)
     }
 }

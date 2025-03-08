@@ -11,7 +11,7 @@ struct ProfileView: View {
     
     // MARK: - Properties
     
-    let profileId = GlobalConstants.mockProfileID
+    @EnvironmentObject var profileManager: ProfileManager
     @State private var viewModel = ProfileViewModel()
     
     // MARK: - body
@@ -25,8 +25,11 @@ struct ProfileView: View {
             )
         }
         .accentColor(.appBlack)
-        .task {
-            await viewModel.loadProfile(for: profileId)
+        .onAppear {
+            viewModel.setupProfile(with: profileManager.profile)
+        }
+        .onChange(of: profileManager.profile) {
+            viewModel.setupProfile(with: profileManager.profile)
         }
     }
 }
@@ -53,11 +56,9 @@ private extension ProfileView {
         }
         .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
             MyNFTsView()
-                .environment(viewModel)
         }
         .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
-            FavoriteNFTsView()
-                .environment(viewModel)
+            FavoriteNFTsView(likes: viewModel.profile?.likes ?? [])
         }
         .navigationDestination(isPresented: $viewModel.isDeveloperInfoPresented) {
             WebView(navigationURL: viewModel.profile?.website ?? "")
@@ -82,7 +83,11 @@ private extension ProfileView {
         )
         .accessibilityIdentifier(AppAccessibilityId.Profile.editButton)
         .sheet(isPresented: $viewModel.isEditProfilePresented) {
-            EditProfileView(profile: viewModel.profile)
+            EditProfileView(profile: viewModel.profile) { profile in
+                Task {
+                    try? await profileManager.updateProfile(with: profile)
+                }
+            }
         }
     }
     
@@ -166,7 +171,11 @@ private extension ProfileView {
 // MARK: - Preview
 
 #Preview {
-    NavigationStack {
-        AppTabView()
-    }
+    @Previewable @StateObject var profileManager = ProfileManager(profileService: ProfileMockService())
+    
+    AppTabView()
+        .environmentObject(profileManager)
+        .task {
+            try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+        }
 }

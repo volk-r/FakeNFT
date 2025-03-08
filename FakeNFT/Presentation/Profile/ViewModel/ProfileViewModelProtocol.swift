@@ -15,7 +15,7 @@ protocol ProfileViewModelProtocol: Observable, AnyObject {
     var isDeveloperInfoPresented: Bool { get set }
     var isEditProfilePresented: Bool { get set }
     var profile: ProfileModel? { get }
-    func loadProfile(for profileId: String) async
+    func setupProfile(with profile: ProfileModel?)
     func getMyNFTsCount() -> Int
     func getFavoriteNFTsCount() -> Int
     func loadMockProfile()

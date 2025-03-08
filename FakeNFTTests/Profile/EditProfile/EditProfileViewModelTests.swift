@@ -37,7 +37,7 @@ struct EditProfileViewModelTests {
         #expect(viewModel.avatarLinkChangeable == expectedProfile.avatar)
         #expect(viewModel.userName == expectedProfile.name)
         #expect(viewModel.userDescription == expectedProfile.description)
-        #expect(viewModel.userWebsite == "website.com")
+        #expect(viewModel.userWebsite == expectedProfile.website)
         #expect(viewModel.showDialog == false)
     }
     
