@@ -26,27 +26,19 @@ actor UsersNFTCollectionService: UsersNFTCollectionServiceProtocol {
         currentTask?.cancel()
         
         let task = Task {
-            try await withThrowingTaskGroup(of: Result<NFTModel?, Error>.self) { group in
+            try await withThrowingTaskGroup(of: NFTModel?.self) { group in
                 for id in ids {
                     group.addTask {
-                        guard !Task.isCancelled else { return .failure(CancellationError()) }
+                        guard !Task.isCancelled else { return nil }
                         let request = NFTRequest(id: id)
-                        do {
-                            let nft = try await self.networkService.send(request: request) as NFTModel?
-                            if let nft = nft {
-                                await onReceiveNFT(nft)
-                            }
-                            return .success(nft)
-                        } catch {
-                            return .failure(error)
+                        let nft = try await self.networkService.send(request: request) as NFTModel?
+                        if let nft = nft {
+                            await onReceiveNFT(nft)
                         }
+                        return nft
                     }
                 }
-                for try await result in group {
-                    if case .failure(let error) = result {
-                        print("Ошибка загрузки NFT: \(error)")
-                    }
-                }
+                for try await _ in group { }
             }
         }
         currentTask = task

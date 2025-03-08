@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0758A7912D733DA6004642A7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0758A7902D733DA6004642A7 /* SDWebImageSwiftUI */; };
 		0761D17F2D64737700DC0536 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0761D17E2D64737700DC0536 /* SDWebImageSwiftUI */; };
-		3CF01E572D7A1B4E0030AC40 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3CF01E562D7A1B4E0030AC40 /* SDWebImageSwiftUI */; };
+		3CF01E572D7A1B4E0030AC40 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,13 +36,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0740497D2D75BFFF003B66DF /* Exceptions for "FakeNFT" folder in "FakeNFTUITests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Presentation/Statistic/Model/StatisticUITestIdentifiers.swift,
-			);
-			target = 072ECBFE2D646D9000D76C5F /* FakeNFTUITests */;
-		};
 		0761D1822D64851300DC0536 /* Exceptions for "FakeNFT" folder in "FakeNFT" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -53,6 +46,7 @@
 		3CAB09C12D7A196900755DC0 /* Exceptions for "FakeNFT" folder in "FakeNFTUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Presentation/Statistic/Model/StatisticUITestIdentifiers.swift,
 				Utilites/AppAccessibilityId.swift,
 			);
 			target = 072ECBFE2D646D9000D76C5F /* FakeNFTUITests */;
@@ -64,7 +58,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				0761D1822D64851300DC0536 /* Exceptions for "FakeNFT" folder in "FakeNFT" target */,
-				0740497D2D75BFFF003B66DF /* Exceptions for "FakeNFT" folder in "FakeNFTUITests" target */,
 				3CAB09C12D7A196900755DC0 /* Exceptions for "FakeNFT" folder in "FakeNFTUITests" target */,
 			);
 			path = FakeNFT;
@@ -103,7 +96,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0758A7912D733DA6004642A7 /* SDWebImageSwiftUI in Frameworks */,
-				3CF01E572D7A1B4E0030AC40 /* SDWebImageSwiftUI in Frameworks */,
+				3CF01E572D7A1B4E0030AC40 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +109,6 @@
 				072ECBE72D646D8E00D76C5F /* FakeNFT */,
 				072ECBF82D646D9000D76C5F /* FakeNFTTests */,
 				072ECC022D646D9000D76C5F /* FakeNFTUITests */,
-				0758A78F2D733DA6004642A7 /* Frameworks */,
 				3CF01E552D7A1B4E0030AC40 /* Frameworks */,
 				072ECBE62D646D8E00D76C5F /* Products */,
 			);
@@ -208,7 +200,6 @@
 			name = FakeNFTUITests;
 			packageProductDependencies = (
 				0758A7902D733DA6004642A7 /* SDWebImageSwiftUI */,
-				3CF01E562D7A1B4E0030AC40 /* SDWebImageSwiftUI */,
 			);
 			productName = FakeNFTUITests;
 			productReference = 072ECBFF2D646D9000D76C5F /* FakeNFTUITests.xctest */;
