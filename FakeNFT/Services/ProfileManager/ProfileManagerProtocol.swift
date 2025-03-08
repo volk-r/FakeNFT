@@ -9,6 +9,7 @@ import Foundation
 
 @MainActor
 protocol ProfileManagerProtocol {
+    var profile: ProfileModel? { get }
     var likeIsDisabled: Bool { get }
     func loadProfile(for profileId: String) async throws
     func toggleLike(for nftId: String) async throws

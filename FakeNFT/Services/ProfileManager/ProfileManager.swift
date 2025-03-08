@@ -13,7 +13,8 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
     // MARK: - Properties
     
     private let profileService: ProfileServiceProtocol
-    private var profile: ProfileModel?
+    
+    private(set) var profile: ProfileModel?
     private var isLikeRequestInProcess = false
     
     var likeIsDisabled: Bool {
