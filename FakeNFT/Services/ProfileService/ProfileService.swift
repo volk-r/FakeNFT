@@ -61,4 +61,15 @@ actor ProfileService: ProfileServiceProtocol {
         
         return profileInfo
     }
+    
+    // MARK: - updateLikes
+    
+    func updateLikes(for profileId: String, likes: [String]) async throws -> ProfileModel? {
+        let request = ProfileUpdateLikesRequest(id: profileId, likes: likes)
+        let updatedProfile: ProfileModel? = try await networkService.send(request: request)
+        if let updatedProfile = updatedProfile {
+            cache[profileId] = updatedProfile
+        }
+        return updatedProfile
+    }
 }
