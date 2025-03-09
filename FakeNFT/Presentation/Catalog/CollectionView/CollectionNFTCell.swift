@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CollectionNFTCell: View {
+    @EnvironmentObject var profileManager: ProfileManager
     let nft: NFTModel
     
     private var nftDisplayName: String {
@@ -28,10 +29,13 @@ struct CollectionNFTCell: View {
     private var nftCardView: some View {
         NFTCard(
             imageUrl: nft.images.first ?? "",
-            isLiked: false,
+            isLiked: profileManager.isLiked(nftId: nft.id),
             сardType: .flexible,
+            isDisabled: profileManager.likeIsDisabled,
             action: {
-                // Change Like
+                Task {
+                    try await profileManager.toggleLike(for: nft.id)
+                }
             }
         )
     }
@@ -78,4 +82,5 @@ struct CollectionNFTCell: View {
 #Preview {
     CollectionNFTCell(nft: NFTModel.mock1)
         .frame(width: 120, height: 200)
+        .environmentObject(ProfileManager())
 }
