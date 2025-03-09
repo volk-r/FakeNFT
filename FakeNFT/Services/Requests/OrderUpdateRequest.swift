@@ -25,7 +25,7 @@ struct OrderUpdateRequest: NetworkRequest {
 struct OrderUpdateDto: Dto {
     let nfts: [String]
     
-    func asDictionary() -> [String : String] {
+    func asDictionary() -> [String: String] {
         let joinedNfts = nfts.joined(separator: ",")
         return ["nfts": joinedNfts]
     }

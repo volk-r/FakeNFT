@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CollectionNFTCell: View {
     @EnvironmentObject var profileManager: ProfileManager
+    @EnvironmentObject var orderManager: OrderManager
+    
     let nft: NFTModel
     
     private var nftDisplayName: String {
@@ -70,9 +72,11 @@ struct CollectionNFTCell: View {
     
     private var addToCartButton: some View {
         Button {
-            // Add to Cart
+            Task {
+                try await orderManager.toggleNFT(nft.id)
+            }
         } label: {
-            Image(.appAddToCart)
+            Image(orderManager.isNFTInOrder(nft.id) ? .appRemoveFromCart : .appAddToCart)
                 .tint(.appBlack)
         }
         .frame(width: 40, height: 40)
@@ -80,7 +84,17 @@ struct CollectionNFTCell: View {
 }
 
 #Preview {
+    let profileManager = ProfileManager(profileService: ProfileMockService())
+    let orderManager = OrderManager(orderService: OrderMockService())
+    
     CollectionNFTCell(nft: NFTModel.mock1)
         .frame(width: 120, height: 200)
-        .environmentObject(ProfileManager())
+        .environmentObject(profileManager)
+        .environmentObject(orderManager)
+        .onAppear {
+            Task {
+                try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+                try? await orderManager.loadOrder()
+            }
+        }
 }

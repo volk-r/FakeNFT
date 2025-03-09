@@ -25,7 +25,7 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
     
     // MARK: - Initialization
     
-    init(profileService: ProfileService = ProfileService()) {
+    init(profileService: ProfileServiceProtocol = ProfileService()) {
         self.profileService = profileService
     }
     
