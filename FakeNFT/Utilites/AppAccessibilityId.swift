@@ -21,6 +21,14 @@ enum AppAccessibilityId {
         static let avatarChangeImage = "accessibilityIdentifiersEditProfileAvatarChangeImage"
     }
     
+    enum MyNFTs {
+        static let noNFTs = "accessibilityIdentifiersMyNFTsNoNFTs"
+    }
+    
+    enum FavoriteNFTs {
+        static let noNFTs = "accessibilityIdentifiersFavoriteNFTsNoNFTs"
+    }
+    
     enum NFTCard {
         static let likeImage = "accessibilityIdentifiersNFTCardLikeImage"
         static let description = "accessibilityIdentifiersNFTCardDescription"

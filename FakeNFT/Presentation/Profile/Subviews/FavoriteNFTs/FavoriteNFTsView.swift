@@ -25,6 +25,7 @@ struct FavoriteNFTsView: View {
             if viewModel.isEmptyNFTs {
                 Text("You don't have any featured NFTs yet")
                     .appTextStyleBodyBold()
+                    .accessibilityIdentifier(AppAccessibilityId.FavoriteNFTs.noNFTs)
             } else {
                 LoadingSwitcher(
                     viewModel.loadingState,

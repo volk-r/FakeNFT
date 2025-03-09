@@ -24,9 +24,16 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: - loadProfile
     
     func setupProfile(with profile: ProfileModel?) {
-        if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+        if ProcessInfo.processInfo.environment["USE_EMPTY_MOCK_DATA"] == "true" {
+            loadingState = .loading
+            self.profile = ProfileModel.mockProfileEmpty
             loadingState = .success
+            return
+        }
+        if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+            loadingState = .loading
             loadMockProfile()
+            loadingState = .success
             return
         }
 

@@ -25,6 +25,7 @@ struct MyNFTsView: View {
             if viewModel.isEmptyNFTs {
                 Text("You don't have NFT yet")
                     .appTextStyleBodyBold()
+                    .accessibilityIdentifier(AppAccessibilityId.MyNFTs.noNFTs)
             } else {
                 LoadingSwitcher(
                     viewModel.loadingState,

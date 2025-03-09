@@ -51,9 +51,9 @@ final class ProfileUITests: XCTestCase {
     
     func testMyNFTsOpened() {
         openProfileScreen()
-        let myNFT = app.staticTexts[AppAccessibilityId.Profile.myNFTs]
-        XCTAssertTrue(myNFT.waitForExistence(timeout: 3))
-        myNFT.firstMatch.tap()
+        let myNFTs = app.staticTexts[AppAccessibilityId.Profile.myNFTs]
+        XCTAssertTrue(myNFTs.waitForExistence(timeout: 3))
+        myNFTs.firstMatch.tap()
         XCTAssertTrue(app.images[AppAccessibilityId.NFTCard.likeImage].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts[AppAccessibilityId.NFTCard.description].exists)
     }
