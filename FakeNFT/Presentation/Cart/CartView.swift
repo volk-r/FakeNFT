@@ -22,6 +22,22 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
                 error: { error }
             )
         }
+        .confirmationDialog(
+            "Sorting",
+            isPresented: $viewModel.isPresentedSortDialog,
+            titleVisibility: .visible
+        ) {
+            Button("By price") {
+                viewModel.sortType = .byPrice
+            }
+            Button("By rating") {
+                viewModel.sortType = .byRating
+            }
+            Button("By name") {
+                viewModel.sortType = .byName
+            }
+            Button("Close", role: .cancel) { }
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(

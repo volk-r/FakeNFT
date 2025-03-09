@@ -54,6 +54,9 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
     "Cart" : {
       "comment" : "Название tabItem \"Корзина\"",
       "localizations" : {
@@ -101,6 +104,9 @@
     "Catalog View" : {
       "shouldTranslate" : false
     },
+    "Close" : {
+
+    },
     "Delete" : {
       "localizations" : {
         "ru" : {
@@ -120,6 +126,9 @@
           }
         }
       }
+    },
+    "Failed to make payment" : {
+
     },
     "For payment" : {
       "localizations" : {
@@ -173,6 +182,9 @@
     },
     "Profile View" : {
       "shouldTranslate" : false
+    },
+    "Repeat" : {
+
     },
     "Return" : {
       "localizations" : {

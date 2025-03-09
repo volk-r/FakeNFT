@@ -13,6 +13,7 @@ protocol PurchaseViewModelProtocol: ObservableObject, Sendable {
     var purchaseItems: [PurchaseItem] { get }
     var selectedPurchaseItem: PurchaseItem? { get }
     var isEmptyPurchase: Bool { get }
+    var isPresentedErrorAlert: Bool { get set }
     
     func getPurchase() async
     

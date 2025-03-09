@@ -12,6 +12,7 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     var loadingState: LoadingState = .default
     var purchaseItems: [PurchaseItem] = []
     var selectedPurchaseItem: PurchaseItem?
+    var isPresentedErrorAlert: Bool = false
     
     private let navigationPath: Binding<[CartNavigationPath]>
     
@@ -46,7 +47,11 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     }
     
     func payButtonTapped() {
-        navigationPath.wrappedValue.append(.purchaseSuccess)
+        if selectedPurchaseItem == nil {
+            isPresentedErrorAlert = true
+        } else {
+            navigationPath.wrappedValue.append(.purchaseSuccess)
+        }
     }
 }
 

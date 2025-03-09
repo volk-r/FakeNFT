@@ -35,6 +35,13 @@ struct PurchaseView<ViewModel: PurchaseViewModelProtocol>: View {
                 )
             }
         }
+        .alert(
+            "Failed to make payment",
+            isPresented: $viewModel.isPresentedErrorAlert
+        ) {
+            Button("Cancel", role: .cancel) { }
+            Button("Repeat") { }
+        }
         .task {
             await viewModel.getPurchase()
         }

@@ -13,6 +13,8 @@ final class CartViewModel: CartViewModelProtocol {
     var loadingState: LoadingState = .default
     var cartToolbarItem: CartToolbarItem = .empty
     var isEmptyCart: Bool { cartItems.isEmpty }
+    var isPresentedSortDialog: Bool = false
+    var sortType: NFTSortingType?
     
     private let navigationPath: Binding<[CartNavigationPath]>
     
@@ -39,7 +41,7 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func sortButtonTapped() {
-        
+        isPresentedSortDialog = true
     }
     
     func deleteCartItemButtonTapped(_ cartItem: CartItem) {
