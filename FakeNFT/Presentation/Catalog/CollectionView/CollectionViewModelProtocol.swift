@@ -12,5 +12,6 @@ protocol CollectionViewModelProtocol: ObservableObject {
     var collection: NFTCollection { get }
     var nftModels: [NFTModel] { get set }
     var loadingState: LoadingState { get set }
+    var authorLink: String { get }
     func loadNFT() async
 }

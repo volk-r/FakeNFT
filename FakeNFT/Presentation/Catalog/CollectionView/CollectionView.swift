@@ -58,9 +58,7 @@ struct CollectionView<ViewModel: CollectionViewModelProtocol>: View {
             Text("Author of the collection:")
                 .appTextStyleCaption2()
             
-            Button {
-                // Open viewModel.authorLink in Web View
-            } label: {
+            NavigationLink(destination: WebView(navigationURL: viewModel.authorLink)) {
                 Text(viewModel.collection.author)
                     .appTextStyleCaption1(withColor: .appBlueUniversal)
             }
@@ -101,6 +99,9 @@ struct CollectionView<ViewModel: CollectionViewModelProtocol>: View {
 }
 
 #Preview {
+    let profileManager = ProfileManager(profileService: ProfileMockService())
+    let orderManager = OrderManager(orderService: OrderMockService())
+    
     NavigationStack {
         CollectionView(
             viewModel: CollectionViewModel(
@@ -108,5 +109,13 @@ struct CollectionView<ViewModel: CollectionViewModelProtocol>: View {
                 nftDetailsService: NFTDetailsServiceMock()
             )
         )
+    }
+    .environmentObject(profileManager)
+    .environmentObject(orderManager)
+    .onAppear {
+        Task {
+            try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+            try? await orderManager.loadOrder()
+        }
     }
 }

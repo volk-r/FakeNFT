@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 final class CollectionViewModel: CollectionViewModelProtocol {
     let collection: NFTCollection
-    let authorLink = URL(string: "https://practicum.yandex.ru/ios-developer/")
+    let authorLink = "https://practicum.yandex.ru/ios-developer/"
     var nftModels: [NFTModel] = []
     var loadingState: LoadingState = .default
     
