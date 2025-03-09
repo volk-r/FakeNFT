@@ -29,6 +29,13 @@ final class ProfileManager: ObservableObject, ProfileManagerProtocol {
         self.profileService = profileService
     }
     
+    // MARK: - reloadProfile
+    
+    func reloadProfile() async throws {
+        await profileService.clearCache()
+        try await loadProfile(for: self.externalProfileId ?? "")
+    }
+    
     // MARK: - loadProfile
     
     func loadProfile(for profileId: String) async throws {

@@ -24,4 +24,15 @@ struct FavoriteNFTsViewModelTests {
 
         #expect(viewModel.favoriteNFTsData == expectedFavoriteNFTsData)
     }
+    
+    @MainActor @Test func testDislike() async throws {
+        let viewModel: FavoriteNFTsViewModelProtocol = FavoriteNFTsViewModel(nftDetailsService: NFTDetailsServiceMock())
+        let expectedFavoriteNFTsData: [NFTModel] = [NFTModel.mock1, NFTModel.mock2]
+        await viewModel.fetchNFTData(likeIDs: [NFTModel.mock1.id, NFTModel.mock2.id])
+
+        #expect(viewModel.favoriteNFTsData == expectedFavoriteNFTsData)
+        
+        viewModel.updateFavoriteNFTsData(likeIDs: [NFTModel.mock1.id])
+        #expect(viewModel.favoriteNFTsData == [NFTModel.mock1])
+    }
 }

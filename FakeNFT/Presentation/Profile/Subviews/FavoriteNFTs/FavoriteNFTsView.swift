@@ -40,6 +40,9 @@ struct FavoriteNFTsView: View {
         .task {
             await viewModel.fetchNFTData(likeIDs: likes)
         }
+        .onChange(of: likes) {
+            viewModel.updateFavoriteNFTsData(likeIDs: likes)
+        }
     }
 }
 

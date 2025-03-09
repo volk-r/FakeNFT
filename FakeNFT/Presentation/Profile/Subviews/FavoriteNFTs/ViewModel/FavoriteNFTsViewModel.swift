@@ -24,9 +24,17 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
         self.nftDetailsService = nftDetailsService
     }
     
+    func updateFavoriteNFTsData(likeIDs: [String]) {
+        guard !likeIDs.isEmpty else { return }
+        
+        favoriteNFTsData = favoriteNFTsData.filter { nft in
+            likeIDs.contains(nft.id)
+        }
+    }
+    
     // MARK: - fetchNFTData
     
-    func fetchNFTData(likeIDs: [String]?) async {
+    func fetchNFTData(likeIDs: [String]) async {
         if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
             isEmptyNFTs = false
             loadingState = .loading
@@ -35,10 +43,7 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
             return
         }
         
-        guard
-            let likeIDs,
-            !likeIDs.isEmpty
-        else {
+        guard !likeIDs.isEmpty else {
             isEmptyNFTs = true
             return
         }

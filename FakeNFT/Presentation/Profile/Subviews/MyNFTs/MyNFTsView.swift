@@ -49,6 +49,12 @@ struct MyNFTsView: View {
         .task {
             await viewModel.fetchNFTData(nftIDs: profileManager.profile?.nfts)
         }
+        .refreshable {
+            Task {
+                try? await profileManager.reloadProfile()
+                await viewModel.fetchNFTData(nftIDs: profileManager.profile?.nfts)
+            }
+        }
         .confirmationDialog(
             NFTSortingType.description,
             isPresented: $viewModel.showingSortingDialog,

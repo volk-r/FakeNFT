@@ -31,6 +31,11 @@ struct ProfileView: View {
         .onChange(of: profileManager.profile) {
             viewModel.setupProfile(with: profileManager.profile)
         }
+        .refreshable {
+            Task {
+                try await profileManager.reloadProfile()
+            }
+        }
     }
 }
 
