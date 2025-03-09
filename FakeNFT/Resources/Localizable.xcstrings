@@ -184,6 +184,16 @@
         }
       }
     },
+    "Return to catalog" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вернуться в каталог"
+          }
+        }
+      }
+    },
     "Select payment method" : {
       "localizations" : {
         "ru" : {

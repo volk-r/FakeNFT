@@ -15,32 +15,24 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
     // MARK: Views
     
     var body: some View {
-        NavigationStack(path: $viewModel.navigationPath) {
-            VStack {
-                LoadingSwitcher(
-                    viewModel.loadingState,
-                    content: { content },
-                    error: { error }
+        VStack {
+            LoadingSwitcher(
+                viewModel.loadingState,
+                content: { content },
+                error: { error }
+            )
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(
+                    action: {
+                        viewModel.sortButtonTapped()
+                    },
+                    label: {
+                        Image(.appSortButton)
+                            .foregroundStyle(.appBlack)
+                    }
                 )
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(
-                        action: {
-                            viewModel.sortButtonTapped()
-                        },
-                        label: {
-                            Image(.appSortButton)
-                                .foregroundStyle(.appBlack)
-                        }
-                    )
-                }
-            }
-            .navigationDestination(for: CartNavigationPath.self) { screen in
-                switch screen {
-                case .purchase:
-                    PurchaseView()
-                }
             }
         }
         .task {
@@ -48,11 +40,11 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
         }
     }
     
-    var content: some View {
+    private var content: some View {
         viewModel.isEmptyCart ? AnyView(emptyItemsList) : AnyView(itemsList)
     }
     
-    var itemsList: some View {
+    private var itemsList: some View {
         VStack {
             ScrollView {
                 LazyVStack(spacing: 0) {
@@ -74,7 +66,7 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
         }
     }
     
-    var emptyItemsList: some View {
+    private var emptyItemsList: some View {
         CenteredScrollView {
             CartEmptyView()
         }
@@ -83,7 +75,7 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
         }
     }
     
-    var error: some View {
+    private var error: some View {
         CenteredScrollView {
             CartErrorView()
         }
@@ -96,7 +88,7 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
 #Preview {
     NavigationStack {
         CartView(
-            viewModel: CartViewModel()
+            viewModel: CartViewModel(navigationPath: .constant([]))
         )
     }
 }

@@ -13,7 +13,6 @@ protocol CartViewModelProtocol: ObservableObject, Sendable {
     var cartItems: [CartItem] { get }
     var isEmptyCart: Bool { get }
     var cartToolbarItem: CartToolbarItem { get }
-    var navigationPath: [CartNavigationPath] { get set }
     
     func getCart() async
     func refreshCart() async

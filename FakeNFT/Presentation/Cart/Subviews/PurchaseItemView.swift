@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PurchaseItemView: View {
     let item: PurchaseItem
+    var isSelected: Bool = false
     
     var body: some View {
         HStack(spacing: 4) {
@@ -16,6 +17,13 @@ struct PurchaseItemView: View {
             info
             Spacer()
         }
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(
+                    .appBlack,
+                    lineWidth: isSelected ? 1 : 0
+                )
+        )
         .background(.appLightGray)
         .cornerRadius(12)
     }
@@ -41,6 +49,9 @@ struct PurchaseItemView: View {
 }
 
 #Preview {
-    PurchaseItemView(item: .mockItem)
-        .padding()
+    Group {
+        PurchaseItemView(item: .mockItem, isSelected: true)
+        PurchaseItemView(item: .mockItem)
+    }
+    .padding()
 }

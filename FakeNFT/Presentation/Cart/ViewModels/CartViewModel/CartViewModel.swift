@@ -5,7 +5,7 @@
 //  Created by Леонид Лавров on 3/2/25.
 //
 
-import Foundation
+import SwiftUICore
 
 @Observable
 final class CartViewModel: CartViewModelProtocol {
@@ -13,7 +13,12 @@ final class CartViewModel: CartViewModelProtocol {
     var loadingState: LoadingState = .default
     var cartToolbarItem: CartToolbarItem = .empty
     var isEmptyCart: Bool { cartItems.isEmpty }
-    var navigationPath: [CartNavigationPath] = []
+    
+    private let navigationPath: Binding<[CartNavigationPath]>
+    
+    init(navigationPath: Binding<[CartNavigationPath]>) {
+        self.navigationPath = navigationPath
+    }
     
     func getCart() async {
         guard loadingState == .default else { return }
@@ -42,7 +47,7 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func forPaymentButtonTapped() {
-        navigationPath.append(.purchase)
+        navigationPath.wrappedValue.append(.purchase)
     }
 }
 
