@@ -20,8 +20,7 @@ struct ProfileView: View {
         NavigationStack {
             LoadingSwitcher(
                 viewModel.loadingState,
-                content: { profile },
-                error: { errorContent }
+                content: { profile }
             )
         }
         .accentColor(.appBlack)
@@ -158,18 +157,6 @@ private extension ProfileView {
         }
         .listStyle(.plain)
         .padding(.top)
-    }
-    
-    // MARK: - errorContent
-    
-    // TODO: need general error view
-    private var errorContent: some View {
-        VStack(alignment: .center, spacing: 10) {
-            Text("Something went wrong")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
-            Text("Try again later")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
-        }
     }
 }
 

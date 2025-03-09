@@ -29,8 +29,7 @@ struct MyNFTsView: View {
             } else {
                 LoadingSwitcher(
                     viewModel.loadingState,
-                    content: { myNFTsList },
-                    error: { errorContent }
+                    content: { myNFTsList }
                 )
             }
         }
@@ -105,18 +104,6 @@ extension MyNFTsView {
         }
         .listStyle(.plain)
         .padding(.top)
-    }
-    
-    // MARK: - errorContent
-    
-    // TODO: need general error view
-    private var errorContent: some View {
-        VStack(alignment: .center, spacing: 10) {
-            Text("Something went wrong")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
-            Text("Try again later")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
-        }
     }
 }
 

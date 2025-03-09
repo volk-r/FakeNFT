@@ -29,8 +29,7 @@ struct FavoriteNFTsView: View {
             } else {
                 LoadingSwitcher(
                     viewModel.loadingState,
-                    content: { favoriteNFTsList },
-                    error: { errorContent }
+                    content: { favoriteNFTsList }
                 )
             }
         }
@@ -62,18 +61,6 @@ extension FavoriteNFTsView {
             }
             .padding(.top, 20)
             .padding(.horizontal, 16)
-        }
-    }
-    
-    // MARK: - errorContent
-    
-    // TODO: need general error view
-    private var errorContent: some View {
-        VStack(alignment: .center, spacing: 10) {
-            Text("Something went wrong")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
-            Text("Try again later")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
         }
     }
 }
