@@ -38,6 +38,16 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
             }
             Button("Close", role: .cancel) { }
         }
+        .fullScreenCover(
+            isPresented: $viewModel.isPresentedConfirmDelete
+        ) {
+            CartDeleteItemConfirm(onDelete: {
+                viewModel.deleteConfirmTapped()
+            }, onCancel: {
+                viewModel.cancelDeleteConfirmTapped()
+            })
+            .presentationBackground(.ultraThinMaterial)
+        }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(

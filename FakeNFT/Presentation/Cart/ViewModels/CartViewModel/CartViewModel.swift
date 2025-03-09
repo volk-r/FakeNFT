@@ -15,6 +15,7 @@ final class CartViewModel: CartViewModelProtocol {
     var isEmptyCart: Bool { cartItems.isEmpty }
     var isPresentedSortDialog: Bool = false
     var sortType: NFTSortingType?
+    var isPresentedConfirmDelete: Bool = false
     
     private let navigationPath: Binding<[CartNavigationPath]>
     
@@ -45,11 +46,19 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func deleteCartItemButtonTapped(_ cartItem: CartItem) {
-        
+        isPresentedConfirmDelete = true
     }
     
     func forPaymentButtonTapped() {
         navigationPath.wrappedValue.append(.purchase)
+    }
+    
+    func deleteConfirmTapped() {
+        isPresentedConfirmDelete = false
+    }
+    
+    func cancelDeleteConfirmTapped() {
+        isPresentedConfirmDelete = false
     }
 }
 

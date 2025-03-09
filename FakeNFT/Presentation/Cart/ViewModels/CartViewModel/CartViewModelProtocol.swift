@@ -14,6 +14,7 @@ protocol CartViewModelProtocol: ObservableObject, Sendable {
     var isEmptyCart: Bool { get }
     var cartToolbarItem: CartToolbarItem { get }
     var isPresentedSortDialog: Bool { get set }
+    var isPresentedConfirmDelete: Bool { get set }
     var sortType: NFTSortingType? { get set }
     
     func getCart() async
@@ -22,4 +23,6 @@ protocol CartViewModelProtocol: ObservableObject, Sendable {
     func sortButtonTapped()
     func deleteCartItemButtonTapped(_ cartItem: CartItem)
     func forPaymentButtonTapped()
+    func deleteConfirmTapped()
+    func cancelDeleteConfirmTapped()
 }
