@@ -28,6 +28,7 @@ final class CollectionViewModel: CollectionViewModelProtocol {
         
         do {
             nftModels = try await nftDetailsService.loadNFT(for: collection.nfts)
+            nftModels.sort { $0.name < $1.name }
             loadingState = .success
         } catch {
             loadingState = .failure
