@@ -38,8 +38,9 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     
     func fetchNFTData(nftIDs: [String]?) async {
         if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
-            await fetchMockNFTData()
             isEmptyNFTs = false
+            loadingState = .loading
+            await fetchMockNFTData()
             loadingState = .success
             setSorting(sortType)
             return

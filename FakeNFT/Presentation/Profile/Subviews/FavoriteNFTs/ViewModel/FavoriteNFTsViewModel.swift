@@ -28,8 +28,9 @@ final class FavoriteNFTsViewModel: FavoriteNFTsViewModelProtocol {
     
     func fetchNFTData(likeIDs: [String]?) async {
         if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
-            await fetchMockNFTData()
             isEmptyNFTs = false
+            loadingState = .loading
+            await fetchMockNFTData()
             loadingState = .success
             return
         }
