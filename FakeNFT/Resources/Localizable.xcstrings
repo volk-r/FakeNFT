@@ -24,12 +24,32 @@
         }
       }
     },
+    "Author of the collection:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автор коллекции:"
+          }
+        }
+      }
+    },
     "By name" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "По имени"
+          }
+        }
+      }
+    },
+    "By NFT Count" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По количеству NFT"
           }
         }
       }
@@ -50,6 +70,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "По рейтингу"
+          }
+        }
+      }
+    },
+    "By Title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По названию"
           }
         }
       }
@@ -100,9 +130,6 @@
           }
         }
       }
-    },
-    "Catalog View" : {
-      "shouldTranslate" : false
     },
     "Change photo" : {
       "localizations" : {
@@ -160,6 +187,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введите ваш вебсайт"
+          }
+        }
+      }
+    },
+    "Failed to retrieve data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить данные"
           }
         }
       }
@@ -443,6 +480,26 @@
         }
       }
     },
+    "Tell us about yourself" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расскажите о себе"
+          }
+        }
+      }
+    },
+    "Try again later" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробуйте еще раз позже"
+          }
+        }
+      }
+    },
     "userCardViewGoToUsersSiteButton" : {
       "comment" : "Наименование кнопки \"Перейти на сайт пользователя\"",
       "localizations" : {
@@ -490,26 +547,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Коллекция NFT"
-          }
-        }
-      }
-    },
-    "Tell us about yourself" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Расскажите о себе"
-          }
-        }
-      }
-    },
-    "Try again later" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Попробуйте еще раз позже"
           }
         }
       }

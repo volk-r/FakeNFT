@@ -20,57 +20,68 @@ struct NFTCard: View {
     // MARK: - body
     
     var body: some View {
-        likeView
-            .frame(
-                width: сardType.cardSize,
-                height: сardType.cardSize
-            )
-            .background {
-                ImageLoaderFactory(
-                    url: imageUrl,
-                    contentMode: .fit
-                )
-                .frame(
-                    maxWidth: сardType.cardSize,
-                    maxHeight: сardType.cardSize
-                )
-                .scaledToFit()
-                .cornerRadius(12)
+        if сardType == .flexible {
+            ZStack(alignment: .topTrailing) {
+                ImageLoaderFactory(url: imageUrl, contentMode: .fit)
+                    .cornerRadius(12)
+                likeView
             }
+            .aspectRatio(1, contentMode: .fit)
+        } else {
+            fixedCardView
+                .frame(
+                    width: сardType.cardSize,
+                    height: сardType.cardSize
+                )
+                .background {
+                    ImageLoaderFactory(
+                        url: imageUrl,
+                        contentMode: .fit
+                    )
+                    .frame(
+                        maxWidth: сardType.cardSize,
+                        maxHeight: сardType.cardSize
+                    )
+                    .scaledToFit()
+                    .cornerRadius(12)
+                }
+        }
     }
 }
 
 extension NFTCard {
-    var likeView: some View {
+    var fixedCardView: some View {
         VStack {
             HStack {
                 Spacer()
-                Image(systemName: "heart.fill")
-                    .resizable()
-                    .foregroundStyle(
-                        isLiked
-                        ? .appRedUniversal
-                        : .appWhiteUniversal
-                    )
-                    .frame(
-                        width: сardType.likeWidth,
-                        height: сardType.likeHeight
-                    )
-                    .padding(.trailing, сardType.likeTrailingPadding)
-                    .padding(.top, сardType.likeTopPadding)
-                    .background(
-                        Color.clear
-                            .frame(width: 44, height: 44)
-                            .contentShape(Rectangle())
-                    )
-                    .disabled(isDisabled)
-                    .accessibilityIdentifier(AppAccessibilityId.NFTCard.likeImage)
-                    .onTapGesture {
-                        action()
-                    }
+                likeView
             }
             Spacer()
         }
+    }
+    
+    var likeView: some View {
+        Image(systemName: "heart.fill")
+            .resizable()
+            .foregroundStyle(
+                isLiked ? .appRedUniversal : .appWhiteUniversal
+            )
+            .frame(
+                width: сardType.likeWidth,
+                height: сardType.likeHeight
+            )
+            .padding(.trailing, сardType.likeTrailingPadding)
+            .padding(.top, сardType.likeTopPadding)
+            .background(
+                Color.clear
+                    .frame(width: 44, height: 44)
+                    .contentShape(Rectangle())
+            )
+            .disabled(isDisabled)
+            .accessibilityIdentifier(AppAccessibilityId.NFTCard.likeImage)
+            .onTapGesture {
+                action()
+            }
     }
 }
 

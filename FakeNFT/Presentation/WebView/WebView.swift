@@ -48,7 +48,6 @@ struct WebView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(URL(string: navigationURL)?.host(percentEncoded: true) ?? "")
         .toolbarRole(.editor)
         .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
     }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @StateObject private var catalogViewModel: CatalogViewModel
+    
     // MARK: - Initializers
 
     init() {
@@ -26,8 +28,10 @@ struct AppTabView: View {
 
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
+        
+        _catalogViewModel = StateObject(wrappedValue: CatalogViewModel())
     }
-
+    
     // MARK: - View
 
     var body: some View {
@@ -38,7 +42,7 @@ struct AppTabView: View {
                     Text("Profile")
                 }
                 .tag(0)
-            CatalogView()
+            CatalogView(viewModel: catalogViewModel)
                 .tabItem {
                     Image(uiImage: .tabCatalog)
                     Text("Catalog")

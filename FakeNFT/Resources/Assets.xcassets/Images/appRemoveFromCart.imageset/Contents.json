@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "addToCartAny.svg",
+      "filename" : "removeFromCartAny.svg",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "addToCartDark.svg",
+      "filename" : "removeFromCartDark.svg",
       "idiom" : "universal"
     }
   ],
