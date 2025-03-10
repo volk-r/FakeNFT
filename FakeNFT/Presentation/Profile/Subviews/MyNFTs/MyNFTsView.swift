@@ -1,5 +1,5 @@
 //
-//  MyNFTView.swift
+//  MyNFsTView.swift
 //  FakeNFT
 //
 //  Created by Roman Romanov on 23.02.2025.
@@ -7,12 +7,16 @@
 
 import SwiftUI
 
-struct MyNFTView: View {
+struct MyNFTsView: View {
     
     // MARK: - Properties
     
-    @Environment(ProfileViewModel.self) var profileModel
-    @State private var viewModel: MyNFTViewModelProtocol = MyNFTViewModel()
+    @EnvironmentObject var profileManager: ProfileManager
+    @State private var viewModel: MyNFTsViewModelProtocol
+    
+    init(viewModel: MyNFTsViewModelProtocol = MyNFTsViewModel()) {
+        self.viewModel = viewModel
+    }
     
     // MARK: - body
     
@@ -21,11 +25,11 @@ struct MyNFTView: View {
             if viewModel.isEmptyNFTs {
                 Text("You don't have NFT yet")
                     .appTextStyleBodyBold()
+                    .accessibilityIdentifier(AppAccessibilityId.MyNFTs.noNFTs)
             } else {
                 LoadingSwitcher(
                     viewModel.loadingState,
-                    content: { myNFTsList },
-                    error: { errorContent }
+                    content: { myNFTsList }
                 )
             }
         }
@@ -42,7 +46,13 @@ struct MyNFTView: View {
         .toolbarRole(.editor)
         .navigationBarTitleDisplayMode(.inline)
         .task {
-            await viewModel.fetchNFTData(nftIDs: profileModel.profile?.nfts)
+            await viewModel.fetchNFTData(nftIDs: profileManager.profile?.nfts)
+        }
+        .refreshable {
+            Task {
+                try? await profileManager.reloadProfile()
+                await viewModel.fetchNFTData(nftIDs: profileManager.profile?.nfts)
+            }
         }
         .confirmationDialog(
             NFTSortingType.description,
@@ -65,7 +75,7 @@ struct MyNFTView: View {
     }
 }
 
-extension MyNFTView {
+extension MyNFTsView {
     
     // MARK: - sortButton
     
@@ -88,44 +98,36 @@ extension MyNFTView {
     private var myNFTsList: some View {
         List(viewModel.nftsData, id: \.id) { data in
             Section {
-                NFTCardView(
-                    nftData: data,
-                    isLiked: profileModel.profile?.likes?.contains(data.id) ?? false
-                )
+                NFTCardView(nftData: data)
             }
             .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
         .padding(.top)
     }
-    
-    // MARK: - errorContent
-    
-    // TODO: need general error view
-    private var errorContent: some View {
-        VStack(alignment: .center, spacing: 10) {
-            Text("Something went wrong")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
-            Text("Try again later")
-                .appTextStyleHeadline3(withColor: .appRedUniversal)
-        }
-    }
 }
 
 #Preview("NFT") {
-    let viewModel = ProfileViewModel()
-    NavigationStack {
-        MyNFTView()
-            .environment(viewModel)
+    @Previewable @StateObject var profileManager = ProfileManager(profileService: ProfileMockService())    
+    let model: MyNFTsViewModelProtocol = MyNFTsViewModel()
+
+    return AsyncPreviewModel {
+        NavigationStack {
+            MyNFTsView(viewModel: model)
+                .environmentObject(profileManager)
+        }
+    } model: {
+        
     }
-    .onAppear {
-        viewModel.loadMockProfile()
+    .task {
+        try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+        await model.fetchMockNFTData()
     }
 }
 
 #Preview("No NFT") {
     NavigationStack {
-        MyNFTView()
-            .environment(ProfileViewModel())
+        MyNFTsView()
+            .environmentObject(ProfileManager(profileService: ProfileMockService()))
     }
 }

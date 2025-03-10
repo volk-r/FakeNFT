@@ -14,6 +14,7 @@ struct NFTCard: View {
     let imageUrl: String
     var isLiked: Bool
     var сardType: NFTCardType = .normal
+    var isDisabled: Bool = false
     let action: () -> Void
     
     // MARK: - body
@@ -62,6 +63,8 @@ extension NFTCard {
                             .frame(width: 44, height: 44)
                             .contentShape(Rectangle())
                     )
+                    .disabled(isDisabled)
+                    .accessibilityIdentifier(AppAccessibilityId.NFTCard.likeImage)
                     .onTapGesture {
                         action()
                     }

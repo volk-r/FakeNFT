@@ -19,15 +19,29 @@ final class EditProfileViewModel: EditProfileViewModelProtocol {
     var userDescription: String = ""
     var userWebsite: String = ""
     var showDialog: Bool = false
+    var profile: ProfileModel?
+    
+    var profileUpdated: ProfileModel {
+        ProfileModel(
+            id: profile?.id,
+            name: userName,
+            avatar: avatarLink,
+            description: userDescription,
+            website: userWebsite,
+            nfts: profile?.nfts
+        )
+    }
     
     // MARK: - setupProfile
     
     func setupProfile(_ profile: ProfileModel?) {
-        avatarLink = profile?.avatar ?? ""
+        guard let profile else { return }
+        self.profile = profile
+        avatarLink = profile.avatar ?? ""
         avatarLinkChangeable = avatarLink
-        userName = profile?.name ?? ""
-        userDescription = profile?.description ?? ""
-        userWebsite = URL(string: profile?.website ?? "")?.host(percentEncoded: true) ?? ""
+        userName = profile.name ?? ""
+        userDescription = profile.description ?? ""
+        userWebsite = profile.website ?? ""
     }
     
     // MARK: - updateAvatarLink
@@ -38,10 +52,5 @@ final class EditProfileViewModel: EditProfileViewModelProtocol {
             return
         }
         avatarLink = link
-    }
-    
-    func updateProfile() {
-        // TODO: save new data profile
-        print("save new data profile")
     }
 }

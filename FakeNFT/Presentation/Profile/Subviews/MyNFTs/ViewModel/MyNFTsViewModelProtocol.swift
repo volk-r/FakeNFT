@@ -1,5 +1,5 @@
 //
-//  MyNFTViewModelProtocol.swift
+//  MyNFTsViewModelProtocol.swift
 //  FakeNFT
 //
 //  Created by Roman Romanov on 24.02.2025.
@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-protocol MyNFTViewModelProtocol: AnyObject, Sendable {
+protocol MyNFTsViewModelProtocol: AnyObject, Sendable {
     var nftsData: [NFTModel] { get }
     var showingSortingDialog: Bool { get set }
     var loadingState: LoadingState { get }

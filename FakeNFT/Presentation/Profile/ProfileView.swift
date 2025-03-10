@@ -11,47 +11,63 @@ struct ProfileView: View {
     
     // MARK: - Properties
     
+    @EnvironmentObject var profileManager: ProfileManager
     @State private var viewModel = ProfileViewModel()
     
     // MARK: - body
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Group {
-                    header
-                    userInfo
-                }
-                .padding(.horizontal, 16)
-                
-                optionList
-            }
-            .padding(.top, 20)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    editButton
-                }
-            }
-            .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
-                MyNFTView()
-                    .environment(viewModel)
-            }
-            .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
-                FavoriteNFTsView()
-                    .environment(viewModel)
-            }
-            .navigationDestination(isPresented: $viewModel.isDeveloperInfoPresented) {
-                WebView(navigationURL: viewModel.profile?.website ?? "")
-            }
+            LoadingSwitcher(
+                viewModel.loadingState,
+                content: { profile }
+            )
         }
         .accentColor(.appBlack)
         .onAppear {
-            viewModel.loadProfile()
+            viewModel.setupProfile(with: profileManager.profile)
+        }
+        .onChange(of: profileManager.profile) {
+            viewModel.setupProfile(with: profileManager.profile)
+        }
+        .refreshable {
+            Task {
+                try await profileManager.reloadProfile()
+            }
         }
     }
 }
 
 private extension ProfileView {
+    
+    // MARK: - body
+    
+    private var profile: some View {
+        VStack {
+            Group {
+                header
+                userInfo
+            }
+            .padding(.horizontal, 16)
+            
+            optionList
+        }
+        .padding(.top, 20)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                editButton
+            }
+        }
+        .navigationDestination(isPresented: $viewModel.isMyNFTPresented) {
+            MyNFTsView()
+        }
+        .navigationDestination(isPresented: $viewModel.isFavoriteNFTsPresented) {
+            FavoriteNFTsView(likes: viewModel.profile?.likes ?? [])
+        }
+        .navigationDestination(isPresented: $viewModel.isDeveloperInfoPresented) {
+            WebView(navigationURL: viewModel.profile?.website ?? "")
+        }
+    }
     
     // MARK: - editButton
     
@@ -69,8 +85,13 @@ private extension ProfileView {
                     .padding(.trailing, 9)
             }
         )
+        .accessibilityIdentifier(AppAccessibilityId.Profile.editButton)
         .sheet(isPresented: $viewModel.isEditProfilePresented) {
-            EditProfileView(profile: viewModel.profile)
+            EditProfileView(profile: viewModel.profile) { profile in
+                Task {
+                    try? await profileManager.updateProfile(with: profile)
+                }
+            }
         }
     }
     
@@ -82,6 +103,7 @@ private extension ProfileView {
             Text(verbatim: viewModel.profile?.name ?? "")
                 .appTextStyleHeadline3()
                 .padding(.leading, 16)
+                .accessibilityIdentifier(AppAccessibilityId.Profile.name)
             Spacer()
         }
     }
@@ -101,6 +123,7 @@ private extension ProfileView {
                         .foregroundStyle(.appBlueUniversal)
                         .appTextStyleCaption1()
                 }
+                .accessibilityIdentifier(AppAccessibilityId.Profile.webView)
                 Spacer()
             }
             .padding(.top, 12)
@@ -116,14 +139,17 @@ private extension ProfileView {
                     .onTapGesture {
                         viewModel.isMyNFTPresented = true
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.Profile.myNFTs)
                 ProfileListItemView(listItem: LocalizedStringKey("Favorite NFTs (\(viewModel.getFavoriteNFTsCount()))"))
                     .onTapGesture {
                         viewModel.isFavoriteNFTsPresented = true
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.Profile.favoriteNFTs)
                 ProfileListItemView(listItem: LocalizedStringKey("About the developer"))
                     .onTapGesture {
                         viewModel.isDeveloperInfoPresented = true
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.Profile.developerInfo)
             }
             .appTextStyleBodyBold()
             .listRowBackground(Color.clear)
@@ -137,7 +163,11 @@ private extension ProfileView {
 // MARK: - Preview
 
 #Preview {
-    NavigationStack {
-        AppTabView()
-    }
+    @Previewable @StateObject var profileManager = ProfileManager(profileService: ProfileMockService())
+    
+    AppTabView()
+        .environmentObject(profileManager)
+        .task {
+            try? await profileManager.loadProfile(for: GlobalConstants.mockProfileID)
+        }
 }

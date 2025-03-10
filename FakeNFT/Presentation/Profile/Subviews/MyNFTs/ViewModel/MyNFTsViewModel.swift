@@ -1,5 +1,5 @@
 //
-//  MyNFTViewModel.swift
+//  MyNFTsViewModel.swift
 //  FakeNFT
 //
 //  Created by Roman Romanov on 23.02.2025.
@@ -8,14 +8,14 @@
 import SwiftUI
 
 @Observable
-final class MyNFTViewModel: MyNFTViewModelProtocol {
+final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     
     // MARK: - Properties
     
     var showingSortingDialog: Bool = false
     
     @ObservationIgnored
-    @AppStorage("myNFTViewModelSortType") private(set) var sortType: NFTSortingType = .byPrice {
+    @AppStorage(AppStorageKey.Sorting.myNFTView) private(set) var sortType: NFTSortingType = .byRating {
         didSet {
             switch sortType {
             case .byPrice:
@@ -37,7 +37,19 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
     // MARK: - fetchNFTData
     
     func fetchNFTData(nftIDs: [String]?) async {
-        guard let nftIDs else {
+        if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
+            isEmptyNFTs = false
+            loadingState = .loading
+            await fetchMockNFTData()
+            loadingState = .success
+            setSorting(sortType)
+            return
+        }
+        
+        guard
+            let nftIDs,
+            !nftIDs.isEmpty
+        else {
             isEmptyNFTs = true
             return
         }
@@ -67,7 +79,7 @@ final class MyNFTViewModel: MyNFTViewModelProtocol {
         loadingState = .loading
         
         do {
-            try await Task.sleep(for: .seconds(5))
+            try await Task.sleep(for: .seconds(3))
             
             loadingState = .success
             nftsData = [

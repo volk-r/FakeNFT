@@ -11,7 +11,8 @@ struct EditProfileView: View {
     
     // MARK: - Properties
     
-    var profile: ProfileModel?
+    let profile: ProfileModel?
+    let updateProfile: (ProfileModel) -> Void
     
     @Environment(\.dismiss) var dismiss
     @State private var viewModel: EditProfileViewModelProtocol = EditProfileViewModel()
@@ -43,10 +44,8 @@ struct EditProfileView: View {
         }
         .padding(16)
         .accentColor(.appBlack)
-        .onAppear {
-            viewModel.setupProfile(profile)
-        }
-        .onDisappear { viewModel.updateProfile() }
+        .onAppear { viewModel.setupProfile(profile) }
+        .onDisappear { updateProfile(viewModel.profileUpdated) }
         .overlay(alert)
     }
 }
@@ -102,6 +101,7 @@ private extension EditProfileView {
                     .onTapGesture {
                         viewModel.showDialog.toggle()
                     }
+                    .accessibilityIdentifier(AppAccessibilityId.EditProfile.avatarChangeImage)
             }
             Spacer()
         }
@@ -130,9 +130,5 @@ private extension EditProfileView {
 }
 
 #Preview {
-    let viewModel = ProfileViewModel()
-    viewModel.loadMockProfile()
-    
-    return EditProfileView()
-        .environment(viewModel)
+    EditProfileView(profile: ProfileModel.mockProfile) {_ in }
 }
