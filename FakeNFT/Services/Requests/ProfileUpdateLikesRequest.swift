@@ -26,7 +26,7 @@ struct ProfileUpdateLikesDto: Dto {
     let likes: [String]
     
     func asDictionary() -> [String: String] {
-         let joinedLikes = likes.joined(separator: ",")
+        let joinedLikes = likes.joined(separator: ",")
         return ["likes": joinedLikes]
     }
 }

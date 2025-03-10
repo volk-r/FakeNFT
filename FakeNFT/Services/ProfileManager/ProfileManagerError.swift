@@ -10,4 +10,5 @@ import Foundation
 enum ProfileManagerError: Error {
     case profileLoadingError
     case updateLikesError
+    case updateProfileError
 }
