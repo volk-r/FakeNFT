@@ -37,5 +37,21 @@ enum AppAccessibilityId {
     enum WebView {
         static let message = "accessibilityIdentifiersWebViewMessage"
         static let image = "accessibilityIdentifiersWebViewImage"
+        static let progressView = "accessibilityIdentifiersProgress"
+    }
+
+    enum StatisticView {
+        static let list = "statisticsList"
+    }
+
+    enum UserCardView {
+        static let userImage = "userCardViewImage"
+        static let userName = "userCardViewName"
+        static let nftsCollection = "userCardViewNFTsCollectionList"
+        static let userWebSiteButton = "userCardViewWebSiteButton"
+    }
+
+    enum UsersCollectionView {
+        static let list = "usersCollectionViewNFTsList"
     }
 }

@@ -324,8 +324,175 @@
         }
       }
     },
-    "Statistic View" : {
-      "shouldTranslate" : false
+    "StatisticViewCancelButton" : {
+      "comment" : "Название кнопки \"Отмена\" в диалоговом окне с ошибкой",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "StatisticViewCloseButton" : {
+      "comment" : "Название кнопки \"Закрыть\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "StatisticViewErrorText" : {
+      "comment" : "Текст ошибки при загрузке данных из Сети",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to get data"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить данные"
+          }
+        }
+      }
+    },
+    "StatisticViewRetryButton" : {
+      "comment" : "Название кнопки \"Повторить\" в диалоговом окне с ошибкой",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingByName" : {
+      "comment" : "Название элемента \"По имени\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By name"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По имени"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingByRating" : {
+      "comment" : "Название элемента \"По рейтингу\" в диалоговом окне сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "By rating"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По рейтингу"
+          }
+        }
+      }
+    },
+    "StatisticViewSortingDialogTitle" : {
+      "comment" : "Заголовок диалогового окна выбора типа сортировки списка",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sorting"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировка"
+          }
+        }
+      }
+    },
+    "userCardViewGoToUsersSiteButton" : {
+      "comment" : "Наименование кнопки \"Перейти на сайт пользователя\"",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Go to user's website"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перейти на сайт пользователя"
+          }
+        }
+      }
+    },
+    "usersCardViewNFTSCollectionCount" : {
+      "comment" : "Наименование гиперссылки на экран с коллекцией NFT",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFT collection (%lld)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коллекция NFT (%lld)"
+          }
+        }
+      }
+    },
+    "UsersCollectionViewTitle" : {
+      "comment" : "Наименование экрана со списком NFT пользователя",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFT collection"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коллекция NFT"
+          }
+        }
+      }
     },
     "Tell us about yourself" : {
       "localizations" : {

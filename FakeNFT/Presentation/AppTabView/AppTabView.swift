@@ -50,14 +50,12 @@ struct AppTabView: View {
                     Text("Cart")
                 }
                 .tag(2)
-            NavigationStack {
-                StatisticView()
-            }
-            .tabItem {
-                Image(uiImage: .tabStatistics)
-                Text("Statistic")
-            }
-            .tag(3)
+            StatisticView()
+                .tabItem {
+                    Image(uiImage: .tabStatistics)
+                    Text("Statistic")
+                }
+                .tag(3)
         }
     }
 
