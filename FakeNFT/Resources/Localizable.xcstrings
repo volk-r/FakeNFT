@@ -131,26 +131,6 @@
         }
       }
     },
-    "Close" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Закрыть"
-          }
-        }
-      }
-    },
-    "Failed to retrieve data" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось получить данные"
-          }
-        }
-      }
-    },
     "Change photo" : {
       "localizations" : {
         "ru" : {
@@ -207,6 +187,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Введите ваш вебсайт"
+          }
+        }
+      }
+    },
+    "Failed to retrieve data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить данные"
           }
         }
       }
@@ -490,6 +480,26 @@
         }
       }
     },
+    "Tell us about yourself" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расскажите о себе"
+          }
+        }
+      }
+    },
+    "Try again later" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробуйте еще раз позже"
+          }
+        }
+      }
+    },
     "userCardViewGoToUsersSiteButton" : {
       "comment" : "Наименование кнопки \"Перейти на сайт пользователя\"",
       "localizations" : {
@@ -537,26 +547,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Коллекция NFT"
-          }
-        }
-      }
-    },
-    "Tell us about yourself" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Расскажите о себе"
-          }
-        }
-      }
-    },
-    "Try again later" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Попробуйте еще раз позже"
           }
         }
       }
