@@ -14,7 +14,7 @@ actor UsersService: UsersServiceProtocol {
     // MARK: - Private Properties
 
     private var usersCache: [UsersCache] = []
-    var isRunningUITests: Bool {
+    private var isRunningUITests: Bool {
         return ProcessInfo.processInfo.environment["TEST"] == "true"
     }
 

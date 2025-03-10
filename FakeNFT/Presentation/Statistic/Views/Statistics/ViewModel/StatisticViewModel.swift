@@ -35,7 +35,7 @@ final class StatisticViewModel: StatisticViewModelProtocol {
     var showingErrorAlert: Bool = false
     var showingSortDialog: Bool = false
     @ObservationIgnored
-    @AppStorage("statisticViewUsersSortType") var sortType: UsersSortType = .byRating {
+    @AppStorage(AppStorageKey.Sorting.statisticView) var sortType: UsersSortType = .byRating {
         didSet {
             if sortType != oldValue {
                 Task {

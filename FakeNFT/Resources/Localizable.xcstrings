@@ -4,9 +4,6 @@
     "" : {
       "shouldTranslate" : false
     },
-    "%@" : {
-      "shouldTranslate" : false
-    },
     "By name" : {
       "localizations" : {
         "ru" : {
@@ -276,6 +273,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Коллекция NFT (%lld)"
+          }
+        }
+      }
+    },
+    "UsersCollectionViewTitle" : {
+      "comment" : "Наименование экрана со списком NFT пользователя",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NFT collection"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Коллекция NFT"
           }
         }
       }

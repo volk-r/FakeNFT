@@ -16,5 +16,8 @@ enum GlobalConstants {
     static let chevronRightImageName = "chevron.right"
 
     static let mockURL: String = "https://yandex.ru/legal/practicum_offer/"
+    static let mockProfileID: String = "1"
     static let mockPreviewImageUrl = "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Finn/1.png"
+    
+    static let avatarPlaceHolder = "person.crop.circle.fill"
 }

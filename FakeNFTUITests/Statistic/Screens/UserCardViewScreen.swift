@@ -35,7 +35,21 @@ struct UserCardViewScreen {
         userWebSiteButton.tap()
         let webViewProgressView = webViewProgressViewElement()
         XCTAssertTrue(webViewProgressView.exists)
+        sleep(2)
+        let backButton = webViewBackButtonElement()
+        XCTAssertTrue(backButton.exists)
+        backButton.tap()
         return self
+    }
+
+    func showUsersNFTsCollection() -> UsersCollectionViewScreen? {
+        let nftsCollection = nftsCollectionElement()
+        XCTAssertTrue(nftsCollection.exists)
+        let linkToNftCollection = nftsCollectionCellElement()
+        XCTAssertTrue(linkToNftCollection.exists)
+        linkToNftCollection.tap()
+        sleep(2)
+        return UsersCollectionViewScreen(application: application)
     }
     
     // MARK: - Private Methods
@@ -43,19 +57,19 @@ struct UserCardViewScreen {
     private func userImageElement() -> XCUIElement {
         return application.images.element(
             matching: NSPredicate(
-                format: "identifier == '\(StatisticUITestIdentifiers.userImageAccessibilityIdentifier)'"
+                format: "identifier == '\(AppAccessibilityId.UserCardView.userImage)'"
             )
         )
     }
 
     private func userNameElement() -> XCUIElement {
-        return application.staticTexts.element(matching: NSPredicate(format: "identifier == '\(StatisticUITestIdentifiers.userNameAccessibilityIdentifier)'"))
+        return application.staticTexts.element(matching: NSPredicate(format: "identifier == '\(AppAccessibilityId.UserCardView.userName)'"))
     }
 
     private func userWebSiteButtonElement() -> XCUIElement {
         return application.buttons.element(
             matching: NSPredicate(
-                format: "identifier == '\(StatisticUITestIdentifiers.userWebSiteButtonAccessibilityIdentifier)'"
+                format: "identifier == '\(AppAccessibilityId.UserCardView.userWebSiteButton)'"
             )
         )
     }
@@ -63,7 +77,7 @@ struct UserCardViewScreen {
     private func nftsCollectionElement() -> XCUIElement {
         return application.collectionViews.element(
             matching: NSPredicate(
-                format: "identifier == '\(StatisticUITestIdentifiers.nftsCollectionAccessibilityIdentifier)'"
+                format: "identifier == '\(AppAccessibilityId.UserCardView.nftsCollection)'"
             )
         )
     }
@@ -72,7 +86,11 @@ struct UserCardViewScreen {
         return nftsCollectionElement().cells.element(boundBy: 0)
     }
 
+    private func webViewBackButtonElement() -> XCUIElement {
+        return application.navigationBars.firstMatch.buttons.firstMatch
+    }
+    
     private func webViewProgressViewElement() -> XCUIElement {
-        return application.progressIndicators.element(matching: NSPredicate(format: "identifier == 'webViewProgressViewIdentifier'"))
+        return application.progressIndicators.element(matching: NSPredicate(format: "identifier == '\(AppAccessibilityId.WebView.progressView)'"))
     }
 }

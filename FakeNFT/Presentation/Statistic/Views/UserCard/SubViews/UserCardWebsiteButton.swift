@@ -24,7 +24,7 @@ struct UserCardWebsiteButton: View {
             action: {
                 viewModel.showUsersWebSite(
                     withAddress: user.website,
-                    in: $navigationPath
+                    in: &navigationPath
                 )
             },
             label: {
@@ -41,7 +41,7 @@ struct UserCardWebsiteButton: View {
                     )
             }
         )
-        .accessibilityIdentifier(StatisticUITestIdentifiers.userWebSiteButtonAccessibilityIdentifier)
+        .accessibilityIdentifier(AppAccessibilityId.UserCardView.userWebSiteButton)
         .padding([.top], Constants.usersSiteButtonTopPadding)
         .disabled(user.website.isEmpty)
     }

@@ -24,8 +24,11 @@ struct UserCardNFTLink: View {
             Button(
                 action: {
                     viewModel.showUsersNFTCollection(
-                        withId: user.id,
-                        in: $navigationPath
+                        withData: UserData(
+                            id: user.id,
+                            nfts: user.nfts
+                        ),
+                        in: &navigationPath
                     )
                 },
                 label: {
@@ -46,7 +49,7 @@ struct UserCardNFTLink: View {
             .listRowInsets(Constants.listEdgeInsets)
             .disabled(user.nfts.isEmpty)
         }
-        .accessibilityIdentifier(StatisticUITestIdentifiers.nftsCollectionAccessibilityIdentifier)
+        .accessibilityIdentifier(AppAccessibilityId.UserCardView.nftsCollection)
         .padding([.top], Constants.listTopPadding)
         .listStyle(.plain)
         .scrollContentBackground(.hidden)

@@ -8,12 +8,6 @@
 import XCTest
 
 struct StatisticViewScreen {
-    // MARK: - Types
-
-    private enum Identifiers {
-        static let listIdentifier = "statisticsList"
-    }
-
     // MARK: - Public Properties
 
     let application: XCUIApplication
@@ -48,7 +42,7 @@ struct StatisticViewScreen {
     // MARK: - Private Methods
 
     private func listElement() -> XCUIElement {
-        return application.collectionViews.element(matching: NSPredicate(format: "identifier == '\(Identifiers.listIdentifier)'"))
+        return application.collectionViews.element(matching: NSPredicate(format: "identifier == '\(AppAccessibilityId.StatisticView.list)'"))
     }
 
     private func getFirstCell() -> XCUIElement? {
@@ -58,5 +52,4 @@ struct StatisticViewScreen {
         }
         return listElement().children(matching: .cell).element(boundBy: 0)
     }
-
 }
