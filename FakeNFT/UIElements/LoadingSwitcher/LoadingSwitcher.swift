@@ -42,7 +42,7 @@ struct LoadingSwitcher<Content: View>: View {
             if let errorView {
                 AnyView(errorView())
             } else {
-                EmptyView()
+                CustomErrorView()
             }
         }
     }

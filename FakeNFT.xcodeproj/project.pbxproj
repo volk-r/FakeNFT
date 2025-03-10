@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0758A7912D733DA6004642A7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0758A7902D733DA6004642A7 /* SDWebImageSwiftUI */; };
 		0761D17F2D64737700DC0536 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0761D17E2D64737700DC0536 /* SDWebImageSwiftUI */; };
-		3CF01E572D7A1B4E0030AC40 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3CF01E562D7A1B4E0030AC40 /* SDWebImageSwiftUI */; };
+		3CF01E572D7A1B4E0030AC40 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CF01E572D7A1B4E0030AC40 /* SDWebImageSwiftUI in Frameworks */,
+				0758A7912D733DA6004642A7 /* SDWebImageSwiftUI in Frameworks */,
+				3CF01E572D7A1B4E0030AC40 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +198,7 @@
 			);
 			name = FakeNFTUITests;
 			packageProductDependencies = (
-				3CF01E562D7A1B4E0030AC40 /* SDWebImageSwiftUI */,
+				0758A7902D733DA6004642A7 /* SDWebImageSwiftUI */,
 			);
 			productName = FakeNFTUITests;
 			productReference = 072ECBFF2D646D9000D76C5F /* FakeNFTUITests.xctest */;
@@ -657,12 +659,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0761D17E2D64737700DC0536 /* SDWebImageSwiftUI */ = {
+		0758A7902D733DA6004642A7 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0761D17D2D64737700DC0536 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
-		3CF01E562D7A1B4E0030AC40 /* SDWebImageSwiftUI */ = {
+		0761D17E2D64737700DC0536 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0761D17D2D64737700DC0536 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;

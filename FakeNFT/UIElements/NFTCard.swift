@@ -78,6 +78,7 @@ extension NFTCard {
                     .contentShape(Rectangle())
             )
             .disabled(isDisabled)
+            .accessibilityIdentifier(AppAccessibilityId.NFTCard.likeImage)
             .onTapGesture {
                 action()
             }

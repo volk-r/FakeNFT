@@ -12,4 +12,5 @@ protocol ProfileServiceProtocol: Sendable {
     func reloadProfile(for profileId: String) async throws -> ProfileModel?
     func loadProfile(for profileId: String) async throws -> ProfileModel?
     func updateLikes(for profileId: String, likes: [String]) async throws -> ProfileModel?
+    func updateProfile(for profileId: String, with profile: ProfileModel) async throws -> ProfileModel?
 }
