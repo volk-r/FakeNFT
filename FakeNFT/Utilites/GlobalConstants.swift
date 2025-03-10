@@ -12,5 +12,8 @@ enum GlobalConstants {
     static let token = "32da377f-a763-420c-95e8-a2830810af76"
     
     static let mockURL: String = "https://yandex.ru/legal/practicum_offer/"
+    static let mockProfileID: String = "1"
     static let mockPreviewImageUrl = "https://code.s3.yandex.net/Mobile/iOS/NFT/Beige/Finn/1.png"
+    
+    static let avatarPlaceHolder = "person.crop.circle.fill"
 }

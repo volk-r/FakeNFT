@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 final class CollectionViewModel: CollectionViewModelProtocol {
     let collection: NFTCollection
-    let authorLink = URL(string: "https://practicum.yandex.ru/ios-developer/")
+    let authorLink = "https://practicum.yandex.ru/ios-developer/"
     var nftModels: [NFTModel] = []
     var loadingState: LoadingState = .default
     
@@ -28,6 +28,7 @@ final class CollectionViewModel: CollectionViewModelProtocol {
         
         do {
             nftModels = try await nftDetailsService.loadNFT(for: collection.nfts)
+            nftModels.sort { $0.name < $1.name }
             loadingState = .success
         } catch {
             loadingState = .failure

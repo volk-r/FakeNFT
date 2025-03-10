@@ -34,6 +34,7 @@ struct CatalogView<ViewModel: CatalogViewModelProtocol>: View {
             NavigationStack {
                 CollectionView(viewModel: CollectionViewModel(collection: collection))
             }
+            .tint(.appBlack)
         }
         .task {
             await viewModel.loadCollections()
