@@ -50,6 +50,7 @@ extension NFTCardDescription {
         Text(title)
             .appTextStyleBodyBold()
             .lineLimit(1)
+            .accessibilityIdentifier(AppAccessibilityId.NFTCard.description)
     }
     
     // MARK: - ratingProgress
