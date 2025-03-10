@@ -31,7 +31,7 @@ struct UsersCollectionTests {
     /// - nftModels не пуст и равен ожидаемым данным
     @Test func test_loadData() async throws {
         // Arrange
-        let mockNetworkService = MockUsresNFTCollectionService()
+        let mockNetworkService = MockUsersNFTCollectionService()
         let usersNFTCollectionService = UsersNFTCollectionService(networkService: mockNetworkService)
         let viewModel = await UsersCollectionViewModel(loadingService: usersNFTCollectionService)
         let expectedNfts = [NFTModel.mock1, NFTModel.mock2]
@@ -53,7 +53,7 @@ struct UsersCollectionTests {
     /// План теста: присвоить loadingState значение ошибки и убедиться в том, что showingAlertError == true
     @Test func test_loadDataErrors() async throws {
         // Arrange
-        let mockNetworkService = MockUsresNFTCollectionService()
+        let mockNetworkService = MockUsersNFTCollectionService()
         let usersNFTCollectionService = UsersNFTCollectionService(networkService: mockNetworkService)
         let viewModel = await UsersCollectionViewModel(loadingService: usersNFTCollectionService)
         await mockNetworkService.setupShouldThrowError(true)

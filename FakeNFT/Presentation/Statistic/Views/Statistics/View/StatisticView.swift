@@ -112,7 +112,7 @@ struct StatisticView: View {
     private var loadingIndicator: some View {
         ZStack {
             Color.black.opacity(Constants.loadingDataBackgroundShading)
-                .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
+                .ignoresSafeArea(edges: [.horizontal, .bottom])
             ProgressView()
                 .frame(
                     width: Constants.loadingProgressViewSize,

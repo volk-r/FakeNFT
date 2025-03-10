@@ -1,5 +1,5 @@
 //
-//  MockUsresNFTCollectionService.swift
+//  MockUsersNFTCollectionService.swift
 //  FakeNFT
 //
 //  Created by Сергей Кухарев on 08.03.2025.
@@ -9,7 +9,7 @@ import Testing
 import Foundation
 @testable import FakeNFT
 
-actor MockUsresNFTCollectionService: NetworkServiceProtocol {
+actor MockUsersNFTCollectionService: NetworkServiceProtocol {
     var callCount = 0
     private var shouldThrowError = false
     private var mockResponse: [FakeNFT.NFTModel] = []
