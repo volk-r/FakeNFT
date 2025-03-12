@@ -47,27 +47,29 @@ struct AppTabView: View {
                 }
                 .tag(1)
             NavigationStack(path: $cartNavigationPath) {
-                CartView(viewModel: CartViewModel(navigationPath: $cartNavigationPath))
-                    .navigationDestination(
-                        for: CartNavigationPath.self
-                    ) { screen in
-                        switch screen {
-                        case .userAgreement:
-                            WebView(navigationURL: "https://yandex.ru/legal/practicum_termsofuse")
-                        case .purchase:
-                            PurchaseView(
-                                viewModel: PurchaseViewModel(
-                                    navigationPath: $cartNavigationPath
-                                )
-                            )
-                        case .purchaseSuccess:
-                            PurchaseSuccessView(
-                                viewModel: PurchaseSuccessViewModel(
-                                    navigationPath: $cartNavigationPath
-                                )
-                            )
-                        }
+                CartView(viewModel: CartViewModel { path in
+                    cartNavigationPath.append(path)
+                })
+                .navigationDestination(
+                    for: CartNavigationPath.self
+                ) { screen in
+                    switch screen {
+                    case .userAgreement:
+                        WebView(navigationURL: "https://yandex.ru/legal/practicum_termsofuse")
+                    case .purchase:
+                        PurchaseView(
+                            viewModel: PurchaseViewModel { path in
+                                cartNavigationPath.append(path)
+                            }
+                        )
+                    case .purchaseSuccess:
+                        PurchaseSuccessView(
+                            viewModel: PurchaseSuccessViewModel {
+                                cartNavigationPath.removeAll()
+                            }
+                        )
                     }
+                }
             }
             .tabItem {
                 Image(uiImage: .tabCart)

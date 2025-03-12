@@ -114,7 +114,9 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
 #Preview {
     NavigationStack {
         CartView(
-            viewModel: CartViewModel(navigationPath: .constant([]))
+            viewModel: CartViewModel { _ in
+                
+            }
         )
     }
 }

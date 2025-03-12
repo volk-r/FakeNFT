@@ -41,7 +41,7 @@ struct PurchaseItemView: View {
     var info: some View {
         VStack(alignment: .leading) {
             Text(item.name)
-                .appTextStyleBodyRegular()
+                .appTextStyleCaption2()
             Text(item.ticker)
                 .appTextStyleBodyRegular(withColor: .appGreenUniversal)
         }

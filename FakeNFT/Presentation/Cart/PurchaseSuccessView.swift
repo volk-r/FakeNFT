@@ -47,7 +47,9 @@ struct PurchaseSuccessView<ViewModel: PurchaseSuccessViewModelProtocol>: View {
         EmptyView()
             .navigationDestination(for: String.self) { _ in
                 PurchaseSuccessView(
-                    viewModel: PurchaseSuccessViewModel(navigationPath: .constant([]))
+                    viewModel: PurchaseSuccessViewModel {
+                        
+                    }
                 )
             }
     }

@@ -5,7 +5,7 @@
 //  Created by Леонид Лавров on 3/2/25.
 //
 
-import SwiftUICore
+import Foundation
 
 @Observable
 final class CartViewModel: CartViewModelProtocol {
@@ -17,10 +17,10 @@ final class CartViewModel: CartViewModelProtocol {
     var sortType: NFTSortingType?
     var isPresentedConfirmDelete: Bool = false
     
-    private let navigationPath: Binding<[CartNavigationPath]>
+    private let navigateTo: (CartNavigationPath) -> Void
     
-    init(navigationPath: Binding<[CartNavigationPath]>) {
-        self.navigationPath = navigationPath
+    init(navigateTo: @escaping (CartNavigationPath) -> Void) {
+        self.navigateTo = navigateTo
     }
     
     func getCart() async {
@@ -50,7 +50,7 @@ final class CartViewModel: CartViewModelProtocol {
     }
     
     func forPaymentButtonTapped() {
-        navigationPath.wrappedValue.append(.purchase)
+        navigateTo(.purchase)
     }
     
     func deleteConfirmTapped() {

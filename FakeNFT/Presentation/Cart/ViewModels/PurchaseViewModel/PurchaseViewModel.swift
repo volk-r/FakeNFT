@@ -5,7 +5,7 @@
 //  Created by Леонид Лавров on 3/2/25.
 //
 
-import SwiftUICore
+import Foundation
 
 @Observable
 final class PurchaseViewModel: PurchaseViewModelProtocol {
@@ -14,10 +14,10 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     var selectedPurchaseItem: PurchaseItem?
     var isPresentedErrorAlert: Bool = false
     
-    private let navigationPath: Binding<[CartNavigationPath]>
+    private let navigateTo: (CartNavigationPath) -> Void
     
-    init(navigationPath: Binding<[CartNavigationPath]>) {
-        self.navigationPath = navigationPath
+    init(navigateTo: @escaping (CartNavigationPath) -> Void) {
+        self.navigateTo = navigateTo
     }
     
     var isEmptyPurchase: Bool {
@@ -43,14 +43,14 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     }
     
     func userAgreementTapped() {
-        navigationPath.wrappedValue.append(.userAgreement)
+        navigateTo(.userAgreement)
     }
     
     func payButtonTapped() {
         if selectedPurchaseItem == nil {
             isPresentedErrorAlert = true
         } else {
-            navigationPath.wrappedValue.append(.purchaseSuccess)
+            navigateTo(.purchaseSuccess)
         }
     }
 }

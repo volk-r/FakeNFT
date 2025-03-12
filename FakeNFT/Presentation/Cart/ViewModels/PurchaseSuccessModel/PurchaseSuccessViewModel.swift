@@ -5,16 +5,14 @@
 //  Created by Леонид Лавров on 3/9/25.
 //
 
-import SwiftUICore
-
 final class PurchaseSuccessViewModel: PurchaseSuccessViewModelProtocol {
-    private let navigationPath: Binding<[CartNavigationPath]>
+    private let returnToCatalog: () -> Void
     
-    init(navigationPath: Binding<[CartNavigationPath]>) {
-        self.navigationPath = navigationPath
+    init(returnToCatalog: @escaping () -> Void) {
+        self.returnToCatalog = returnToCatalog
     }
     
     func returnToCatalogButtonTapped() {
-        navigationPath.wrappedValue.removeAll()
+        returnToCatalog()
     }
 }

@@ -35,6 +35,7 @@ struct PurchaseView<ViewModel: PurchaseViewModelProtocol>: View {
                 )
             }
         }
+        .toolbar(.hidden, for: .tabBar)
         .alert(
             "Failed to make payment",
             isPresented: $viewModel.isPresentedErrorAlert
@@ -97,9 +98,9 @@ struct PurchaseView<ViewModel: PurchaseViewModelProtocol>: View {
     NavigationStack(path: .constant([""])) {
         EmptyView()
             .navigationDestination(for: String.self) { _ in
-                PurchaseView(viewModel: PurchaseViewModel(
-                    navigationPath: .constant([])
-                ))
+                PurchaseView(viewModel: PurchaseViewModel { _ in
+                    
+                })
             }
     }
 }
