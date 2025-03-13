@@ -43,7 +43,7 @@ struct PurchaseItemView: View {
             Text(item.name)
                 .appTextStyleCaption2()
             Text(item.ticker)
-                .appTextStyleBodyRegular(withColor: .appGreenUniversal)
+                .appTextStyleCaption2(withColor: .appGreenUniversal)
         }
     }
 }
