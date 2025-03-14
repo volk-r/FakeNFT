@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PurchaseItem: Identifiable {
+struct PurchaseItem: Identifiable, Equatable {
     let id = UUID()
     let imageUrl: String
     let name: String
@@ -19,5 +19,36 @@ struct PurchaseItem: Identifiable {
         ticker: "BTC"
     )
     
-    static let mockItems = Array(repeating: Self.mockItem, count: 10)
+    static let mockItems = [
+        PurchaseItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Bitcoin",
+            ticker: "BTC"
+        ),
+        PurchaseItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Bitcoin",
+            ticker: "BTC"
+        ),
+        PurchaseItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Bitcoin",
+            ticker: "BTC"
+        ),
+        PurchaseItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Bitcoin",
+            ticker: "BTC"
+        ),
+        PurchaseItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Bitcoin",
+            ticker: "BTC"
+        ),
+        PurchaseItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Bitcoin",
+            ticker: "BTC"
+        )
+    ]
 }

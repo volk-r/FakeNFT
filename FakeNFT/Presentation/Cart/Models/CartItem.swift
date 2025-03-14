@@ -21,5 +21,30 @@ struct CartItem: Identifiable {
         price: 1.78
     )
     
-    static let mockItems = Array(repeating: Self.mockItem, count: 10)
+    static let mockItems: [CartItem] = [
+        CartItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Lilo",
+            rating: 3,
+            price: 1.78
+        ),
+        CartItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Lilo",
+            rating: 3,
+            price: 1.78
+        ),
+        CartItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Lilo",
+            rating: 3,
+            price: 1.78
+        ),
+        CartItem(
+            imageUrl: GlobalConstants.mockPreviewImageUrl,
+            name: "Lilo",
+            rating: 3,
+            price: 1.78
+        )
+    ]
 }

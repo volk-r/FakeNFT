@@ -24,9 +24,7 @@ struct CartDeleteItemConfirm: View {
                     .appTextStyleBodyRegular()
             }
             HStack {
-                Button(action: {
-                    
-                }, label: {
+                Button(action: onDelete, label: {
                     Text("Delete")
                         .appTextStyleBodyRegular(withColor: .appRedUniversal)
                         .padding(.horizontal, 24)
@@ -35,9 +33,7 @@ struct CartDeleteItemConfirm: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.appBlack)
                 .cornerRadius(12)
-                Button(action: {
-                    
-                }, label: {
+                Button(action: onCancel, label: {
                     Text("Return").appTextStyleBodyRegular(withColor: .appWhite)
                         .padding(.horizontal, 24)
                         .padding(.vertical, 4)

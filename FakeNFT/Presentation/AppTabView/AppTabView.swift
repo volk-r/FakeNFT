@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @State var cartNavigationPath: [CartNavigationPath] = []
+    
     // MARK: - Initializers
 
     init() {
@@ -44,12 +46,36 @@ struct AppTabView: View {
                     Text("Catalog")
                 }
                 .tag(1)
-            CartView()
-                .tabItem {
-                    Image(uiImage: .tabCart)
-                    Text("Cart")
+            NavigationStack(path: $cartNavigationPath) {
+                CartView(viewModel: CartViewModel { path in
+                    cartNavigationPath.append(path)
+                })
+                .navigationDestination(
+                    for: CartNavigationPath.self
+                ) { screen in
+                    switch screen {
+                    case .userAgreement:
+                        WebView(navigationURL: "https://yandex.ru/legal/practicum_termsofuse")
+                    case .purchase:
+                        PurchaseView(
+                            viewModel: PurchaseViewModel { path in
+                                cartNavigationPath.append(path)
+                            }
+                        )
+                    case .purchaseSuccess:
+                        PurchaseSuccessView(
+                            viewModel: PurchaseSuccessViewModel {
+                                cartNavigationPath.removeAll()
+                            }
+                        )
+                    }
                 }
-                .tag(2)
+            }
+            .tabItem {
+                Image(uiImage: .tabCart)
+                Text("Cart")
+            }
+            .tag(2)
             NavigationStack {
                 StatisticView()
             }

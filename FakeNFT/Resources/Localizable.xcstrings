@@ -54,6 +54,9 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
     "Cart" : {
       "comment" : "Название tabItem \"Корзина\"",
       "localizations" : {
@@ -81,9 +84,6 @@
         }
       }
     },
-    "Cart View" : {
-      "shouldTranslate" : false
-    },
     "Catalog" : {
       "comment" : "Название tabItem \"Каталог\"",
       "localizations" : {
@@ -104,6 +104,9 @@
     "Catalog View" : {
       "shouldTranslate" : false
     },
+    "Close" : {
+
+    },
     "Delete" : {
       "localizations" : {
         "ru" : {
@@ -113,6 +116,19 @@
           }
         }
       }
+    },
+    "Error loading cart" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка загрузки корзины"
+          }
+        }
+      }
+    },
+    "Failed to make payment" : {
+
     },
     "For payment" : {
       "localizations" : {
@@ -167,12 +183,35 @@
     "Profile View" : {
       "shouldTranslate" : false
     },
+    "Repeat" : {
+
+    },
     "Return" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Вернуться"
+          }
+        }
+      }
+    },
+    "Return to catalog" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вернуться в каталог"
+          }
+        }
+      }
+    },
+    "Select payment method" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите способ оплаты"
           }
         }
       }
