@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WebView: View {
-    
     // MARK: - Properties
 
     let navigationURL: String
@@ -17,6 +16,7 @@ struct WebView: View {
     var body: some View {
         VStack {
             ProgressView(value: model.loadingProgress)
+                .accessibilityIdentifier(AppAccessibilityId.WebView.progressView)
                 .progressViewStyle(.linear)
                 .opacity(model.loadingProgress == 1.0 ? 0 : 1)
             ZStack {
@@ -31,9 +31,11 @@ struct WebView: View {
                                 alignment: .center
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 70))
+                            .accessibilityIdentifier(AppAccessibilityId.WebView.image)
                         
                         Text("No internet")
                             .appTextStyleHeadline3()
+                            .accessibilityIdentifier(AppAccessibilityId.WebView.message)
                     }
                 } else {
                     WebViewBridge(url: navigationURL)
@@ -46,7 +48,6 @@ struct WebView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(URL(string: navigationURL)?.host(percentEncoded: true) ?? "")
         .toolbarRole(.editor)
         .ignoresSafeArea(edges: [.leading, .trailing, .bottom])
     }

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AppTabView: View {
     @State var cartNavigationPath: [CartNavigationPath] = []
-    
+    @StateObject private var catalogViewModel: CatalogViewModel
+
     // MARK: - Initializers
 
     init() {
@@ -28,6 +29,8 @@ struct AppTabView: View {
 
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
+
+        _catalogViewModel = StateObject(wrappedValue: CatalogViewModel())
     }
 
     // MARK: - View
@@ -40,16 +43,18 @@ struct AppTabView: View {
                     Text("Profile")
                 }
                 .tag(0)
-            CatalogView()
+            CatalogView(viewModel: catalogViewModel)
                 .tabItem {
                     Image(uiImage: .tabCatalog)
                     Text("Catalog")
                 }
                 .tag(1)
             NavigationStack(path: $cartNavigationPath) {
-                CartView(viewModel: CartViewModel { path in
-                    cartNavigationPath.append(path)
-                })
+                CartView(
+                    viewModel: CartViewModel { path in
+                        cartNavigationPath.append(path)
+                    }
+                )
                 .navigationDestination(
                     for: CartNavigationPath.self
                 ) { screen in
@@ -76,14 +81,12 @@ struct AppTabView: View {
                 Text("Cart")
             }
             .tag(2)
-            NavigationStack {
-                StatisticView()
-            }
-            .tabItem {
-                Image(uiImage: .tabStatistics)
-                Text("Statistic")
-            }
-            .tag(3)
+            StatisticView()
+                .tabItem {
+                    Image(uiImage: .tabStatistics)
+                    Text("Statistic")
+                }
+                .tag(3)
         }
     }
 
