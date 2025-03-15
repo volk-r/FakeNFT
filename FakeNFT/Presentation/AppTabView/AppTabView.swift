@@ -10,6 +10,7 @@ import SwiftUI
 struct AppTabView: View {
     @State var cartNavigationPath: [CartNavigationPath] = []
     @StateObject private var catalogViewModel: CatalogViewModel
+    @EnvironmentObject private var orderManager: OrderManager
 
     // MARK: - Initializers
 
@@ -51,7 +52,10 @@ struct AppTabView: View {
                 .tag(1)
             NavigationStack(path: $cartNavigationPath) {
                 CartView(
-                    viewModel: CartViewModel { path in
+                    viewModel: CartViewModel(
+                        orderManager: orderManager,
+                        nftDetailsService: NFTDetailsService()
+                    ) { path in
                         cartNavigationPath.append(path)
                     }
                 )
@@ -63,7 +67,9 @@ struct AppTabView: View {
                         WebView(navigationURL: "https://yandex.ru/legal/practicum_termsofuse")
                     case .purchase:
                         PurchaseView(
-                            viewModel: PurchaseViewModel { path in
+                            viewModel: PurchaseViewModel(
+                                orderManager: orderManager
+                            ) { path in
                                 cartNavigationPath.append(path)
                             }
                         )

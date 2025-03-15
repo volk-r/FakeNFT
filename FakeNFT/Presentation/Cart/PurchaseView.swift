@@ -41,7 +41,9 @@ struct PurchaseView<ViewModel: PurchaseViewModelProtocol>: View {
             isPresented: $viewModel.isPresentedErrorAlert
         ) {
             Button("Cancel", role: .cancel) { }
-            Button("Repeat") { }
+            Button("Repeat") {
+                viewModel.payButtonTapped()
+            }
         }
         .task {
             await viewModel.getPurchase()
@@ -95,10 +97,12 @@ struct PurchaseView<ViewModel: PurchaseViewModelProtocol>: View {
 }
 
 #Preview {
+    let orderManager = OrderManager(orderService: OrderMockService())
+    
     NavigationStack(path: .constant([""])) {
         EmptyView()
             .navigationDestination(for: String.self) { _ in
-                PurchaseView(viewModel: PurchaseViewModel { _ in
+                PurchaseView(viewModel: PurchaseViewModel(orderManager: orderManager) { _ in
                     
                 })
             }

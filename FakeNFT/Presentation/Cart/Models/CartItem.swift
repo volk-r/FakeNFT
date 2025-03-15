@@ -8,13 +8,14 @@
 import Foundation
 
 struct CartItem: Identifiable {
-    let id = UUID()
+    let id: String
     let imageUrl: String
     let name: String
     let rating: Int
     let price: Double
     
     static let mockItem = CartItem(
+        id: UUID().uuidString,
         imageUrl: GlobalConstants.mockPreviewImageUrl,
         name: "Lilo",
         rating: 3,
@@ -23,24 +24,28 @@ struct CartItem: Identifiable {
     
     static let mockItems: [CartItem] = [
         CartItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Lilo",
             rating: 3,
             price: 1.78
         ),
         CartItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Lilo",
             rating: 3,
             price: 1.78
         ),
         CartItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Lilo",
             rating: 3,
             price: 1.78
         ),
         CartItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Lilo",
             rating: 3,

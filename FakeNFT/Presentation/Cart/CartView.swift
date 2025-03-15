@@ -28,13 +28,13 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
             titleVisibility: .visible
         ) {
             Button("By price") {
-                viewModel.sortType = .byPrice
+                viewModel.setSort(.byPrice)
             }
             Button("By rating") {
-                viewModel.sortType = .byRating
+                viewModel.setSort(.byRating)
             }
             Button("By name") {
-                viewModel.sortType = .byName
+                viewModel.setSort(.byName)
             }
             Button("Close", role: .cancel) { }
         }
@@ -46,6 +46,7 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
             }, onCancel: {
                 viewModel.cancelDeleteConfirmTapped()
             })
+            .disabled(viewModel.isDeleteItemLoading)
             .presentationBackground(.ultraThinMaterial)
         }
         .toolbar {
@@ -60,6 +61,9 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
                     }
                 )
             }
+        }
+        .onAppear {
+            viewModel.onAppear()
         }
         .task {
             await viewModel.getCart()
@@ -112,9 +116,14 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
 }
 
 #Preview {
+    let orderManager = OrderManager(orderService: OrderMockService())
+    
     NavigationStack {
         CartView(
-            viewModel: CartViewModel { _ in
+            viewModel: CartViewModel(
+                orderManager: orderManager,
+                nftDetailsService: NFTDetailsServiceMock()
+            ) { _ in
                 
             }
         )

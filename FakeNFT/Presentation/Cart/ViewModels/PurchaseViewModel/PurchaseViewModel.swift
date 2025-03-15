@@ -14,9 +14,14 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     var selectedPurchaseItem: PurchaseItem?
     var isPresentedErrorAlert: Bool = false
     
+    private let orderManager: any OrderManagerProtocol
     private let navigateTo: (CartNavigationPath) -> Void
     
-    init(navigateTo: @escaping (CartNavigationPath) -> Void) {
+    init(
+        orderManager: any OrderManagerProtocol,
+        navigateTo: @escaping (CartNavigationPath) -> Void
+    ) {
+        self.orderManager = orderManager
         self.navigateTo = navigateTo
     }
     
@@ -47,20 +52,35 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     }
     
     func payButtonTapped() {
-        if selectedPurchaseItem == nil {
-            isPresentedErrorAlert = true
+        if let selectedPurchaseItem {
+            Task {
+                do {
+                    try await orderManager.payOrder(currencyId: selectedPurchaseItem.id)
+                    
+                    navigateTo(.purchaseSuccess)
+                } catch {
+                    isPresentedErrorAlert = true
+                }
+            }
         } else {
-            navigateTo(.purchaseSuccess)
+            isPresentedErrorAlert = true
         }
     }
 }
 
 private extension PurchaseViewModel {
     func fetchPurchase() async throws {
-        try await Task.sleep(for: .seconds(1))
+        let currencies = try await orderManager.loadCurrencies()
         
         loadingState = .success
-        setPurchaseItems(PurchaseItem.mockItems)
+        setPurchaseItems(currencies.map {
+            .init(
+                id: $0.id,
+                imageUrl: $0.image,
+                name: $0.title,
+                ticker: $0.name
+            )
+        })
     }
     
     func setPurchaseItems(_ purchaseItems: [PurchaseItem]) {

@@ -8,12 +8,13 @@
 import Foundation
 
 struct PurchaseItem: Identifiable, Equatable {
-    let id = UUID()
+    let id: String
     let imageUrl: String
     let name: String
     let ticker: String
     
     static let mockItem = PurchaseItem(
+        id: UUID().uuidString,
         imageUrl: GlobalConstants.mockPreviewImageUrl,
         name: "Bitcoin",
         ticker: "BTC"
@@ -21,31 +22,37 @@ struct PurchaseItem: Identifiable, Equatable {
     
     static let mockItems = [
         PurchaseItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Bitcoin",
             ticker: "BTC"
         ),
         PurchaseItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Bitcoin",
             ticker: "BTC"
         ),
         PurchaseItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Bitcoin",
             ticker: "BTC"
         ),
         PurchaseItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Bitcoin",
             ticker: "BTC"
         ),
         PurchaseItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Bitcoin",
             ticker: "BTC"
         ),
         PurchaseItem(
+            id: UUID().uuidString,
             imageUrl: GlobalConstants.mockPreviewImageUrl,
             name: "Bitcoin",
             ticker: "BTC"
