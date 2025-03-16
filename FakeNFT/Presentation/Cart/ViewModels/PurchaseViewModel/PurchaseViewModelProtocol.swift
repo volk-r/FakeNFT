@@ -14,6 +14,7 @@ protocol PurchaseViewModelProtocol: ObservableObject, Sendable {
     var selectedPurchaseItem: PurchaseItem? { get }
     var isEmptyPurchase: Bool { get }
     var isPresentedErrorAlert: Bool { get set }
+    var isPayLoading: Bool { get }
     
     func getPurchase() async
     

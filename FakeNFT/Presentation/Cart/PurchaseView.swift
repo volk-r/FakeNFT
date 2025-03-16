@@ -12,12 +12,17 @@ struct PurchaseView<ViewModel: PurchaseViewModelProtocol>: View {
     @State var viewModel: ViewModel
     
     var body: some View {
-        VStack {
-            LoadingSwitcher(
-                viewModel.loadingState,
-                content: { content },
-                error: { error }
-            )
+        ZStack {
+            VStack {
+                LoadingSwitcher(
+                    viewModel.loadingState,
+                    content: { content },
+                    error: { error }
+                )
+            }
+            if viewModel.isPayLoading {
+                loadingIndicator
+            }
         }
         .navigationTitle("Select payment method")
         .navigationBarBackButtonHidden()
@@ -93,6 +98,18 @@ struct PurchaseView<ViewModel: PurchaseViewModelProtocol>: View {
     
     private var error: some View {
         CartErrorView()
+    }
+    
+    private var loadingIndicator: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+            ProgressView()
+                .frame(width: 80, height: 80)
+                .background(.appWhite)
+                .cornerRadius(12)
+        }
+        .allowsHitTesting(true)
     }
 }
 

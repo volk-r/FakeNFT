@@ -60,6 +60,7 @@ struct CartView<ViewModel: CartViewModelProtocol>: View {
                             .foregroundStyle(.appBlack)
                     }
                 )
+                .disabled(viewModel.loadingState != .success)
             }
         }
         .onAppear {

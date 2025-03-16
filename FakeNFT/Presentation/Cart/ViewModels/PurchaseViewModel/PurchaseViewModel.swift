@@ -13,6 +13,7 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     var purchaseItems: [PurchaseItem] = []
     var selectedPurchaseItem: PurchaseItem?
     var isPresentedErrorAlert: Bool = false
+    var isPayLoading: Bool = false
     
     private let orderManager: any OrderManagerProtocol
     private let navigateTo: (CartNavigationPath) -> Void
@@ -54,7 +55,12 @@ final class PurchaseViewModel: PurchaseViewModelProtocol {
     func payButtonTapped() {
         if let selectedPurchaseItem {
             Task {
+                defer {
+                    isPayLoading = false
+                }
+                
                 do {
+                    isPayLoading = true
                     try await orderManager.payOrder(currencyId: selectedPurchaseItem.id)
                     
                     navigateTo(.purchaseSuccess)
