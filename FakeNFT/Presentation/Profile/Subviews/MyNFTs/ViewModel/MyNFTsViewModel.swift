@@ -37,6 +37,10 @@ final class MyNFTsViewModel: MyNFTsViewModelProtocol {
     // MARK: - fetchNFTData
     
     func fetchNFTData(nftIDs: [String]?) async {
+        if ProcessInfo.processInfo.environment["USE_EMPTY_MOCK_DATA"] == "true" {
+            return
+        }
+        
         if ProcessInfo.processInfo.environment["USE_MOCK_DATA"] == "true" {
             isEmptyNFTs = false
             loadingState = .loading
