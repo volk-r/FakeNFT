@@ -14,6 +14,9 @@
         }
       }
     },
+    "%lld NFT" : {
+
+    },
     "About the developer" : {
       "localizations" : {
         "ru" : {
@@ -24,6 +27,9 @@
         }
       }
     },
+    "Are you sure you want remove an item from the trash?" : {
+
+    },
     "Author of the collection:" : {
       "localizations" : {
         "ru" : {
@@ -33,6 +39,9 @@
           }
         }
       }
+    },
+    "By making a purchase, you agree to the terms and conditions" : {
+
     },
     "By name" : {
       "localizations" : {
@@ -111,8 +120,15 @@
         }
       }
     },
-    "Cart View" : {
-      "shouldTranslate" : false
+    "Cart is empty" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Корзина пуста"
+          }
+        }
+      }
     },
     "Catalog" : {
       "comment" : "Название tabItem \"Каталог\"",
@@ -147,6 +163,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Закрыть"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
           }
         }
       }
@@ -191,6 +217,19 @@
         }
       }
     },
+    "Error loading cart" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка загрузки корзины"
+          }
+        }
+      }
+    },
+    "Failed to make payment" : {
+
+    },
     "Failed to retrieve data" : {
       "localizations" : {
         "ru" : {
@@ -217,6 +256,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Избранные NFT (%lld)"
+          }
+        }
+      }
+    },
+    "For payment" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "К оплате"
           }
         }
       }
@@ -277,6 +326,16 @@
         }
       }
     },
+    "Pay" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оплатить"
+          }
+        }
+      }
+    },
     "Please enter a new value below" : {
       "localizations" : {
         "ru" : {
@@ -314,12 +373,45 @@
         }
       }
     },
+    "Repeat" : {
+
+    },
+    "Return" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вернуться"
+          }
+        }
+      }
+    },
+    "Return to catalog" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вернуться в каталог"
+          }
+        }
+      }
+    },
     "Save" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "Select payment method" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите способ оплаты"
           }
         }
       }
@@ -480,6 +572,9 @@
         }
       }
     },
+    "Success! The payment went through Congratulations on your purchase!" : {
+
+    },
     "Tell us about yourself" : {
       "localizations" : {
         "ru" : {
@@ -499,6 +594,9 @@
           }
         }
       }
+    },
+    "User agreement" : {
+
     },
     "userCardViewGoToUsersSiteButton" : {
       "comment" : "Наименование кнопки \"Перейти на сайт пользователя\"",

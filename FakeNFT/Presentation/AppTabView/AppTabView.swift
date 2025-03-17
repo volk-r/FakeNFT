@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct AppTabView: View {
+    @State var cartNavigationPath: [CartNavigationPath] = []
     @StateObject private var catalogViewModel: CatalogViewModel
-    
+    @EnvironmentObject private var orderManager: OrderManager
+
     // MARK: - Initializers
 
     init() {
@@ -28,10 +30,10 @@ struct AppTabView: View {
 
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
-        
+
         _catalogViewModel = StateObject(wrappedValue: CatalogViewModel())
     }
-    
+
     // MARK: - View
 
     var body: some View {
@@ -48,12 +50,43 @@ struct AppTabView: View {
                     Text("Catalog")
                 }
                 .tag(1)
-            CartView()
-                .tabItem {
-                    Image(uiImage: .tabCart)
-                    Text("Cart")
+            NavigationStack(path: $cartNavigationPath) {
+                CartView(
+                    viewModel: CartViewModel(
+                        orderManager: orderManager,
+                        nftDetailsService: NFTDetailsService()
+                    ) { path in
+                        cartNavigationPath.append(path)
+                    }
+                )
+                .navigationDestination(
+                    for: CartNavigationPath.self
+                ) { screen in
+                    switch screen {
+                    case .userAgreement:
+                        WebView(navigationURL: "https://yandex.ru/legal/practicum_termsofuse")
+                    case .purchase:
+                        PurchaseView(
+                            viewModel: PurchaseViewModel(
+                                orderManager: orderManager
+                            ) { path in
+                                cartNavigationPath.append(path)
+                            }
+                        )
+                    case .purchaseSuccess:
+                        PurchaseSuccessView(
+                            viewModel: PurchaseSuccessViewModel {
+                                cartNavigationPath.removeAll()
+                            }
+                        )
+                    }
                 }
-                .tag(2)
+            }
+            .tabItem {
+                Image(uiImage: .tabCart)
+                Text("Cart")
+            }
+            .tag(2)
             StatisticView()
                 .tabItem {
                     Image(uiImage: .tabStatistics)

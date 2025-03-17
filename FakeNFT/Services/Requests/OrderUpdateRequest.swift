@@ -26,6 +26,8 @@ struct OrderUpdateDto: Dto {
     let nfts: [String]
     
     func asDictionary() -> [String: String] {
+        guard !nfts.isEmpty else { return [:] }
+        
         let joinedNfts = nfts.joined(separator: ",")
         return ["nfts": joinedNfts]
     }
