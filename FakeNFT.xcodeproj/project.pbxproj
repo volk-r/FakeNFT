@@ -108,7 +108,6 @@
 				072ECBE72D646D8E00D76C5F /* FakeNFT */,
 				072ECBF82D646D9000D76C5F /* FakeNFTTests */,
 				072ECC022D646D9000D76C5F /* FakeNFTUITests */,
-				3CF01E552D7A1B4E0030AC40 /* Frameworks */,
 				072ECBE62D646D8E00D76C5F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,13 +120,6 @@
 				072ECBFF2D646D9000D76C5F /* FakeNFTUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		3CF01E552D7A1B4E0030AC40 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
